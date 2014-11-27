@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+ <converter>
+  <converter-id>entityConverter</converter-id>
+  <converter-class>converter.EntityConverter</converter-class>
+ </converter>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>erroLogin</from-outcome>
+   <to-view-id>login.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>sucessoLogin</from-outcome>
+   <to-view-id>principal.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>paginaLogin</from-outcome>
+   <to-view-id>login.xhtml</to-view-id>
+  </navigation-case>
+
+  <!-- CIDADAO -->
+  <navigation-case>
+   <from-outcome>cadastrarCidadao</from-outcome>
+   <to-view-id>/paginas/cidadao/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarCidadao</from-outcome>
+   <to-view-id>/paginas/cidadao/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+  <!-- GRUPO -->
+  <navigation-case>
+   <from-outcome>cadastrarGrupo</from-outcome>
+   <to-view-id>/paginas/grupo/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarGrupo</from-outcome>
+   <to-view-id>/paginas/grupo/listagem.xhtml</to-view-id>
+  </navigation-case> 
+  
+  <!-- PROGRAMA GOVERNAMENTAL -->
+  <navigation-case>
+   <from-outcome>cadastrarProgramaGovernamental</from-outcome>
+   <to-view-id>/paginas/programaGovernamental/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarProgramaGovernamental</from-outcome>
+   <to-view-id>/paginas/programaGovernamental/listagem.xhtml</to-view-id>
+  </navigation-case> 
+  
+  <!-- MATERIAL CONSUMO -->
+  <navigation-case>
+   <from-outcome>cadastrarMaterialConsumo</from-outcome>
+   <to-view-id>/paginas/materialConsumo/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarMaterialConsumo</from-outcome>
+   <to-view-id>/paginas/materialConsumo/listagem.xhtml</to-view-id>
+  </navigation-case>  
+  
+  <!-- MATERIAL PERMANENTE -->
+  <navigation-case>
+   <from-outcome>cadastrarMaterialPermanente</from-outcome>
+   <to-view-id>/paginas/materialPermanente/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarMaterialPermanente</from-outcome>
+   <to-view-id>/paginas/materialPermanente/listagem.xhtml</to-view-id>
+  </navigation-case> 
+  
+  <!-- TIPO MATERIAL PERMANENTE -->
+  <navigation-case>
+   <from-outcome>cadastrarTipoMaterialPermanente</from-outcome>
+   <to-view-id>/paginas/tipoMaterialPermanente/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarTipoMaterialPermanente</from-outcome>
+   <to-view-id>/paginas/tipoMaterialPermanente/listagem.xhtml</to-view-id>
+  </navigation-case>  
+  
+   <!-- FONTE RECURSO -->
+  <navigation-case>
+   <from-outcome>cadastrarFonteRecurso</from-outcome>
+   <to-view-id>/paginas/fonteRecurso/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarFonteRecurso</from-outcome>
+   <to-view-id>/paginas/fonteRecurso/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+   <!-- DOTAÇÃO ORCAMENTÁRIA -->
+  <navigation-case>
+   <from-outcome>cadastrarDotacaoOrcamentaria</from-outcome>
+   <to-view-id>/paginas/dotacaoOrcamentaria/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarDotacaoOrcamentaria</from-outcome>
+   <to-view-id>/paginas/dotacaoOrcamentaria/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+  <!-- UNIDADE EXTERNA -->
+  <navigation-case>
+   <from-outcome>cadastrarUnidadeExterna</from-outcome>
+   <to-view-id>/paginas/unidadeExterna/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarUnidadeExterna</from-outcome>
+   <to-view-id>/paginas/unidadeExterna/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+   <!-- UNIDADE CPTR -->
+  <navigation-case>
+   <from-outcome>cadastrarUnidadeCptr</from-outcome>
+   <to-view-id>/paginas/unidadeCptr/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarUnidadeCptr</from-outcome>
+   <to-view-id>/paginas/unidadeCptr/listagem.xhtml</to-view-id>
+  </navigation-case>
+    
+   <!-- CONTRATO -->
+  <navigation-case>
+   <from-outcome>cadastrarContrato</from-outcome>
+   <to-view-id>/paginas/contrato/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarContrato</from-outcome>
+   <to-view-id>/paginas/contrato/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+   <!-- FUNCIONARIO -->
+  <navigation-case>
+   <from-outcome>cadastrarFuncionario</from-outcome>
+   <to-view-id>/paginas/funcionario/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarFuncionario</from-outcome>
+   <to-view-id>/paginas/funcionario/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+   <!-- CARGO -->
+  <navigation-case>
+   <from-outcome>cadastrarCargo</from-outcome>
+   <to-view-id>/paginas/cargo/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarCargo</from-outcome>
+   <to-view-id>/paginas/cargo/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+   <!-- ETNIA -->
+  <navigation-case>
+   <from-outcome>cadastrarEtnia</from-outcome>
+   <to-view-id>/paginas/etnia/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarEtnia</from-outcome>
+   <to-view-id>/paginas/etnia/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+   <!-- ESCOLARIDADE -->
+  <navigation-case>
+   <from-outcome>cadastrarEscolaridade</from-outcome>
+   <to-view-id>/paginas/escolaridade/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarEscolaridade</from-outcome>
+   <to-view-id>/paginas/escolaridade/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+  <!-- PROJETO -->
+  <navigation-case>
+   <from-outcome>cadastrarProjeto</from-outcome>
+   <to-view-id>/paginas/projeto/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarProjeto</from-outcome>
+   <to-view-id>/paginas/projeto/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+  <!-- PROGRAMA -->
+  <navigation-case>
+   <from-outcome>cadastrarPrograma</from-outcome>
+   <to-view-id>/paginas/programa/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarPrograma</from-outcome>
+   <to-view-id>/paginas/programa/listagem.xhtml</to-view-id>
+  </navigation-case>
+    
+  <!-- USUARIO --> 
+  <navigation-case>
+   <from-outcome>cadastrarUsuario</from-outcome>
+   <to-view-id>/paginas/usuario/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarUsuario</from-outcome>
+   <to-view-id>/paginas/usuario/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
+  <!-- FIM PROJETO -->
+ </navigation-rule>
+ <application>
+  <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+  <resource-bundle>
+   <base-name>message</base-name>
+   <var>msg</var>
+  </resource-bundle>
+  <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+ </application>
+</faces-config>

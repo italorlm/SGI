@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+    "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="corpo">
+		<h:form acceptcharset="UTF-8">
+              <ui:param name="bean" value="#{contratoController}" />
+			 <a4j:outputPanel ajaxRendered="true"><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
+			<div align="center">
+				<rich:tabPanel width="80%" height="150">
+					<br />
+
+					<rich:tab label="CADASTRO DE CONTRATO">
+					
+						<h:panelGrid columns="10">							
+							<h:outputText value="Executor:" />
+							<h:inputText id="executor" value="#{contratoController.objeto.executor}"
+								size="50" />
+							
+							<rich:spacer width="10"/>
+							
+							<h:outputText value="Contrato:" />
+							<h:inputText id="contrato" value="#{contratoController.objeto.contrato}"
+								size="20" />
+							
+							<rich:spacer width="10"/>
+							
+							<h:outputText value="Aditivo:" />
+							<h:inputText id="aditivo" value="#{contratoController.objeto.aditivo}"
+								size="20" />										
+						</h:panelGrid>
+						
+						<rich:spacer height="10"/>
+						
+						<h:panelGrid columns="10">
+						  <h:outputText value="Exercicio:" />
+							<h:inputText id="exercicio" value="#{contratoController.objeto.exercicio}"
+								 size="10" />
+						</h:panelGrid>
+						
+						<rich:spacer height="10"/>
+						
+						<h:panelGrid columns="10">
+						 	<h:outputText value="Fonte de Recurso:" />
+								<h:selectOneMenu id="fonteRecurso" converter="entityConverter" 
+									value="#{contratoController.objeto.fonteRecurso}">
+								  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+								  	<f:selectItems value="#{fonteRecursoController.selectItems}"/>
+								</h:selectOneMenu>
+							
+							<rich:spacer width="10"/>
+							
+							<h:outputText value="Dotação Orçamentária:" />
+								<h:selectOneMenu id="dotacaoOrcamentaria" converter="entityConverter" 
+									value="#{contratoController.objeto.dotacaoOrcamentaria}">
+								  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+								  	<f:selectItems value="#{dotacaoOrcamentariaController.selectItems}"/>
+								</h:selectOneMenu>							
+						</h:panelGrid>
+						
+						<rich:spacer height="10"/>
+						<h:panelGrid columns="10">
+							<h:outputText value="Valor(R$):"/>
+								<rich:spacer width="11"/>
+								<h:inputText id="valor" size="20"
+								   	value="#{contratoController.objeto.valor}">
+								   	<rich:jQuery selector="#valor"
+	                                query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})" timing="onload" />
+						   		</h:inputText>
+							
+					    	<rich:spacer width="10"/>
+					    
+						    <h:outputText value="Parcelas:" />
+						    <h:inputText id="parcelas" value="#{contratoController.objeto.parcelas}" 
+						    	size="10"/>							
+						</h:panelGrid>
+						
+						<rich:spacer height="10"/>
+						
+						<fieldset>
+							<legend><font color="blue">Parcelas</font></legend>
+							<div>
+								<a4j:commandLink reRender="panelParcela"  styleClass="buttonAddPadrao"
+										actionListener="#{contratoController.mostrarModalParcela}"
+										oncomplete="Richfaces.showModalPanel('modalParcela');" />
+							</div>
+							
+							<ui:decorate template="../../templates/listagem/header.xhtml">
+							 	<ui:param name="titulo" value="Parcelas" />
+								<ui:param name="largura" value="74%"/>
+							</ui:decorate>
+							
+							<a4j:outputPanel ajaxRendered="true" id="painel">
+								<rich:dataTable value="#{contratoController.parcelas}"  align="center" width="74%" id="tabela" rows="10"
+									onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
+									onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+									rowClasses="odd-row,even-row" rendered="true" columnClasses="col"
+									var="row" >
+									<f:facet name="header">
+										<rich:columnGroup>
+			
+											<rich:column style="text-align:center">
+												<h:outputText styleClass="headerText" value="Parcela" />
+											</rich:column>
+											
+											<rich:column style="text-align:center">
+												<h:outputText styleClass="headerText" value="Data de Vencimento" />
+											</rich:column>
+											
+											<rich:column style="text-align:center">
+												<h:outputText styleClass="headerText" value="Data de Pagamento" />
+											</rich:column>										
+																			
+											<rich:column/>
+											<rich:column/>
+										
+										</rich:columnGroup>
+									</f:facet>
+																							
+									<rich:column style="text-align:center">
+										<h:outputText value="#{row.parcela}" />
+									</rich:column>
+									
+									<rich:column style="text-align:center">
+										<h:outputText value="#{row.dataVencimento}" />
+									</rich:column>
+									
+									<rich:column style="text-align:center">
+										<h:outputText value="#{row.dataPagamento}" />
+									</rich:column>
+																										
+									<rich:column style="text-align:center" >
+										<a4j:commandLink reRender="panelParcela" oncomplete="Richfaces.showModalPanel('modalParcela')" 
+												id="commandEditar" styleClass="buttonVisualizar" value=""												
+												actionListener="#{contratoController.mostrarModalParcela}">
+											<f:setPropertyActionListener value="#{row}"
+									 			target="#{contratoController.contratoParcela}" />
+										</a4j:commandLink>
+   									</rich:column>	
+									
+									<rich:column>
+										<a4j:commandLink immediate="true" oncomplete="Richfaces.showModalPanel('excluirParcela')"  
+											id="commandRemover" styleClass="buttonRemover" value=""	>	
+											<f:setPropertyActionListener value="#{row}"
+												target="#{contratoController.contratoParcela}" />
+										</a4j:commandLink>
+									</rich:column>	
+									
+									<ui:decorate template="../../templates/listagem/footer.xhtml">
+				   						<ui:param name="tamanho" value="#{contratoController.parcelas.size()}" />
+			    					</ui:decorate>
+									
+									</rich:dataTable>
+						 	</a4j:outputPanel>							
+						</fieldset>					
+					</rich:tab>
+				</rich:tabPanel>
+
+				<br />
+
+                <ui:decorate template="../../templates/cadastro/botoes.xhtml">
+		    	     <ui:param name="salvar" value="salvar" />
+			         <ui:param name="listar" value="listar" />
+			        </ui:decorate>
+				
+				<table style="left: 30px">
+					<tr>
+						<td><font size="2">
+								<div align="center" class="campoObrigatorio">*Campo de
+									Preenchimento Obrigatório</div> </font>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+
+		</h:form>
+		
+		<a4j:outputPanel id="panelParcela">
+                <rich:modalPanel rendered="#{contratoController.mostrarModalParcela}" id="modalParcela" width="700" height="430"
+						resizeable="false" moveable="true">
+                   <f:facet name="header">
+						<h:outputText style="font-size:12px" value="Nova Parcela" />
+					</f:facet>
+
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:form>
+							<h:commandLink id="fecharDiv" styleClass="buttonRemover"
+								onclick="Richfaces.hideModalPanel('modalParcela')" />
+						</h:form>
+					</h:panelGroup>
+				</f:facet>
+			
+				<h:form>
+				  <div align="center">
+					<h:panelGrid columns="2">
+						<h:outputText style="font-size:14px" value="Parcela:" />															
+						<h:inputText id="parcela" size="20"
+							value="#{contratoController.contratoParcela.parcela}" />										
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2">
+						<h:outputText style="font-size:14px" value="Data de Vencimento:" />															
+						<rich:calendar id="dataVencimento" 
+									value="#{contratoController.contratoParcela.dataVencimento}"
+									datePattern="dd/MM/yyyy" size="5" />										
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2">
+						<h:outputText style="font-size:14px" value="Data de Pagamento:" />															
+						<rich:calendar id="dataPagamento" 
+									value="#{contratoController.contratoParcela.dataPagamento}"
+									datePattern="dd/MM/yyyy" size="5" />										
+					</h:panelGrid>
+						               
+					<h:commandButton reRender="tabela"
+						styleClass="buttonAdicionar" value="Cadastrar"
+						action="#{contratoController.adicionarParcela}" />
+	               </div>
+	     
+				</h:form>
+			
+              </rich:modalPanel>
+		</a4j:outputPanel>
+		
+		<a4j:outputPanel id="panelExcluirParcela">
+			<rich:modalPanel id="excluirParcela" width="280" height="120"
+				resizeable="false" moveable="true">
+                    <f:facet name="header">
+                        <h:outputText value="Atenção!" />
+                    </f:facet>
+                    <f:facet name="controls">
+                        <h:panelGroup>
+                            <h:graphicImage value="/images/fechar.png"
+									styleClass="hidelink" id="hidelink"/>
+                            <rich:componentControl for="confirmaExcluir"
+									attachTo="hidelink" operation="hide" event="onclick" />
+                        </h:panelGroup>
+                    </f:facet>
+                    <center>
+                        <h:form>
+                        
+                        <h:panelGrid columns="3" cellspacing="1">
+                        <table align="center">
+	                        <tr align="center">
+	                        	<td>
+			                        <h:outputText align="left" value="Confirma exclusão do item?"/>
+			                        </td>
+			                        </tr>
+			                        
+			                        <tr>
+			                        <td>
+			                        <a4j:commandButton reRender="tabela" styleClass="buttonAdicionar" value="Sim"
+				                        action="#{contratoController.excluirParcela}"
+				                        onclick="Richfaces.hideModalPanel('excluirParcela')" />
+			                        
+			                       <a4j:commandButton styleClass="buttonAdicionar" value="Não"
+			                       		onclick="Richfaces.hideModalPanel('excluirParcela')"/>
+	                     		</td>
+	                     	</tr>
+						</table>
+                            </h:panelGrid>
+                        </h:form>
+                    </center>
+                </rich:modalPanel>
+			</a4j:outputPanel>
+
+	</ui:define>
+
+</ui:composition>
+

@@ -1,0 +1,320 @@
+body { /*background-color: #F5F5F5*/
+	background-color: white;
+}
+
+#x {
+	font-size: 12;
+	color: black;
+	font-weight: bold;
+}
+
+div.tres {
+	top: 1000px;
+	left: 5000px;
+	width: 600px;
+	height: 300px;
+	border: 2px solid; /* As 4 bordas s�lidas com 25px de espessura */
+	border-color: #F5F5DC #F5F5DC #F5F5DC #F5F5DC;
+	background-color: #FFFAFA /* cores: topo, direita, inferior, esquerda */
+}
+
+#login,#senha {
+	background-color: #FFFACD;
+}
+
+#labelLogin,#labelSenha {
+	color: black;
+	font-family: Garamond;
+	font-weight: bold;
+}
+
+#tableLogin {
+	position: absolute;
+	top: 250px;
+	left: 400px;
+}
+
+#tableEnviar {
+	position: absolute;
+	top: 350px;
+	left: 800px;
+}
+
+#btnEnviar {
+	background-color: #EEDFCC;
+}
+
+.buttonEditar {
+	display: block;
+	width: 15px;
+	height: 15px;
+	background-image: url(../imagens/edit.png);
+	background-position: 0 0;
+	margin: 0 auto;
+}
+
+.buttonPdf {
+	display: block;
+	width: 30px;
+	height: 20px;
+	background-image: url(../imagens/impressora.jpg);
+	background-position: 0 0;
+	background-repeat:no-repeat;
+	margin: 0 auto;
+}
+
+.buttonVisualizar {
+	display: block;
+	width: 20px;
+	height: 20px;
+	background-image: url(../imagens/lupa.png);
+	background-position: 0 0;
+	margin: 0 auto;
+}
+
+.buttonRemover {
+	display: block;
+	width: 15px;
+	height: 15px;
+	background-image: url(../imagens/iconFechar.png);
+	background-position: 0 0;
+	margin: 0 auto;
+}
+
+.buttonSelecionar {
+	display: block;
+	width: 15px;
+	height: 15px;
+	background-image: url(../imagens/confirm.png);
+	background-position: 0 0;
+	margin: 0 auto;
+}
+
+.buttonEditarAcao {
+	display: block;
+	width: 5px;
+	height: 10px;
+	background-image: url(../imagens/btnEditar.jpg);
+	background-position: 0 0;
+	background-repeat:no-repeat;
+	margin: 0 auto;
+	
+}
+
+#logado {
+	top: 920px;
+	left: 10px;
+}
+
+.td-form {
+	background-color: #EBEBEB;
+	border-bottom-color: #9ECFFF;
+}
+
+.rich-panel-body {
+	top: 350px;
+	left: 300px;
+	width: 2px;
+	height: 300px;
+	background-color: #F5F5DC;
+}
+
+
+
+
+.buttonAdicionar {
+	display: block;
+	background-color: #008B45;
+	background-repeat: repeat-y;
+	height: 23px;
+	width: 100px;
+	border-color: #008B45;
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	text-decoration: none;
+	color: white;
+	font: Georgia;
+}
+
+.buttonAdicionar2 {
+	display: block;
+	background-color: #008B45;
+	background-repeat: repeat-y;
+	height: 23px;
+	width: 150px;
+	border-color: #008B45;
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	text-decoration: none;
+	color: white;
+	font: Georgia;
+}
+
+
+.msgErro {
+	font-style: italic;
+	font-size: 14px;
+	color: red;
+	top: 150px;
+	left: 300px;
+}
+
+.add {
+	display: block;
+	width: 15px;
+	height: 15px;
+	background-image: url(../imagens/add.png);
+	background-position: 0 0;
+	margin: 0 auto;
+}
+
+.campoObrigatorio {
+	color: #FF0000;
+	
+}
+
+.teste {
+	color: white;
+}
+
+.rotulo {
+	font-weight: bold;
+}
+
+.erro {
+	color: red;
+	font-size: medium;
+}
+
+.info {
+	color: green;
+	font-size: medium;
+}
+
+#rich-datascr-act {
+	color: blue;
+}
+
+.rodape {
+	position: absolute;
+	bottom: 0;
+}
+
+.flash{
+	position: static;
+	bottom: 0;
+	}
+
+.class_warn {
+	text-decoration: underline
+}
+
+.rotulos {
+	color: red;
+}
+
+.quadrado {
+	width: 350px;
+	height: 140px;
+	border: 1px solid red;
+	margin: 5px;
+	background-color: #F5F5DC
+}
+
+.erroPeriodo {
+	color: red;
+	font-size: medium;
+	position: absolute;
+	top: 150px;
+	left: 50px;
+	background-color: pink;
+}
+.fonte{
+  font-family: Verdana;
+ }
+ 
+.input {
+	background: url(imagens/input_text.gif) no-repeat;
+	border:none;
+}
+.extdt-maindiv {
+    border: 1px solid #C0C0C0;
+    abc:xxxxxxxxxxxxxx;
+}
+#edt {
+    height: 100px;
+}
+.fonteEvento{
+	font-size: 12px;
+	font-family: Verdana;
+	align:center;
+}
+#tabelaSub:1:subacao{
+	 background-image: url(../imagens/vermelho.jpg);
+	}
+.fonteQuatorze{	
+	font-size:14px";
+}
+
+
+.buttonEditarProjeto {
+	display: block;
+	width: 70px;
+	height: 15px;
+	background-image: url(../imagens/editar3.jpg) ;
+	background-position: 0 0;
+	margin: 0 auto;
+	background-repeat: no-repeat;
+}
+
+.buttonAddSubAcao {
+	display: block;
+	width: 70px;
+	height: 15px;
+	background-image: url(../imagens/adicionarSubAcao.jpg) ;
+	background-position: 0 0;
+	margin: 0 auto;
+	background-repeat: no-repeat;
+}
+
+.buttonAddEvento {
+	display: block;
+	width: 130px;
+	height: 25px;
+	background-image: url(../imagens/adicionarEvento.jpg) ;
+	background-position: 0 0;
+	margin: 0 auto;
+	background-repeat: no-repeat;
+}
+
+.buttonAddAcao {
+	display: block;
+	width: 70px;
+	height: 15px;
+	background-image: url(../imagens/adicionarAcao.jpg) ;
+	background-position: 0 0;
+	margin: 0 auto;
+	background-repeat: no-repeat;
+}
+
+.buttonAddPadrao {
+	display: block;
+	width: 70px;
+	height: 25px;
+	background-image: url(../imagens/adicionar.jpg) ;
+	background-position: 0 0;
+	margin: 0 auto;
+	background-repeat: no-repeat;
+}
+
+.buttonExcluir {
+	display: block;
+	width: 70px;
+	height: 15px;
+	background-image: url(../imagens/excluir.jpg) ;
+	background-position: 0 0;
+	margin: 0 auto;
+	background-repeat: no-repeat;
+}
+
+

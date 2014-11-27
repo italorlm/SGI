@@ -1,0 +1,746 @@
+BODY {
+	top: 10px;
+	padding: 0px;
+	font-family: verdana;
+	font-size: 12px;
+	background:#FFFFFF url(../imagens/fundo_principal.jpg) repeat-x scroll 0 0;
+}
+
+.rich-toolbar{    
+     background:#FFFFFF url(../imagens/imgMenu.jpg) repeat-x scroll 0 0;   
+     border-color:transparent;    
+     font-style: normal;    
+     text-align: left;    
+ }  
+ 
+  .dr-table-headercell{    
+     background-color: #C2CBD4;    
+     border-color: #C2CBD4;    
+     font-style: normal;    
+     text-align: left;    
+ }
+
+.dr-dscr-t {
+	background-color:#C2CBD4;	
+	border-color: #C2CBD4;
+ }
+   .dr-dscr-button{    
+     background-color: #C2CBD4;    
+     border-color: #C2CBD4;    
+     font-style: normal;
+ }
+    .dr-dscr-button-dsbld {    
+     background-color: #C2CBD4;    
+     border-color: #C2CBD4;    
+     font-style: normal;
+     color:#000000;
+ }
+ 
+  .rich-table-headercell{    
+     background-color: #C2CBD4;    
+     border-color: #C2CBD4;    
+     font-style: normal;    
+     text-align: left;    
+ }
+  
+	.dr-table-footercell{
+	     background-color: #C2CBD4; 
+	     border-color: #C2CBD4;    
+	}
+	
+	.rich-table-footercell{
+	     background-color: #C2CBD4;
+	     border-color: #C2CBD4;     
+	}   
+  
+  .td-form{
+  	background-color: #FFFAFA;
+  	border-bottom-color: #9ECFFF;
+  }         
+          
+FORM {
+	margin: 0px;
+	padding: 0px;
+	padding-top: 0px
+}
+
+LEGEND {
+	font-size: small;	
+}
+	
+.margem-div {
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+}
+
+.panelTab{
+	border: 1;
+	width: 100%;
+}
+
+.column-grid-center{
+	text-align: center;
+}
+
+.column-grid-left{
+	text-align: left;
+}
+
+.editable-column-grid{
+	color: green;
+}
+
+TD {
+	font-family: verdana;
+	font-size: 12px;
+}
+
+HR {
+	background-color: #000000;
+}
+	
+.titulo {
+	font-family: verdana;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.odd-row {
+	background-color: #F5F5F5;
+}
+
+.even-row {
+	background-color: #FCFFFE;
+}
+
+.over-row {
+	background-color: #CCCCCC;
+}
+
+.disabled-row {
+	background-color: #E0E0E0;
+}
+
+.tooltip {
+	background-color:#FCEED2;
+    border-width:3px;
+    padding:10px;
+}
+
+.tooltip-text {
+	width:350px;
+    height:80px;
+    cursor:arrow;
+    border-width:2px;
+    text-align:center;
+    display: table-cell;
+    vertical-align: middle; 
+}
+
+.tooltipData {
+	font-weight: bold;
+}
+
+.rich-messages-marker img {padding-right:7px;}
+
+.buttonDistribuicao {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconDistribuicao.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonDistribuicaoOff {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconDistribuicaoOff.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonRecebimento {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconRecebimento.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonRecebimentoOff {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconRecebimentoOff.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonEncerramento {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconEncerrar.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonEncerramentoOff {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconEncerrarOff.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonDetalhes {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconDetalhe.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonCompensar {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/cheque_compensdo.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonDevolver {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/cheque_devolvido.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonEditar {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/edit.jpg);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonVisualizar {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/page_white_magnify.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonCalendario {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/calendario.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonEditarOff {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconEditarOff.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonExcluir {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/trash.gif);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonFechar{
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconFechar.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonExcluirOff {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconRemoverOff.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonDesativar {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconDesativar.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonAtivar {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconAtivar.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonSuspenso {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconSuspender.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonAdicionarResposta {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconAdicionar.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonAdicionar {
+	display: block;    
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.buttonAdicionar1 {
+	display: block;    
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+    float:left;
+}
+
+.buttonAdicionarDisable {
+	display: block;    
+    background-color: gray;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 200px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.buttonRenovar {
+	display: block;    
+    background-image: url(../imagens/icones/iconRenovar.png);
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+}
+
+.buttonAlteraTipologia {
+	display: block;    
+    background-image: url(../imagens/icones/iconMudarTipologia.png);
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+}
+
+.styleSelectManyListbox{
+	height: 150px;
+	width: 400px;
+	}
+
+.buttonCopy {
+	display: block;    
+    background-image: url(../imagens/copy.jpg);
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 27px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+}
+
+.buttonCopyAll {
+	display: block;    
+    background-image: url(../imagens/copyAll.jpg);
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 27px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+}
+
+.buttonRemove {
+	display: block;    
+    background-image: url(../imagens/remove.jpg);
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 27px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+}
+
+.buttonRemoveAll {
+	display: block;    
+    background-image: url(../imagens/removeAll.jpg);
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 27px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+}
+
+.buttonImprimir {
+	display: block;    
+    background-image: url(../imagens/icones/print.png);
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+}
+
+.buttonImprimirGrid {
+	display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../imagens/icones/iconPrint.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonCodigoBarra {
+	display: block;
+    width: 26px;
+    height: 26px;
+    background-image: url(../imagens/icones/codigobarra.png);
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonPesquisar {
+	display: block;    
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.buttonLimpar {
+	display: block;    
+    background-color: #C2CBD4;    
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+}
+
+
+.buttonPesquisarLink {
+	display: block;    
+    width: 20px;
+    height: 20px;	
+	background-image: url(../imagens/icones/iconPesquisar.png);
+	background-position: 0 0;
+    margin: 0 auto;
+}
+
+.buttonVoltar {
+	display: block;    
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.buttonSalvar {
+	display: block;    
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.button {
+	display: block;    
+    background-color: #C2CBD4;    
+    background-repeat: repeat-y;
+    height: 23px;
+    width: 100px;
+    border-color: #C2CBD4;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    text-decoration: none;
+    color: black;
+}
+
+.barra_hr {
+	position: relative;
+	display: block;
+	padding-top: 50px;
+	height: 100px;
+}
+
+.panelMensagem{
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	background-image: url(../imagens/fundo_titulo02.gif);
+	max-width: 450px;
+	vertical-align: top;
+	display: block;
+}
+
+
+.fig_style {
+	vertical-align: middle;
+}
+
+#fig_erro {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+#msg_texto {
+	padding-top: 0px;
+	padding-bottom: 3px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	display: block;
+}
+
+.dr-pnl {
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+.dr-pnl-b {
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.rich-tool-tip{
+	color: #000000;
+    background-color: #EAE7E2;
+    border-color: #000000;
+}
+
+.tab_content {
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: auto;
+}
+
+.tab_content2 {
+	position:relative;
+	width: 100%;
+	height: 100%;
+}
+.campo {
+	display: inline-block;
+	padding: 3px;	
+}
+.campo1 {
+	padding: 3px;
+	float: left;
+}
+.botoes {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: block;
+}
+.botoes:input {
+	display: inline-block;
+	padding: 3px;
+}
+label {
+	display: block;
+	font-size: small; 
+}
+.formulario {
+	margin:10px;
+	padding-bottom: 15px;
+	margin-bottom: 5px;
+	height: 100%;
+	height: 100%;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	border-bottom: 0px;
+	border-bottom-color: black;
+	border-bottom-width: 1.9px;
+	border-bottom-style: solid;
+}
+.cadastro:after {
+	content: "* Campo Obrigat�rio";
+}
+.ordinal:after {
+	content: "�";
+}
+.dr-mpnl-pnl-b {
+	padding: 0;
+}
+.opcoesRadio label {
+	display: inline;
+}
+.dr-table-footer{
+	background-color:#C2CBD4;
+}
+.dr-table-footercell {
+	background-color: #C2CBD4;
+	background-image:url(/Ceart/a4j/g/3_3_0.GAorg.richfaces.renderkit.html.GradientA/DATB/eAF79urt8fNXmAAXoQUq);
+	background-position:left top;
+	background-repeat:repeat-x;
+	padding: 0px;
+}
+.rich-table-footercell {
+	border-left-width: 0em;
+}
+#msg_texto {
+	text-align: justify;
+}
+.campoObrigatorio {
+	color: #FF0000;
+	float:left;
+}
+strong {
+	text-decoration: none;
+}
+.rich-calendar-input {
+	width: 80px;
+	background-color: white;
+}
+.rich-picklist-source-items {
+	margin:0 0 0 0;
+}
+
+.dadosFormulario{
+	width:100%;
+}
+.dadosFormulario input{
+	float:left;
+}
+.rotulos {
+
+    /*Especifica preta a cor da fonte do elemento */
+
+    color: red;
+
+}
+
+

@@ -1,0 +1,37 @@
+package daoImp;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Cargo;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import dao.CargoDao;
+
+@Component
+public class CargoDaoImp extends GenericDaoImp<Cargo,Long>
+implements CargoDao{
+
+	@Override
+	@Transactional
+	public List<Cargo> findByCargo(Cargo filtro) {
+		List<Cargo> lista = new ArrayList<Cargo>();
+		Criteria c = criaCriteria();
+		
+		if(filtro.getNome()!=null && !(filtro.getNome().isEmpty())){
+			c.add(Restrictions.ilike("nome", filtro.getNome(),MatchMode.ANYWHERE));
+		}
+		
+		lista = c.list();
+		return lista;		
+	}
+
+
+
+}

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+    "http://www.w3.org/TR/html4/loose.dtd">
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="corpo">
+		<h:form acceptcharset="UTF-8">
+			<ui:param name="bean" value="#{cidadaoController}" />
+			<a4j:outputPanel ajaxRendered="true">
+				<h:messages errorStyle="color: red" infoStyle="color: green" />
+			</a4j:outputPanel>
+			<div align="center">
+				<rich:tabPanel width="80%" height="150">
+					<br />
+
+					<rich:tab label="DADOS PESSOAIS">
+
+						<h:panelGrid columns="10">
+							<h:outputText value="Nome:" />
+								<div class="campoObrigatorio">*</div>
+								<rich:spacer width="8" />
+							<h:inputText id="nome" size="90"
+								value="#{cidadaoController.objeto.nome}" />								
+						</h:panelGrid>
+						
+						<rich:spacer width="1" height="10"  />
+						
+						<h:panelGrid columns="10">							
+							<h:outputText value="Data Nascimento:" />
+								<rich:calendar id="dataNascimento" 
+									value="#{cidadaoController.objeto.dataNascimento}"
+									datePattern="dd/MM/yyyy" size="5" />							
+	
+	                        <rich:spacer width="11" />
+	                        
+		                      <h:outputText value="Sexo:" />
+							<h:selectOneMenu id="sexo" value="#{cidadaoController.objeto.sexo}">
+							  <f:selectItem itemLabel="Selecione" itemValue=""/>
+							  <f:selectItem itemLabel="Feminino" itemValue="1"/>
+							  <f:selectItem itemLabel="Masculino" itemValue="2"/>
+							</h:selectOneMenu> 								 
+						</h:panelGrid>
+						
+		                <rich:spacer width="1" height="10"  />
+
+						<h:panelGrid columns="13">
+							<h:outputText value="CPF:" />							
+							<rich:spacer width="20"/>
+							<h:inputText id="cpf" value="#{cidadaoController.objeto.cpf}"
+								maxlength="11">
+								<rich:jQuery selector="#cpf" query="mask('999.999.999-99')" 
+									timing="onload"/>								
+							</h:inputText>
+							
+							<rich:spacer width="16" />
+							<h:outputText value="RG:" />
+							<h:inputText id="rg" size="20" value="#{cidadaoController.objeto.rg}"/>
+							
+							<rich:spacer width="16" />
+							<h:outputText value="Órgão Emissor:" />
+							<h:inputText id="orgaoEmissorRg" size="20" 
+								value="#{cidadaoController.objeto.orgaoEmissorRg}"/>
+							
+							<rich:spacer width="16" />
+							<h:outputText value="Data Emissão:" />
+							<rich:spacer width="1" />
+							<rich:calendar id="dataEmissaoRg" 
+								value="#{cidadaoController.objeto.dataEmissaoRg}"
+									datePattern="dd/MM/yyyy" size="5" />
+						</h:panelGrid>
+						
+						<rich:spacer width="1" height="10"  />
+												
+						<h:panelGrid columns="11">
+							<h:outputText value="UF Nascimento:" />
+							<h:selectOneMenu id="ufNascimento" 
+								value="#{cidadaoController.objeto.ufNascimento}">
+							   <f:selectItem itemLabel="Selecione" itemValue=""/>
+							   <f:selectItems value="#{municipioUfController.ufs}"/>
+							   <a4j:support event="onchange" reRender="naturalidade" 
+						     	action="#{cidadaoController.buscarCidades()}"/>
+							</h:selectOneMenu>
+							
+							<rich:spacer width="16" />
+							<h:outputText value="Naturalidade:" />
+							<h:selectOneMenu id="naturalidade" 
+								value="#{cidadaoController.objeto.naturalidade}">
+							   <f:selectItem itemLabel="Selecione" itemValue=""/>
+							   <f:selectItems value="#{cidadaoController.itemsMunicipios}"/>
+							</h:selectOneMenu>
+														
+							<rich:spacer width="90" />
+							<h:outputText value="Etnia:" />
+							<h:selectOneMenu id="etnia" converter="entityConverter" 
+								value="#{cidadaoController.objeto.etnia}">
+							   <f:selectItem itemLabel="Selecione" itemValue=""/>
+							   <f:selectItems value="#{etniaController.selectItems}"/>							   
+							</h:selectOneMenu>
+						</h:panelGrid>
+						
+						<rich:spacer width="1" height="10" />
+						
+						<h:panelGrid columns="11">
+							<h:outputText value="Telefone Residencial:" />
+							<h:inputText id="telRes" size="15" 
+								value="#{cidadaoController.objeto.telefoneResidencial}">
+								<rich:jQuery selector="#telRes" query="mask('(99)9999-9999')"
+									timing="onload" />
+							</h:inputText>
+							
+							<rich:spacer width="25" />
+							<h:outputText value="Telefone Celular:" />
+							<h:inputText id="telCel" size="15" 
+								value="#{cidadaoController.objeto.telefoneCelular}">
+								<rich:jQuery selector="#telCel" query="mask('(99)9999-9999')"
+									timing="onload" />
+							</h:inputText>
+							
+							<rich:spacer width="16" />
+							<h:outputText value="Email:" />
+							<h:inputText id="email" size="30" 
+								value="#{cidadaoController.objeto.email}"/>
+						</h:panelGrid>
+						
+						<rich:spacer width="1" height="10"  />
+						
+						<h:panelGrid columns="6">
+							<h:outputText value="Nome da Mãe:" />
+							<rich:spacer width="27" />
+							<h:inputText id="nomeMae" size="40" 
+								value="#{cidadaoController.objeto.nomeMae}"/>
+							<rich:spacer width="10" />
+							
+							<h:outputText value="Nome do Pai:" />
+							<h:inputText id="nomePai" size="40" 
+								value="#{cidadaoController.objeto.nomePai}"/>
+						</h:panelGrid>
+						
+                        <rich:spacer width="1" height="10"  />
+
+                       <fieldset>
+							<legend>
+								<font color="blue">Endereço Residencial</font>
+							</legend>
+
+							<h:panelGrid columns="13">
+								<h:outputText value="CEP:" />
+								<rich:spacer width="5"/>
+								<h:inputText id="cep" value="#{cidadaoController.objeto.cep}" >
+									<rich:jQuery selector="#cep" query="mask('99999-999')"
+									timing="onload" />
+								</h:inputText>
+								<rich:spacer width="5"/>
+								
+								<h:outputText value="Endereço:" />
+								<rich:spacer width="10"/>
+								<h:inputText id="endereco" size="40" 
+									value="#{cidadaoController.objeto.endereco}"/>
+								<rich:spacer width="5"/>
+								
+								<h:outputText value="UF:" />
+								<h:selectOneMenu id="uf" value="#{cidadaoController.objeto.uf}">
+								    <f:selectItem itemLabel="Selecione" itemValue=""/>
+								    <f:selectItems value="#{municipioUfController.ufs}"/>
+								    <a4j:support event="onchange" reRender="municipio" 
+						     			action="#{cidadaoController.buscarCidadesResidencial()}"/>
+								</h:selectOneMenu>
+								<rich:spacer width="5"/> 
+								
+								<h:outputText value="Municipio:" />
+								<h:selectOneMenu id="municipio" 
+									value="#{cidadaoController.objeto.municipio}">
+								    <f:selectItem itemLabel="Selecione" itemValue=""/>
+								    <f:selectItems value="#{cidadaoController.itemsMunicipiosResidencial}"/>
+								</h:selectOneMenu>							
+							</h:panelGrid>
+							
+							<h:panelGrid columns="11">
+								<h:outputText value="Bairro:" />
+								<h:inputText id="bairro" value="#{cidadaoController.objeto.bairro}"/>
+								<rich:spacer width="5"/>
+								
+								<h:outputText value="Complemento" />
+								<h:inputText id="complemento" size="40" 
+									value="#{cidadaoController.objeto.complemento}"/>
+								<rich:spacer width="5"/>														
+							</h:panelGrid>							
+						</fieldset>
+
+					</rich:tab>
+
+					<rich:tab label="DADOS COMPLEMENTARES" ajaxSingle="true">
+					
+					  <fieldset>
+							<legend>
+								<font color="blue">Alfabetização</font>
+							</legend>
+							
+							<h:panelGrid columns="8">
+					    
+					        <h:outputText value="Escolaridade" />
+					        <h:selectOneMenu id="escolaridade" converter="entityConverter"
+					        	value="#{cidadaoController.objeto.escolaridade}">
+					           	<f:selectItem itemLabel="Selecione" itemValue=""/>
+					           	<f:selectItems value="#{escolaridadeController.selectItems}"/>
+					        </h:selectOneMenu>
+					
+					        <rich:spacer width="10"/>
+					        
+					        <h:outputText value="Frequenta Entidade de Ensino?" />
+					        <h:selectOneMenu id="freqEscola" 
+					        	value="#{cidadaoController.objeto.frequentaEscola}">
+					           <f:selectItem itemLabel="Selecione" itemValue=""/>
+					           <f:selectItem itemLabel="Sim" itemValue="1"/>
+					           <f:selectItem itemLabel="Não" itemValue="2"/>
+					        </h:selectOneMenu>
+					        
+					        <rich:spacer width="10"/>
+					
+					        <h:outputLabel value="Nome da Entidade de Ensino:" />
+					        <h:inputText id="nomeEscola" size="50" 
+					        	value="#{cidadaoController.objeto.nomeEscola}"/>					    
+					    </h:panelGrid>					
+					</fieldset>
+					
+					<rich:spacer height="10"/>
+					   
+					<fieldset>
+							<legend>
+								<font color="blue">Dependentes</font>
+							</legend>
+							
+							<h:panelGrid columns="8">							 
+								<h:outputLabel value="Quantidade de Dependentes:" />
+								      <h:inputText id="qtdDependentes" size="8" maxlength="3" 
+					        	value="#{cidadaoController.objeto.qtdDependentes}"/>
+						        <rich:spacer width="10"/>
+						         
+						        <h:outputLabel value="Programa Governamental:" />
+								     <h:selectOneMenu id="progGoverno" 
+								     	value="#{cidadaoController.objeto.programaGovernamental}">
+						        	 <f:selectItem itemLabel="Selecione" itemValue=""/>
+						        	 <f:selectItems value="#{programaGovernamentalController.selectItems}"/>
+						        </h:selectOneMenu>					        					        
+							 </h:panelGrid>
+							 
+						</fieldset>
+							 
+						<rich:spacer height="10"/>					   
+					 <fieldset>
+					 
+					<legend>
+						<font color="blue">Dados Profissionais</font>
+					</legend>
+					
+					 <h:panelGrid columns="8">
+					      <h:outputLabel value="Já Trabalhou?" />
+					      <h:selectOneMenu id="jaTrabalhou" 
+					      	value="#{cidadaoController.objeto.jaTrabalhou}">
+					           <f:selectItem itemLabel="Selecione" itemValue=""/>
+					           <f:selectItem itemLabel="Sim" itemValue="1"/>
+					           <f:selectItem itemLabel="Não" itemValue="2"/>
+					      </h:selectOneMenu>
+					
+					      <rich:spacer height="20"/>
+					       
+					      <h:outputLabel value="Ultima Empresa:" />
+						      <h:inputText id="ultimaEmpresa" size="50" 
+						      	value="#{cidadaoController.objeto.ultimaEmpresa}"/>
+					 </h:panelGrid>
+					
+					</fieldset>
+					
+					<fieldset>
+							<legend>
+								<font color="blue">Documentos Complementares</font>
+							</legend>
+					
+					<h:panelGrid columns="16">					 
+					      <h:outputLabel value="CPTR:" />
+					  		<rich:spacer width="45"/>
+					      <h:inputText id="numCptr" size="30" 
+					      	value="#{cidadaoController.objeto.numeroCptr}"/>
+					      <rich:spacer width="10"/>
+					           
+					      <h:outputLabel value="Série:" />
+					      	<h:inputText id="serieCptr" size="15" 
+					      		value="#{cidadaoController.objeto.serieCptr}"/>
+					      <rich:spacer width="10"/>
+					       
+					      <h:outputLabel value="Data Emissão:" />					      	
+					      		<rich:calendar id="dtEmissaoCptr" 
+									value="#{cidadaoController.objeto.dataEmissaoCptr}"
+									datePattern="dd/MM/yyyy" size="5" />
+					      <rich:spacer width="10"/>
+					</h:panelGrid>
+					
+					<rich:spacer width="1" height="10"  />
+					 
+					<h:panelGrid columns="16">      
+					      <h:outputLabel value="PIS/PASEP:" />
+					      <rich:spacer width="20"/>
+					      	<h:inputText id="pispasep" size="15" 
+					      		value="#{cidadaoController.objeto.pispasep}"/>
+					      <rich:spacer width="10"/>
+					       
+					      <h:outputLabel value="NIS:" />
+					      	<h:inputText id="nis" size="15" 
+					      		value="#{cidadaoController.objeto.nis}"/>					 
+					</h:panelGrid>
+					 
+					<rich:spacer width="1" height="10"  />
+					 
+					<h:panelGrid columns="15">					 
+					      <h:outputLabel value="Titulo de ELeitor:" />
+					      	<h:inputText id="numTitulo" size="30" 
+					      		value="#{cidadaoController.objeto.numeroTitulo}"/>
+					      <rich:spacer width="10"/>
+					           
+					      <h:outputLabel value="Zona:" />
+					      	<h:inputText id="zonaTitulo" size="15" 
+					      		value="#{cidadaoController.objeto.zonaTitulo}"/>
+					      <rich:spacer width="40"/>
+					      
+					      <h:outputLabel value="Seção:" />
+					      	<h:inputText id="secaoTitulo" size="15" 
+					      		value="#{cidadaoController.objeto.secaoTitulo}"/>
+					      <rich:spacer width="10"/>
+					</h:panelGrid>
+					 
+					</fieldset>					
+				</rich:tab>
+
+				</rich:tabPanel>
+
+				<br />
+
+				<ui:decorate template="../../templates/cadastro/botoes.xhtml">
+					<ui:param name="salvar" value="salvar" />
+					<ui:param name="listar" value="listar" />
+				</ui:decorate>
+
+				<table style="left: 30px">
+					<tr>
+						<td><font size="2">
+								<div align="center" class="campoObrigatorio">*Campo de
+									Preenchimento Obrigatório</div>
+						</font></td>
+					</tr>
+				</table>
+
+			</div>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+

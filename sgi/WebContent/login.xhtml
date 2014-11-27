@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="corpo">
+		<h:form>
+		
+				    
+			<table align="center" width="25%" bgcolor="B4EEB4" id="tableLogin" >
+			   <tr>
+			     <td>
+			  <h:outputText styleClass="msgErro" value="Login ou senha Inválidos!" rendered="#{loginController.erroLogin}"/>
+		       </td>
+		       </tr>
+			  
+			<tr>    
+			     <td>
+			      <h:outputText styleClass="fonte" value="Login:"/>
+			    	<h:inputText  value="#{loginController.login}" size="15" />
+			 	</td>
+			 	
+		 	</tr>
+			 	
+		 	<tr>
+		 	 <td>
+	 	 	  <h:outputText styleClass="fonte" value="Senha:" />
+			  <h:inputSecret  value="#{loginController.senha}" size="15" />
+		    </td>
+			</tr>
+			
+			<tr align="left">
+			  <td>
+				<h:commandButton  styleClass="buttonAdicionar1" id="btnEnviar" value="Entrar" action="#{loginController.logar}"  />
+			  </td> 
+			</tr>
+					
+				  
+			   									
+
+				
+				
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>

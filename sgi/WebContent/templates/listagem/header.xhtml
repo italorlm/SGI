@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+    "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<rich:dataTable align="center" width="#{largura}" id="listFinanciamentos"
+		rows="10" onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
+		onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+		rowClasses="odd-row,even-row" rendered="true" columnClasses="col"
+		var="row">
+		<f:facet name="header">
+			<rich:columnGroup>
+				<rich:column style="text-align:center">
+					<h:outputText value="#{titulo}" />
+				</rich:column>
+
+			</rich:columnGroup>
+		</f:facet>
+	</rich:dataTable>
+
+</ui:composition>

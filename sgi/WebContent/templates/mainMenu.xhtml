@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	
+<c:set var="ctx"
+	value="#{facesContext.externalContext.request.contextPath}" />
+<script type="text/javascript"
+	src="#{ctx}/js/jquery.maskedinput-1.2.1.js"></script>
+<script type="text/javascript" src="#{ctx}/js/jquery.maskMoney.0.2.js"></script>
+<script type="text/javascript" src="#{ctx}/js/teste.js"></script>
+<link href="#{ctx}/css/style.css" rel="stylesheet" type="text/css" />
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td width="463"><img src="#{ctx}/imagens/logosimemp2.png" 
+		width="100%" height="140" />
+		   </td>
+	</tr>
+
+</table>
+<a4j:outputPanel rendered="#{loginController.logado}">
+
+	<ui:insert name="painel">
+        
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+
+				<td height="23" style="width: 1300px;" valign="top"><h:form>
+						<rich:toolBar id="toolBar">
+						
+						<rich:dropDownMenu
+							rendered="true">
+							<f:facet name="label">
+								<h:panelGroup>
+								<h:outputText value="Cadastros Básicos"  />
+								</h:panelGroup>
+							</f:facet>
+
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Cidadão" action="#{cidadaoController.listar}"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Unidades CPTR" action="#{unidadeCptrController.listar}"/> 
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Unidades Externas" action="#{unidadeExternaController.listar}"/>
+                             <rich:menuGroup value="Dados Básicos"> 
+                             	<rich:menuItem rendered="true" ajaxSingle="false" value="Cargos" action="#{cargoController.listar}"/>
+                             	<rich:menuItem rendered="true" ajaxSingle="false" value="Escolaridade" action="#{escolaridadeController.listar}"/>
+                             	<rich:menuItem rendered="true" ajaxSingle="false" value="Etnia" action="#{etniaController.listar}"/>
+                             	<rich:menuItem rendered="true" ajaxSingle="false" value="Grupo" action="#{grupoController.listar}"/>
+                             	<rich:menuItem rendered="true" ajaxSingle="false" value="Programa Governamental" action="#{programaGovernamentalController.listar}"/>
+                             	<rich:menuItem rendered="true" ajaxSingle="false" value="Tipo Material Permanente" action="#{tipoMaterialPermanenteController.listar}"/>
+                             </rich:menuGroup> 
+                         								
+							</rich:dropDownMenu>
+							
+						<rich:dropDownMenu
+								rendered="true">
+								<f:facet name="label">
+									<h:panelGroup>
+									<h:outputText value="Recursos Humanos"  />
+									</h:panelGroup>
+								</f:facet>
+
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Cadastro de Funcionários" action="#{funcionarioController.listar}"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Relatórios"/> 
+                                      								
+							</rich:dropDownMenu>
+							
+							<rich:dropDownMenu
+								rendered="true">
+								<f:facet name="label">
+									<h:panelGroup>
+									<h:outputText value="Programas"  />
+									</h:panelGroup>
+								</f:facet>
+
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Cadastro" action="#{programaController.listar}"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Relatórios"/> 
+                                      								
+							</rich:dropDownMenu>
+							
+								<rich:dropDownMenu
+								rendered="true">
+								<f:facet name="label">
+									<h:panelGroup>
+									<h:outputText value="Projetos"  />
+									</h:panelGroup>
+								</f:facet>
+
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Cadastro" action="#{projetoController.listar}"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Gráficos"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Relatórios"/>
+                                      								
+							</rich:dropDownMenu>
+							
+							<rich:dropDownMenu 
+								rendered="true">
+								<f:facet name="label">
+									<h:panelGroup>
+									<h:outputText value="Materiais"  />
+									</h:panelGroup>
+								</f:facet>
+
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Materiais Permanentes" action="#{materialPermanenteController.listar}"  />
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Materiais de Consumo" action="#{materialConsumoController.listar}"/> 
+                                      								
+							</rich:dropDownMenu>
+							
+							<rich:dropDownMenu
+								rendered="true">
+								<f:facet name="label">
+									<h:panelGroup>
+									<h:outputText value="Financeiro"  />
+									</h:panelGroup>
+								</f:facet>
+
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Fontes de Recursos" action="#{fonteRecursoController.listar}"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Dotação Orçamentária" action="#{dotacaoOrcamentariaController.listar}"/> 
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Controle de Contratos" action="#{contratoController.listar}"/>
+                                      								
+							</rich:dropDownMenu>
+							
+							
+ 						
+							<rich:dropDownMenu>
+								<f:facet name="label">
+									<h:panelGroup>
+										<h:commandLink value="Sair" action="#{loginController.logout}" />
+									</h:panelGroup>
+								</f:facet>
+							</rich:dropDownMenu>
+							<rich:spacer width="80" />
+
+							<font size="2"><h:outputText styleClass="teste"
+									value="Usuário:#{loginController.usuario.nome.toUpperCase()}" />
+							</font>
+						
+						</rich:toolBar>
+					</h:form>
+					
+					
+				</td>
+			</tr>
+		</table>
+	</ui:insert>
+</a4j:outputPanel>
+
+<a4j:outputPanel rendered="#{not loginController.logado}">
+
+
+	<div style="top:780px"  class="rodape" align="center">
+		
+	    <br/><br/><br/><br/>
+		<img width="1900" height="70" src="#{ctx}/imagens/rodape.jpg" />
+	</div>
+
+	
+	
+</a4j:outputPanel>
+</html>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+    "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="corpo">
+		<h:form acceptcharset="UTF-8">
+              <ui:param name="bean" value="#{funcionarioController}" />
+			 <a4j:outputPanel ajaxRendered="true"><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
+			<div align="center">
+				<rich:tabPanel width="80%" height="150">
+					<br />
+
+					<rich:tab label="CADASTRO DE FUNCIONÁRIO">
+					
+						<h:panelGrid columns="9">
+							<h:outputText value="Nome" />
+							<rich:spacer width="5"/>
+							<div class="campoObrigatorio">*</div>
+							<h:inputText id="nome" value="#{funcionarioController.objeto.nome}"
+								required="true" requiredMessage="Informe o Nome." size="80"/>							
+						</h:panelGrid>
+						
+						<rich:spacer height="5"/>
+						
+						<h:panelGrid columns="9">
+							<h:outputText value="Telefone" />
+							<div class="campoObrigatorio">*</div>
+							<h:inputText size="15" id="telefone" value="#{funcionarioController.objeto.telefone}" 
+							required="true" requiredMessage="Informe o Telefone">
+							    <rich:jQuery selector="#telefone" timing="onload" query="mask('(99)9999-9999')"/>
+							</h:inputText>							
+						</h:panelGrid>
+						
+						<rich:spacer height="5"/>
+						<h:panelGrid columns="9">
+							<h:outputText value="Unidade" />
+							<div class="campoObrigatorio">*</div>
+							<h:selectOneMenu id="unidade" converter="entityConverter" 
+								value="#{funcionarioController.objeto.unidadeCptr}">
+						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+						  	<f:selectItems value="#{unidadeCptrController.selectItems}"/>
+						</h:selectOneMenu>						
+						</h:panelGrid>
+						
+						<rich:spacer height="5"/>
+							<h:panelGrid columns="9">
+							<h:outputText value="Situação:" />
+							<div class="campoObrigatorio">*</div>
+							<h:selectOneMenu id="situacao" 
+								value="#{funcionarioController.objeto.situacao}">
+							  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+							  	<f:selectItem itemLabel="Ativo" itemValue="1"/>
+							  	<f:selectItem itemLabel="Inativo" itemValue="2"/>
+							</h:selectOneMenu>						
+						</h:panelGrid>											
+												
+					</rich:tab>
+
+				</rich:tabPanel>
+
+				<br />
+
+                <ui:decorate template="../../templates/cadastro/botoes.xhtml">
+		    	     <ui:param name="salvar" value="salvar" />
+			         <ui:param name="listar" value="listar" />
+			        </ui:decorate>
+				
+				<table style="left: 30px">
+					<tr>
+						<td><font size="2">
+								<div align="center" class="campoObrigatorio">*Campo de
+									Preenchimento Obrigatório</div> </font>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+

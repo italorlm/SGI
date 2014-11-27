@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+    "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="corpo">
+		<h:form acceptcharset="UTF-8">
+              <ui:param name="bean" value="#{grupoController}" />
+			 <a4j:outputPanel ajaxRendered="true"><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
+			<div align="center">
+				<rich:tabPanel width="80%" height="150">
+					<br />
+
+					<rich:tab label="CADASTRO DE GRUPO">
+					
+						<h:panelGrid columns="4">
+							<h:outputText value="Nome:" />
+							<div class="campoObrigatorio">*</div>
+							 <rich:spacer width="42" />
+							<h:inputText size="80" value="#{grupoController.objeto.nome}" 
+							required="true" requiredMessage="Informe Nome"/>								
+						</h:panelGrid>
+						
+						<fieldset>
+							<legend><font color="blue">Subgrupo</font></legend>
+							<div>
+								<a4j:commandLink reRender="panelSubGrupo"  styleClass="buttonAddPadrao"
+										actionListener="#{grupoController.mostrarModalSubGrupo}"
+										oncomplete="Richfaces.showModalPanel('modalSubGrupo');" />
+							</div>
+							
+							<ui:decorate template="../../templates/listagem/header.xhtml">
+							 	<ui:param name="titulo" value="Subgrupos" />
+								<ui:param name="largura" value="74%"/>
+							</ui:decorate>
+							
+							<a4j:outputPanel ajaxRendered="true" id="painel">
+								<rich:dataTable value="#{grupoController.subGrupos}"  align="center" width="74%" id="tabela" rows="10"
+									onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
+									onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+									rowClasses="odd-row,even-row" rendered="true" columnClasses="col"
+									var="row" >
+									<f:facet name="header">
+										<rich:columnGroup>
+			
+											<rich:column style="text-align:center">
+												<h:outputText styleClass="headerText" value="Nome" />
+											</rich:column>										
+																			
+											<rich:column/>
+											<rich:column/>
+										
+										</rich:columnGroup>
+									</f:facet>
+																							
+									<rich:column style="text-align:center">
+										<h:outputText value="#{row.nome}" />
+									</rich:column>
+																										
+									<rich:column style="text-align:center" >
+										<a4j:commandLink reRender="panelSubGrupo" oncomplete="Richfaces.showModalPanel('modalSubGrupo')" id="commandEditar" styleClass="buttonVisualizar" value=""
+												actionListener="#{grupoController.mostrarModalSubGrupo}">
+											<f:setPropertyActionListener value="#{row}"
+									 			target="#{grupoController.subGrupo}" />
+										</a4j:commandLink>
+   									</rich:column>	
+									
+									<rich:column>
+										<a4j:commandLink immediate="true" oncomplete="Richfaces.showModalPanel('excluirSubGrupo')"  id="commandRemover" styleClass="buttonRemover"
+											value="">	
+											<f:setPropertyActionListener value="#{row}"
+												target="#{grupoController.subGrupo}" />
+										</a4j:commandLink>
+									</rich:column>	
+									
+									<ui:decorate template="../../templates/listagem/footer.xhtml">
+				   						<ui:param name="tamanho" value="#{grupoController.subGrupos.size()}" />
+			    					</ui:decorate>
+									
+									</rich:dataTable>
+						 	</a4j:outputPanel>
+							
+						</fieldset>	
+												
+					</rich:tab>
+
+				</rich:tabPanel>
+
+				<br />
+
+                <ui:decorate template="../../templates/cadastro/botoes.xhtml">
+		    	     <ui:param name="salvar" value="salvar" />
+			         <ui:param name="listar" value="listar" />
+			        </ui:decorate>
+				
+				<table style="left: 30px">
+					<tr>
+						<td><font size="2">
+								<div align="center" class="campoObrigatorio">*Campo de
+									Preenchimento Obrigatório</div> </font>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+
+		</h:form>
+		
+				<a4j:outputPanel id="panelSubGrupo">
+                <rich:modalPanel rendered="#{grupoController.mostrarModalSubGrupo}" id="modalSubGrupo" width="700" height="230"
+						resizeable="false" moveable="true">
+                   <f:facet name="header">
+						<h:outputText style="font-size:12px" value="Novo SubGrupo" />
+					</f:facet>
+
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:form>
+							<h:commandLink id="fecharDiv" styleClass="buttonRemover"
+								onclick="Richfaces.hideModalPanel('modalSubGrupo')" />
+						</h:form>
+					</h:panelGroup>
+				</f:facet>
+			
+				<h:form>
+				  <div align="center">
+					<h:panelGrid columns="2">
+						<h:outputText style="font-size:14px" value="Nome:" />
+															
+						<h:inputText size="50"
+							value="#{grupoController.subGrupo.nome}" />
+										
+					</h:panelGrid>
+					
+	               
+					<h:commandButton reRender="tabela"
+						styleClass="buttonAdicionar" value="Cadastrar"
+						action="#{grupoController.adicionarSubGrupo}" />
+	               </div>
+	     
+				</h:form>
+			
+              </rich:modalPanel>
+		</a4j:outputPanel>
+		
+		<a4j:outputPanel id="panelExcluirSubGrupo">
+			<rich:modalPanel id="excluirSubGrupo" width="280" height="120"
+				resizeable="false" moveable="true">
+                    <f:facet name="header">
+                        <h:outputText value="Atenção!" />
+                    </f:facet>
+                    <f:facet name="controls">
+                        <h:panelGroup>
+                            <h:graphicImage value="/images/fechar.png"
+									styleClass="hidelink" id="hidelink"/>
+                            <rich:componentControl for="confirmaExcluir"
+									attachTo="hidelink" operation="hide" event="onclick" />
+                        </h:panelGroup>
+                    </f:facet>
+                    <center>
+                        <h:form>
+                        
+                        <h:panelGrid columns="3" cellspacing="1">
+                        <table align="center">
+	                        <tr align="center">
+	                        	<td>
+			                        <h:outputText align="left" value="Confirma exclusão do item?"/>
+			                        </td>
+			                        </tr>
+			                        
+			                        <tr>
+			                        <td>
+			                        <a4j:commandButton reRender="tabela" styleClass="buttonAdicionar" value="Sim"
+				                        action="#{grupoController.excluirSubGrupo}"
+				                        onclick="Richfaces.hideModalPanel('excluirSubGrupo')" />
+			                        
+			                       <a4j:commandButton styleClass="buttonAdicionar" value="Não"
+			                       		onclick="Richfaces.hideModalPanel('excluirSubGrupo')"/>
+	                     		</td>
+	                     	</tr>
+						</table>
+                            </h:panelGrid>
+                        </h:form>
+                    </center>
+                </rich:modalPanel>
+			</a4j:outputPanel>
+
+	</ui:define>
+
+</ui:composition>
+

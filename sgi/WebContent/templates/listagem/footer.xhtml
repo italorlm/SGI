@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+    "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	<f:facet name="footer">
+						<rich:columnGroup>
+
+							<rich:column style="text-align:center" colspan="12">
+								<rich:datascroller for="tabela" pageIndexVar="pageIndex"
+									pagesVar="pages" id="sc2" maxPages="8" align="right">
+									<f:facet name="pages" styleClass="pages">
+										<h:outputText value="#{pageIndex} / #{pages}" />
+									</f:facet>
+									<f:facet name="next">
+										<h:outputText value=">" />
+									</f:facet>
+									<f:facet name="next_disabled">
+										<h:outputText value=">" />
+									</f:facet>
+									<f:facet name="previous">
+										<h:outputText value="&lt;" />
+									</f:facet>
+									<f:facet name="previous_disabled">
+										<h:outputText value="&lt;" />
+									</f:facet>
+								</rich:datascroller>
+								<div align="right"><t:dataScroller id="_scroll"
+									for="tabela" rowsCountVar="rowsCount"
+									firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex"
+									rendered="true">
+									<h:outputText
+										value="Número de Registros: #{tamanho}"
+										style="font-weight: bold;" />
+								</t:dataScroller></div>
+							</rich:column>
+						</rich:columnGroup>
+					</f:facet>
+	
+	</ui:composition>
+	
+	
