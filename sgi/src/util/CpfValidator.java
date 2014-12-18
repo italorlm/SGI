@@ -3,7 +3,10 @@ package util;
 public class CpfValidator {
 	    
     //Retorna TRUE se o CPF é válido e FALSE se não é válido    
-	public static boolean validaCPF(String cpf) {
+	public static boolean validaCPF(String cpf) {	    
+		cpf = cpf.replace("-","");
+		cpf = cpf.replace(".","");
+		
 		if (cpf == null || cpf.isEmpty() || cpf.length() != 11 || isCPFPadrao(cpf))
 			return false;
 	 

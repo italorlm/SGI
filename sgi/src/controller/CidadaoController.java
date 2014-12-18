@@ -6,11 +6,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
 import model.Cidadao;
 import model.Municipio;
 
@@ -18,7 +16,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import util.CpfValidator;
-import util.MessageUtil;
 import dao.CidadaoDao;
 
 @Component
@@ -102,6 +99,15 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 			return "CPF Inválido!";
 		
 		return null;
+	}
+	
+	public List<Cidadao> suggestionBox(Object objeto) {
+		Cidadao cidadao = new Cidadao();		
+		cidadao.setNome(objeto.toString().toLowerCase());
+		
+		List<Cidadao> suggestionCidadoes = dao.findByExample(cidadao);		
+		
+		return suggestionCidadoes;
 	}
 
 	public List<SelectItem> getSelectItems() {

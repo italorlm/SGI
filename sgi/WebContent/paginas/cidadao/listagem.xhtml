@@ -32,10 +32,16 @@
 					<h:panelGrid columns="3">
 					
 					<h:outputText value="Nome:"/>					
-					<rich:spacer width="20"/>
-					<h:inputText 
-								value="#{cidadaoController.filtro.nome}"
-								size="60" />
+					<rich:spacer width="20"/>					
+					<h:inputText id="nome" value="#{cidadaoController.filtro.nome}" 
+						size="60" />
+						<rich:suggestionbox id="suggestionBox" for="nome" 
+                    		suggestionAction="#{cidadaoController.suggestionBox}" var="row" >  
+                      
+		                    <h:column>  
+		                        <h:outputText value="#{row.nome}" />  
+		                    </h:column>  
+                		</rich:suggestionbox>
 					</h:panelGrid>
 														
 					
