@@ -20,11 +20,11 @@ implements UnidadeExternaDao{
 
 	@Override
 	@Transactional
-	public List<UnidadeExterna> findByExample(UnidadeExterna exemplo) {
+	public List<UnidadeExterna> findByExample(UnidadeExterna filtro) {
 		List<UnidadeExterna> lista = new ArrayList<UnidadeExterna>();
 		Criteria c = criaCriteria();
-		if(exemplo.getNome()!=null){
-			c.add(Restrictions.ilike("nome",exemplo.getNome(),MatchMode.ANYWHERE));
+		if(filtro.getNome()!=null && !(filtro.getNome().isEmpty())){
+			c.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 		}
 		c.addOrder(Order.asc("nome"));
 		lista = c.list();

@@ -2,14 +2,9 @@ package controller;
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
 import model.Usuario;
-import model.UsuarioAcesso;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import dao.UsuarioAcessoDao;
 import dao.UsuarioDao;
 import util.FacesUtils;
 
@@ -19,16 +14,11 @@ public class LoginController {
 
 	private boolean logado;
 	String login,senha;
-	boolean erroLogin;
-	Usuario usuario;
-	UsuarioAcesso usuarioAcesso;
-	
 	@Resource
 	UsuarioDao usuarioDao;
-	
-	@Resource
-	UsuarioAcessoDao usuarioAcessoDao;
-	
+	boolean erroLogin;
+	Usuario usuario;
+
 	public  static boolean mostrarRodape = true;
 
 	public  boolean isMostrarRodape() {
@@ -54,12 +44,6 @@ public class LoginController {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public UsuarioAcesso getUsuarioAcesso() {
-		return usuarioAcesso;
-	}
-	public void setUsuarioAcesso(UsuarioAcesso usuarioAcesso) {
-		this.usuarioAcesso = usuarioAcesso;
-	}	
 	public boolean isLogado() {return logado;}
 	public void setLogado(boolean logado) {this.logado = logado;}
 
@@ -83,7 +67,7 @@ public class LoginController {
 			session.setAttribute("usuario", usuario);
 			logado = true; 
 			erroLogin =false;
-			resultado = registraAcesso();	
+			resultado = "sucessoLogin";	
 		}else{
 			erroLogin = true;
 			resultado = "erroLogin";
@@ -110,12 +94,6 @@ public class LoginController {
 		logado = false;
 		erroLogin = false;
 	}
-	
-	public String registraAcesso() {
-		usuarioAcesso = new UsuarioAcesso(usuario);
-		usuarioAcessoDao.salvar(usuarioAcesso);
-		return "sucessoLogin";
-	}
 
 	public static void mostrarRodape(){mostrarRodape = true;}
 	public static void esconderRodape(){mostrarRodape = false;}
@@ -124,6 +102,8 @@ public class LoginController {
 	}
 	public void setErroLogin(boolean erroLogin) {
 		this.erroLogin = erroLogin;
-	}	
+	}
+	
+	
 }
 

@@ -22,11 +22,11 @@ public class UnidadeCptrDaoImp extends GenericDaoImp<UnidadeCptr,Long>
 implements UnidadeCptrDao{
 
 	@Override
-	public List<UnidadeCptr> findByExample(UnidadeCptr exemplo) {
+	public List<UnidadeCptr> findByExample(UnidadeCptr filtro) {
 		List<UnidadeCptr> lista = new ArrayList<UnidadeCptr>();
 		Criteria c = criaCriteria();
-		if(exemplo.getNome()!=null){
-			c.add(Restrictions.ilike("nome",exemplo.getNome(),MatchMode.ANYWHERE));
+		if(filtro.getNome()!=null && !(filtro.getNome().isEmpty())){
+			c.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 		}
 		c.addOrder(Order.asc("nome"));
 		lista = c.list();

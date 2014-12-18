@@ -22,32 +22,19 @@ implements CidadaoDao{
 
 	@Override
 	@Transactional
-	public List<Cidadao> findByNome(String nome) {
+	public List<Cidadao> findByExample(Cidadao filtro) {
 		List<Cidadao> lista = new ArrayList<Cidadao>();
 		Criteria c = criaCriteria();
-		if(StringUtils.isValid(nome)){
-			lista = (List<Cidadao>)c.add(Restrictions.ilike("nome", nome,MatchMode.ANYWHERE))
-					.addOrder(Order.asc("nome"))
-					.list();
+		
+		if(filtro.getNome()!=null && !(filtro.getNome().isEmpty())){
+			c.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));					
 		}
-
+		
+		if(filtro.getCpf()!=null && !(filtro.getCpf().isEmpty())){
+			c.add(Restrictions.eq("cpf", filtro.getCpf()));					
+		}
+		
+		lista = c.list();
 		return lista;
 	}
-
-	@Override
-	@Transactional
-	public List<Cidadao> findByCpf(String cpf) {
-		List<Cidadao> lista = new ArrayList<Cidadao>();
-		Criteria c = criaCriteria();
-		if(StringUtils.isValid(cpf)){
-			lista = (List<Cidadao>)c.add(Restrictions.eq("cpf", cpf))
-					.addOrder(Order.asc("nome"))
-					.list();
-		}
-
-		return lista;
-	}
-
-
-
 }

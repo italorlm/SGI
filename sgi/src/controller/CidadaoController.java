@@ -17,6 +17,7 @@ import model.Municipio;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import util.CpfValidator;
 import util.MessageUtil;
 import dao.CidadaoDao;
 
@@ -61,25 +62,46 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 
 	public void filtrar(){
 		trazerTodos = false;
-		listagem = dao.findByNome(filtro.getNome());
+		listagem = dao.findByExample(filtro);
 	}
 
 	@Override
 	public String salvar(){
-		String msgErro = null;
-		String retorno = null;
+		String msgErro = null;		
 		
-		if(objeto.getNome()==null || objeto.getNome()=="")
-			msgErro = "O campo Nome é obrigatório!";
+		msgErro = validaInformacao(objeto);
 				
-		if(msgErro=="" || msgErro==null) {
-			retorno = super.salvar();
-			return retorno;
+		if(msgErro==null) {
+			return super.salvar();			
 		} else {			
 	        FacesContext context = FacesContext.getCurrentInstance();
 	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));
 			return null;
 		}
+	}
+	
+	@Override
+	public String editar() {
+		String msgErro = null;
+		
+		msgErro = validaInformacao(objeto);
+				
+		if(msgErro==null) {
+			return super.editar();			
+		} else {			
+	        FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));
+			return null;
+		}
+	}
+	
+	public String validaInformacao(Cidadao cidadao) {
+		if(cidadao.getNome()==null || cidadao.getNome().isEmpty())
+			return "O campo Nome é obrigatório!";		
+		else if(!CpfValidator.validaCPF(cidadao.getCpf()))
+			return "CPF Inválido!";
+		
+		return null;
 	}
 
 	public List<SelectItem> getSelectItems() {

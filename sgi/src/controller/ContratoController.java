@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
@@ -115,9 +117,16 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	}
 	
 	public void adicionarParcela() {
+		String msgErro = "Quantidade máxima de parcelas já cadastrada. Aumente a quantidade de parcelas caso for necessário.";
 		if(contratoParcela.getId()==null) {
-			parcelas.add(contratoParcela);
-			mostrarModalParcela = false;
+			if(parcelas.size() < objeto.getParcelas()) {
+				parcelas.add(contratoParcela);
+				mostrarModalParcela = false;
+			} else {
+				FacesContext context = FacesContext.getCurrentInstance();
+		        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));
+		        mostrarModalParcela = false;
+			}
 		}		
 	}
 	

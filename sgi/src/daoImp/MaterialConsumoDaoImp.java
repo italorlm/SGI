@@ -1,5 +1,6 @@
 package daoImp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.MaterialConsumo;
@@ -18,12 +19,14 @@ public class MaterialConsumoDaoImp extends GenericDaoImp<MaterialConsumo, Long>
 implements MaterialConsumoDao{
 
 	@Override
-	public List<MaterialConsumo> findByExample(MaterialConsumo exemplo) {
-		List<MaterialConsumo> lista = null;
+	public List<MaterialConsumo> findByExample(MaterialConsumo filtro) {
+		List<MaterialConsumo> lista = new ArrayList<MaterialConsumo>();
 		Criteria c = criaCriteria();
-		if(StringUtils.isValid(exemplo.getCodigo())){
-			c.add(Restrictions.ilike("codigo",exemplo.getCodigo(),MatchMode.ANYWHERE));
+		
+		if(filtro.getCodigo() != null && !(filtro.getCodigo().isEmpty())){
+			c.add(Restrictions.ilike("codigo", filtro.getCodigo(), MatchMode.ANYWHERE));
 		}
+		
 		lista = c.list();
 		return lista;
 	}

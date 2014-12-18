@@ -17,8 +17,8 @@ public class DaoCrp {
 	SQLException {
 		Class.forName("net.sourceforge.jtds.jdbc.Driver");
 		return DriverManager.getConnection(
-				"jdbc:postgresql://localhost:5433/corporativo", "postgres",
-		"postgres");
+				"jdbc:postgresql://ciclopes:5432/corporativo", "websga",
+		"wbsgea42");
 	}
 
 	public List<Municipio> listaMunicipios() throws SQLException {
@@ -57,7 +57,7 @@ public class DaoCrp {
 		Municipio municipio = null;
 		try {
 			String sql = "select id, nome from municipio"
-				+ " and id = ? ";
+				+ " where id = ? ";
 			con = getConnection();
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, codigo);
