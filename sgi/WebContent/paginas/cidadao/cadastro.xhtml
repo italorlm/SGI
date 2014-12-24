@@ -98,10 +98,14 @@
 														
 							<rich:spacer width="90" />
 							<h:outputText value="Etnia:" />
-							<h:selectOneMenu id="etnia" converter="entityConverter" 
+							<h:selectOneMenu id="etnia"  
 								value="#{cidadaoController.objeto.etnia}">
-							   <f:selectItem itemLabel="Selecione" itemValue=""/>
-							   <f:selectItems value="#{etniaController.selectItems}"/>							   
+							    <f:selectItem itemLabel="Selecione" itemValue=""/>
+							    <f:selectItem itemLabel="Amarelo" itemValue="1"/>
+								<f:selectItem itemLabel="Branco" itemValue="2"/>
+								<f:selectItem itemLabel="Indio" itemValue="3"/>
+								<f:selectItem itemLabel="Negro" itemValue="4"/>
+								<f:selectItem itemLabel="Pardo" itemValue="5"/>														   							   
 							</h:selectOneMenu>
 						</h:panelGrid>
 						
@@ -209,7 +213,18 @@
 					        <h:selectOneMenu id="escolaridade" converter="entityConverter"
 					        	value="#{cidadaoController.objeto.escolaridade}">
 					           	<f:selectItem itemLabel="Selecione" itemValue=""/>
-					           	<f:selectItems value="#{escolaridadeController.selectItems}"/>
+					           	<f:selectItem itemLabel="Ensino Fundamental Completo" itemValue="1"/>
+					           	<f:selectItem itemLabel="Ensino Fundamental Incompleto" itemValue="2"/>
+					           	<f:selectItem itemLabel="Ensino Medio Completo" itemValue="3"/>
+					           	<f:selectItem itemLabel="Ensino Medio Incompleto" itemValue="4"/>
+					           	<f:selectItem itemLabel="Ensino Superior Completo" itemValue="5"/>
+					           	<f:selectItem itemLabel="Ensino Superior Incompleto" itemValue="6"/>
+					           	<f:selectItem itemLabel="Especialização/MBA Completo" itemValue="7"/>
+					           	<f:selectItem itemLabel="Especialização/MBA Incompleto" itemValue="8"/>
+					           	<f:selectItem itemLabel="Mestrado Completo" itemValue="9"/>
+					           	<f:selectItem itemLabel="Mestrado Incompleto" itemValue="10"/>
+					           	<f:selectItem itemLabel="Doutorado Completo" itemValue="11"/>
+					           	<f:selectItem itemLabel="Doutorado Incompleto" itemValue="12"/>
 					        </h:selectOneMenu>
 					
 					        <rich:spacer width="10"/>
