@@ -26,7 +26,7 @@ public class LoginFilter implements Filter {
 			HttpSession session = httpReq.getSession(true);
 			String url = httpReq.getRequestURL().toString();
 			if(session.getAttribute("usuario")==null && precisaAutenticar(url)){
-				session.setAttribute("usuario", "aaa");
+//				session.setAttribute("usuario", "aaa");
 				httpRes.sendRedirect(httpReq.getContextPath()+"/login.jsf");
 			}else{
 				chain.doFilter(req, res);

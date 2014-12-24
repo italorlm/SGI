@@ -215,18 +215,20 @@
 					        <rich:spacer width="10"/>
 					        
 					        <h:outputText value="Frequenta Entidade de Ensino?" />
-					        <h:selectOneMenu id="freqEscola" 
+					        <h:selectOneMenu id="freqEscola"
 					        	value="#{cidadaoController.objeto.frequentaEscola}">
 					           <f:selectItem itemLabel="Selecione" itemValue=""/>
 					           <f:selectItem itemLabel="Sim" itemValue="1"/>
 					           <f:selectItem itemLabel="Não" itemValue="2"/>
+					           <a4j:support event="onchange" reRender="nomeEscola"/>
 					        </h:selectOneMenu>
 					        
 					        <rich:spacer width="10"/>
-					
+														
 					        <h:outputLabel value="Nome da Entidade de Ensino:" />
 					        <h:inputText id="nomeEscola" size="50" 
-					        	value="#{cidadaoController.objeto.nomeEscola}"/>					    
+					        	value="#{cidadaoController.objeto.nomeEscola}" 
+					        	disabled="#{cidadaoController.objeto.frequentaEscola!=1}" />					    
 					    </h:panelGrid>					
 					</fieldset>
 					
@@ -267,13 +269,15 @@
 					           <f:selectItem itemLabel="Selecione" itemValue=""/>
 					           <f:selectItem itemLabel="Sim" itemValue="1"/>
 					           <f:selectItem itemLabel="Não" itemValue="2"/>
+					           <a4j:support event="onchange" reRender="ultimaEmpresa"/>
 					      </h:selectOneMenu>
 					
 					      <rich:spacer height="20"/>
 					       
 					      <h:outputLabel value="Ultima Empresa:" />
 						      <h:inputText id="ultimaEmpresa" size="50" 
-						      	value="#{cidadaoController.objeto.ultimaEmpresa}"/>
+						      	value="#{cidadaoController.objeto.ultimaEmpresa}"
+						      	disabled="#{cidadaoController.objeto.jaTrabalhou!=1}" />
 					 </h:panelGrid>
 					
 					</fieldset>
