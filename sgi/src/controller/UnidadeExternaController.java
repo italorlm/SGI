@@ -63,5 +63,14 @@ public class UnidadeExternaController extends GenericController<UnidadeExterna,U
 	public void setSelectItems(List<SelectItem> selectItems) {
 		this.selectItems = selectItems;
 	}
+
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(UnidadeExterna unidadeExterna : getListagem()) {
+			if(unidadeExterna.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(unidadeExterna))
+					suggestions.add(unidadeExterna);
+		}
+	}
 }
 

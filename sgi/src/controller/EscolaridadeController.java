@@ -8,6 +8,7 @@ import javax.faces.model.SelectItem;
 import model.Cargo;
 import model.Contrato;
 import model.Escolaridade;
+import model.Etnia;
 import model.Perfil;
 
 import org.springframework.context.annotation.Scope;
@@ -63,6 +64,13 @@ public class EscolaridadeController extends GenericController<Escolaridade, Esco
 		this.selectItems = selectItems;
 	}
 	
-	
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(Escolaridade escolaridade : getListagem()) {
+			if(escolaridade.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(escolaridade))
+					suggestions.add(escolaridade);
+		}
+	}
 }
 

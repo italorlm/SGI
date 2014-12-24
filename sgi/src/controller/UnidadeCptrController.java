@@ -7,6 +7,7 @@ import javax.faces.model.SelectItem;
 
 import model.Programa;
 import model.UnidadeCptr;
+import model.UnidadeExterna;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -62,12 +63,13 @@ public class UnidadeCptrController extends GenericController<UnidadeCptr,Unidade
 		this.selectItems = selectItems;
 	}
 
-	
-
-
-
-
-
-
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(UnidadeCptr unidadeCptr : getListagem()) {
+			if(unidadeCptr.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(unidadeCptr))
+					suggestions.add(unidadeCptr);
+		}
+	}
 }
 

@@ -30,12 +30,30 @@
 		 <rich:tabPanel width="74%" height="150">
 					<rich:tab align="center" label="CONSULTA DE MATERIAL DE CONSUMO">
 										
-					<h:panelGrid columns="3">
+					<h:panelGrid columns="3">					
+						<h:outputText value="Código:"/>					
+						<rich:spacer width="20"/>
+						<h:inputText id="codigo" value="#{materialConsumoController.filtro.codigo}"	size="60" />
+							<rich:suggestionbox id="suggestionBoxCodigo" for="codigo" 
+	                    		suggestionAction="#{materialConsumoController.suggestionBox}" var="row" >  
+	                      
+			                    <h:column>  
+			                        <h:outputText value="#{row.codigo}" />  
+			                    </h:column>  
+	                		</rich:suggestionbox>
+					</h:panelGrid>
 					
-					<h:outputText value="Código:"/>					
-					<rich:spacer width="20"/>
-					<h:inputText value="#{materialConsumoController.filtro.codigo}"
-								size="60" />
+					<h:panelGrid columns="3">					
+						<h:outputText value="Descrição:"/>					
+						<rich:spacer width="20"/>
+						<h:inputText id="descricao" value="#{materialConsumoController.filtro.descricao}"	size="60" />
+							<rich:suggestionbox id="suggestionBoxDescricao" for="descricao" 
+	                    		suggestionAction="#{materialConsumoController.suggestionBox}" var="row" >  
+	                      
+			                    <h:column>  
+			                        <h:outputText value="#{row.descricao}" />  
+			                    </h:column>  
+	                		</rich:suggestionbox>
 					</h:panelGrid>
 														
 					

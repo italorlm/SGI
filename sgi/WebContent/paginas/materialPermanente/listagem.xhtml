@@ -34,8 +34,14 @@
 					
 					<h:outputText value="Descrição:"/>					
 					<rich:spacer width="20"/>
-					<h:inputText 
-								size="60" />
+					<h:inputText id="descricao" value="#{materialPermanenteController.filtro.descricao}" size="60" />
+						<rich:suggestionbox id="suggestionBox" for="descricao" 
+                    		suggestionAction="#{materialPermanenteController.suggestionBox}" var="row" >  
+                      
+		                    <h:column>  
+		                        <h:outputText value="#{row.descricao}" />  
+		                    </h:column>  
+                		</rich:suggestionbox>
 					</h:panelGrid>
 														
 					

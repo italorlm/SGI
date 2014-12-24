@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import model.Cargo;
+import model.Cidadao;
 import model.Contrato;
 import model.Programa;
 import model.Projeto;
@@ -64,6 +65,13 @@ public class ProjetoController extends GenericController<Projeto, ProjetoDao> {
 		this.selectItems = selectItems;
 	}
 	
-	
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(Projeto projeto : getListagem()) {
+			if(projeto.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(projeto))
+					suggestions.add(projeto);
+		}
+	}
 }
 

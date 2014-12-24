@@ -57,7 +57,14 @@ public class CargoController extends GenericController<Cargo, CargoDao> {
 	public void setSelectItems(List<SelectItem> selectItems) {
 		this.selectItems = selectItems;
 	}
-	
-	
+
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(Cargo cargo : getListagem()) {
+			if(cargo.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(cargo))
+					suggestions.add(cargo);
+		}
+	}
 }
 

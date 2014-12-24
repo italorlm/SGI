@@ -7,6 +7,7 @@ import javax.faces.model.SelectItem;
 
 import model.Cargo;
 import model.TipoMaterialPermanente;
+import model.UnidadeCptr;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -60,6 +61,13 @@ public class TipoMaterialPermanenteController extends GenericController<TipoMate
 		this.selectItems = selectItems;
 	}
 	
-	
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(TipoMaterialPermanente tipoMaterialPermanente : getListagem()) {
+			if(tipoMaterialPermanente.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(tipoMaterialPermanente))
+					suggestions.add(tipoMaterialPermanente);
+		}
+	}
 }
 

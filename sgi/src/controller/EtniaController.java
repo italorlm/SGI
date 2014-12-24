@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import model.Cidadao;
 import model.Etnia;
 
 import org.springframework.context.annotation.Scope;
@@ -58,6 +59,13 @@ public class EtniaController extends GenericController<Etnia, EtniaDao> {
 		this.selectItems = selectItems;
 	}
 	
-	
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(Etnia etnia : getListagem()) {
+			if(etnia.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(etnia))
+					suggestions.add(etnia);
+		}
+	}
 }
 

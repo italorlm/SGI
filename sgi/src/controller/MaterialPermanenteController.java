@@ -56,12 +56,13 @@ public class MaterialPermanenteController extends GenericController<MaterialPerm
 		this.selectItems = selectItems;
 	}
 
-	
-
-	
-
-
-
-
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(MaterialPermanente materialPermanente : getListagem()) {
+			if(materialPermanente.getDescricao().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(materialPermanente))
+					suggestions.add(materialPermanente);
+		}
+	}
 }
 

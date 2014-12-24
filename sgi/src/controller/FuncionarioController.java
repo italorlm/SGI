@@ -60,7 +60,10 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 	public void setSelectItems(List<SelectItem> selectItems) {
 		this.selectItems = selectItems;
 	}
-	
-	
+
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		// TODO Auto-generated method stub
+	}
 }
 

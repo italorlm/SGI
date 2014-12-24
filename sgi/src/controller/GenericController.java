@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 
 import model.BaseModel;
+import model.Cidadao;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -20,6 +21,7 @@ public abstract class GenericController<T extends BaseModel,Y extends GenericDao
 
 	public T objeto,filtro;
 	List<T> listagem;
+	List<T> suggestions;
 	private final Class<T> classeModel;
 	boolean trazerTodos;
 	public Y dao;
@@ -96,6 +98,15 @@ public abstract class GenericController<T extends BaseModel,Y extends GenericDao
 			MessageUtil.addMessage(msgErro, FacesMessage.SEVERITY_ERROR);
 		}
 	}
+	
+	public List<T> suggestionBox(Object input) {
+		String userInput = (String) input;				
+		suggestions = new ArrayList<T>();
+		
+		filtrarSuggestionBox(userInput);
+		
+		return suggestions;
+	}
 
 	public List<T> getListagem() {
 		if(listagem==null) listagem = new ArrayList<T>();
@@ -108,9 +119,7 @@ public abstract class GenericController<T extends BaseModel,Y extends GenericDao
 	public void setListagem(List<T> listagem) {
 		this.listagem = listagem;
 	}
-	
-	
-	
+		
 	public void mostrarRodape(){
 		LoginController.mostrarRodape();
 	}
@@ -118,8 +127,7 @@ public abstract class GenericController<T extends BaseModel,Y extends GenericDao
 	public void esconderRodape(){
 		LoginController.esconderRodape();
 	}
-	
-	
+		
     public ApplicationContext getApplicationContext(){
         ApplicationContext ctx = AppContext.getApplicationContext();
     	return ctx;
@@ -128,7 +136,16 @@ public abstract class GenericController<T extends BaseModel,Y extends GenericDao
 	public T getFiltro() {
 		return filtro;
 	}
+		
+	public List<T> getSuggestions() {
+		return suggestions;
+	}
 
+	public void setSuggestions(List<T> suggestions) {
+		this.suggestions = suggestions;
+	}
+	
+	public abstract void filtrarSuggestionBox(String userInput);
 	public abstract void setaNavegacao();
 	public abstract void injetaDao();
 }

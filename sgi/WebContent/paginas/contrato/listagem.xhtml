@@ -35,6 +35,13 @@
 							<rich:spacer width="20"/>
 							<h:inputText id="executor"
 								valor="#{contratoController.filtro.executor}" size="60" />
+								<rich:suggestionbox id="suggestionBoxExecutor" for="executor" 
+                    				suggestionAction="#{contratoController.suggestionBox}" var="row" >  
+                      
+				                    <h:column>  
+				                        <h:outputText value="#{row.executor}" />  
+				                    </h:column>  
+		                		</rich:suggestionbox>
 					</h:panelGrid>
 					
 					<h:panelGrid columns="3">					
@@ -42,6 +49,13 @@
 							<rich:spacer width="20"/>
 							<h:inputText id="contrato"
 								valor="#{contratoController.filtro.contrato}" size="30" />
+								<rich:suggestionbox id="suggestionBoxContrato" for="contrato" 
+                    				suggestionAction="#{contratoController.suggestionBox}" var="row" >  
+                      
+				                    <h:column>  
+				                        <h:outputText value="#{row.contrato}" />  
+				                    </h:column>  
+		                		</rich:suggestionbox>
 					</h:panelGrid>
 					
 					<h:panelGrid columns="3">

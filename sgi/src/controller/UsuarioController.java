@@ -68,5 +68,11 @@ public class UsuarioController extends GenericController<Usuario, UsuarioDao> {
 		this.selectItems = selectItems;
 	}
 
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

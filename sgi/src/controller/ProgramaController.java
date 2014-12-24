@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import model.Cargo;
+import model.Cidadao;
 import model.Contrato;
 import model.MaterialPermanente;
 import model.Programa;
@@ -63,6 +64,13 @@ public class ProgramaController extends GenericController<Programa, ProgramaDao>
 		this.selectItems = selectItems;
 	}
 	
-	
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(Programa programa : getListagem()) {
+			if(programa.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(programa))
+					suggestions.add(programa);
+		}
+	}
 }
 

@@ -17,7 +17,7 @@ public class DaoCrp {
 	SQLException {
 		Class.forName("net.sourceforge.jtds.jdbc.Driver");
 		return DriverManager.getConnection(
-				"jdbc:postgresql://localhost:5432/corporativo", "postgres",
+				"jdbc:postgresql://localhost:5433/corporativo", "postgres",
 		"postgres");
 	}
 

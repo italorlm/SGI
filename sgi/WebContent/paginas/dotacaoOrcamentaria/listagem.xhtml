@@ -33,8 +33,14 @@
 					<h:panelGrid columns="3">					
 						<h:outputText value="Código:"/>					
 						<rich:spacer width="20"/>
-						<h:inputText id="codigo"
-							value="#{dotacaoOrcamentariaController.filtro.codigo}" size="60" />
+						<h:inputText id="codigo" value="#{dotacaoOrcamentariaController.filtro.codigo}" size="60" />
+						<rich:suggestionbox id="suggestionBox" for="codigo" 
+                    		suggestionAction="#{dotacaoOrcamentariaController.suggestionBox}" var="row" >  
+                      
+		                    <h:column>  
+		                        <h:outputText value="#{row.codigo}" />  
+		                    </h:column>  
+                		</rich:suggestionbox>
 					</h:panelGrid>
 					
 					<h:panelGrid columns="3">

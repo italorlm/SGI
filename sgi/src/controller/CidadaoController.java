@@ -101,15 +101,6 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 		return null;
 	}
 	
-	public List<Cidadao> suggestionBox(Object objeto) {
-		Cidadao cidadao = new Cidadao();		
-		cidadao.setNome(objeto.toString().toLowerCase());
-		
-		List<Cidadao> suggestionCidadoes = dao.findByExample(cidadao);		
-		
-		return suggestionCidadoes;
-	}
-
 	public List<SelectItem> getSelectItems() {
 		selectItems = new ArrayList<SelectItem>();
 		if(selectItems.size()==0){
@@ -168,7 +159,15 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 
 	public void setItemsMunicipiosResidencial(List<SelectItem> itemsMunicipiosResidencial) {
 		this.itemsMunicipiosResidencial = itemsMunicipiosResidencial;
-	}	
+	}
 
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(Cidadao cidadao : getListagem()) {
+			if(cidadao.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(cidadao))
+					suggestions.add(cidadao);
+		}
+	}	
 }
 

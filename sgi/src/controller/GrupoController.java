@@ -9,6 +9,7 @@ import javax.faces.model.SelectItem;
 
 import model.Cargo;
 import model.Grupo;
+import model.MaterialConsumo;
 import model.SubGrupo;
 
 import org.springframework.context.annotation.Scope;
@@ -134,6 +135,15 @@ public class GrupoController extends GenericController<Grupo, GrupoDao> {
 		subGruposExcluidos.add(subGrupo);		
 	}
 	
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(Grupo grupo : getListagem()) {
+			if(grupo.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(grupo))
+					suggestions.add(grupo);
+		}
+	}
+	
 	public List<SubGrupo> getSubGruposExcluidos() {
 		return subGruposExcluidos;
 	}
@@ -164,7 +174,6 @@ public class GrupoController extends GenericController<Grupo, GrupoDao> {
 
 	public void setMostrarModalSubGrupo(boolean mostrarModalSubGrupo) {
 		this.mostrarModalSubGrupo = mostrarModalSubGrupo;
-	}
-	
+	}	
 }
 

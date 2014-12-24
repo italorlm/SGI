@@ -7,8 +7,10 @@ import javax.annotation.Resource;
 import javax.faces.model.SelectItem;
 
 import model.Cargo;
+import model.Cidadao;
 import model.Grupo;
 import model.MaterialConsumo;
+import model.MaterialPermanente;
 import model.SubGrupo;
 
 import org.springframework.context.annotation.Scope;
@@ -71,6 +73,18 @@ public class MaterialConsumoController extends GenericController<MaterialConsumo
 		}
 		return selectItems;
 	}
+	
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(MaterialConsumo materialConsumo : getListagem()) {
+			if(materialConsumo.getCodigo().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(materialConsumo))
+					suggestions.add(materialConsumo);
+			if(materialConsumo.getDescricao().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(materialConsumo))
+					suggestions.add(materialConsumo);
+		}
+	}
 
 	public void setSelectItems(List<SelectItem> selectItems) {
 		this.selectItems = selectItems;
@@ -102,14 +116,6 @@ public class MaterialConsumoController extends GenericController<MaterialConsumo
 
 	public void setSubGrupos(List<SubGrupo> subGrupos) {
 		this.subGrupos = subGrupos;
-	}
-	
-	
-
-
-
-
-
-
+	}	
 }
 

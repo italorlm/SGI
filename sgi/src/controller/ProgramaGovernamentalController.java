@@ -7,6 +7,7 @@ import javax.faces.model.SelectItem;
 
 import model.Cargo;
 import model.ProgramaGovernamental;
+import model.Projeto;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -60,6 +61,13 @@ public class ProgramaGovernamentalController extends GenericController<ProgramaG
 		this.selectItems = selectItems;
 	}
 	
-	
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(ProgramaGovernamental programaGovernamental : getListagem()) {
+			if(programaGovernamental.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(programaGovernamental))
+					suggestions.add(programaGovernamental);
+		}
+	}
 }
 

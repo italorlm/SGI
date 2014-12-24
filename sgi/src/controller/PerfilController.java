@@ -2,10 +2,14 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.model.SelectItem;
+
 import model.Perfil;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import dao.PerfilDao;
 
 @Component
@@ -50,6 +54,11 @@ public class PerfilController extends GenericController<Perfil, PerfilDao> {
 
 	public void setSelectItems(List<SelectItem> selectItems) {
 		this.selectItems = selectItems;
+	}
+
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		// TODO Auto-generated method stub		
 	}
 
 }

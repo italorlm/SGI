@@ -9,8 +9,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
+import model.Cargo;
+import model.Cidadao;
 import model.Contrato;
 import model.ContratoParcela;
+import model.SubGrupo;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -115,18 +118,12 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	}
 	
 	public void adicionarParcela() {
-		String msgErro = null;
+		String msgErro = "Quantidade máxima de parcelas já cadastrada. Aumente a quantidade de parcelas caso for necessário.";
 		if(contratoParcela.getId()==null) {
-			if(objeto.getParcelas() == null) {
-				msgErro = "Informe a quantidade de parcelas!";
-				FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));
-				mostrarModalParcela = false;
-			} else if(parcelas.size() < objeto.getParcelas()) {
+			if(parcelas.size() < objeto.getParcelas()) {
 				parcelas.add(contratoParcela);
 				mostrarModalParcela = false;
 			} else {
-				msgErro = "Quantidade máxima de parcelas já cadastrada. Aumente a quantidade de parcelas caso seja necessário.";
 				FacesContext context = FacesContext.getCurrentInstance();
 		        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));
 		        mostrarModalParcela = false;
@@ -144,6 +141,18 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		} 
 		
 		parcelasExcluidas.add(contratoParcela);
+	}
+	
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		for(Contrato contrato : getListagem()) {
+			if(contrato.getExecutor().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(contrato))
+					suggestions.add(contrato);
+			if(contrato.getContrato().toLowerCase().startsWith(userInput.toLowerCase()))
+				if(!suggestions.contains(contrato))
+					suggestions.add(contrato);
+		}
 	}
 
 	public void setSelectItems(List<SelectItem> selectItems) {
