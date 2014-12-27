@@ -45,20 +45,28 @@
 		</div> 
 		<br/>
 			 
-		<div align="center">
-		
+		<div align="center">		
 			<fiji:barChart id="barChartMulti" value="#{painelController.data}" 
-						title="#{painelController.tituloBarChart}" 
-	                    subtitle="#{painelController.subTituloBarChart}" 
-	                    legendCaption="Jovens" legendPosition="top" 
+						title="#{painelController.tituloChart}" 
+	                    subtitle="#{painelController.subTituloChart}" 
+	                    legendCaption="Linha de Ação" legendPosition="top" 
 	                    captionX="Quantidade de Jovens" captionY="Periodo/Ano" 
 	                    barColors="#{painelController.colors}" 
 	                    toolTipValue="{x} teve {y} {name} encaminhados" 
-	                    width="500" height="500" barCaption="none">
+	                    width="800" height="500" barCaption="none">
 	        			<fiji:chartData type="name" value="#{painelController.names}" />
-	    	</fiji:barChart>
-	    
+	    	</fiji:barChart>	    
 	    </div>
+	    <rich:spacer height="50"/>
+	    <div align="center">
+	    	<fiji:lineChart id="lineChartMulti" value="#{painelController.datalc}" 
+	    			title="#{painelController.tituloChart}" markerCaption="none"
+                    barColors="#{painelController.colorslc}" legendPosition="top" 
+                    captionX="Periodo/Ano" legendCaption="Linha de Ação"
+                    subtitle="#{painelController.subTituloChart}" width="700" height="500">
+        			<fiji:chartData type="name" value="#{painelController.nameslc}" />
+    		</fiji:lineChart>
+    	</div>
 		</h:form>
 		
 	</ui:define>

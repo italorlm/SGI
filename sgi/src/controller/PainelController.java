@@ -9,12 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("globalSession")
-public class PainelController {
-	
-	
-	
-	
-	
+public class PainelController {	
+	//BarChart
 	private Map<String, Integer[]> data = new LinkedHashMap<String, Integer[]>();
 	private ArrayList<String> colors = new ArrayList<String>();
 	private ArrayList<String> names = new ArrayList<String>();
@@ -22,19 +18,30 @@ public class PainelController {
 	private Integer[] data2013 = new Integer[] { 1936, 1238, 836 };
 	private Integer[] data2014 = new Integer[] { 828, 921, 323 };
 	
-	//Atributos do componente BarChart
-	private String tituloBarChart = "Quantidade de Jovens Encaminhados";
-	private String subTituloBarChart = "Periodo - 01/01/2012 à 31/12/2014";
+	//LineChart
+	private ArrayList<String> nameslc = new ArrayList<String>();
+	private ArrayList<String> colorslc = new ArrayList<String>();
+	private Map<String, Object> datalc = new LinkedHashMap<String, Object>();
+	private Integer[] chart1 = new Integer[]{2100, 4000, 5200};
+	private Integer[] chart2 = new Integer[]{2500, 6000, 2800};
+	private Integer[] chart3 = new Integer[]{3500, 6500, 4520};
+	private Integer[] chart4 = new Integer[]{3720, 8200, 3200};
+	private Integer[] chart5 = new Integer[]{3000, 12000, 3800};
+	
+	//Chart labels
+	private String tituloChart = "Quantidade de Jovens Encaminhados";
+	private String subTituloChart = "Periodo - 01/01/2012 à 31/12/2014";
 	
 	public PainelController(){
-		generateData();		
+		generateDataBarChart();	
+		generateDataLineChart();
 	}
 	
 	public String listar() {
 		return "painelSecretarioCoordenador";
 	}
 	
-	private void generateData() {
+	private void generateDataBarChart() {
 		data.put("2012", data2012);
 		data.put("2013", data2013);
 		data.put("2014", data2014);
@@ -46,6 +53,22 @@ public class PainelController {
 		colors.add("#DAA520");
 		colors.add("#C0C0C0");
 		colors.add("#B87333");
+	}
+	
+	private void generateDataLineChart() {
+        datalc.put("Ano 2004", chart1);
+        datalc.put("Ano 2005", chart2);
+        datalc.put("Ano 2006", chart3);
+        datalc.put("Ano 2007", chart4);
+        datalc.put("Ano 2008", chart5);
+        
+        nameslc.add("Aprendiz");
+        nameslc.add("Estagiário");
+        nameslc.add("Bolsista");
+
+        colorslc.add("#5db2c2");
+        colorslc.add("#b0343c");
+        colorslc.add("#DAA520");
 	}
 		
 	public void filtrar(){
@@ -74,48 +97,48 @@ public class PainelController {
 
 	public void setNames(ArrayList<String> names) {
 		this.names = names;
+	}
+
+	public ArrayList<String> getNameslc() {
+		return nameslc;
+	}
+
+	public void setNameslc(ArrayList<String> nameslc) {
+		this.nameslc = nameslc;
+	}
+
+	public ArrayList<String> getColorslc() {
+		return colorslc;
+	}
+
+	public void setColorslc(ArrayList<String> colorslc) {
+		this.colorslc = colorslc;
+	}
+
+	public Map<String, Object> getDatalc() {
+		return datalc;
+	}
+
+	public void setDatalc(Map<String, Object> datalc) {
+		this.datalc = datalc;
+	}
+
+	public String getTituloChart() {
+		return tituloChart;
+	}
+
+	public void setTituloChart(String tituloChart) {
+		this.tituloChart = tituloChart;
+	}
+
+	public String getSubTituloChart() {
+		return subTituloChart;
+	}
+
+	public void setSubTituloChart(String subTituloChart) {
+		this.subTituloChart = subTituloChart;
 	}	
 
-	public Integer[] getData2012() {
-		return data2012;
-	}
-
-	public void setData2012(Integer[] data2012) {
-		this.data2012 = data2012;
-	}
-
-	public Integer[] getData2013() {
-		return data2013;
-	}
-
-	public void setData2013(Integer[] data2013) {
-		this.data2013 = data2013;
-	}
-
-	public Integer[] getData2014() {
-		return data2014;
-	}
-
-	public void setData2014(Integer[] data2014) {
-		this.data2014 = data2014;
-	}
-
-	public String getTituloBarChart() {
-		return tituloBarChart;
-	}
-
-	public void setTituloBarChart(String tituloBarChart) {
-		this.tituloBarChart = tituloBarChart;
-	}
-
-	public String getSubTituloBarChart() {
-		return subTituloBarChart;
-	}
-
-	public void setSubTituloBarChart(String subTituloBarChart) {
-		this.subTituloBarChart = subTituloBarChart;
-	}	
-	
-	
+		
 }
 
