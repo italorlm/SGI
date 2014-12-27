@@ -20,14 +20,12 @@
 		</table>
 	</ui:define>
 	<ui:define name="corpo">
-
 		<h:form>
 		 <ui:param name="bean" value="#{painelController}" />
 		 <div align="center">
 		 <a4j:outputPanel ajaxRendered="true"><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
 		 <br/>
-		 
-		 
+			 
 		 <rich:simpleTogglePanel switchType="client" 
 		 		label="Filtro do Grafico Estatistico">		 							
 				<h:panelGrid columns="10">
@@ -40,13 +38,12 @@
 					
 				</h:panelGrid>					
 		</rich:simpleTogglePanel>
-		
-		
+				
 		</div> 
 		<br/>
 			 
 		<div align="center">		
-			<fiji:barChart id="barChartMulti" value="#{painelController.data}" 
+			<fiji:barChart id="barChart" value="#{painelController.data}" 
 						title="#{painelController.tituloChart}" 
 	                    subtitle="#{painelController.subTituloChart}" 
 	                    legendCaption="Linha de Ação" legendPosition="top" 
@@ -57,7 +54,9 @@
 	        			<fiji:chartData type="name" value="#{painelController.names}" />
 	    	</fiji:barChart>	    
 	    </div>
+	    
 	    <rich:spacer height="50"/>
+	    
 	    <div align="center">
 	    	<fiji:lineChart id="lineChartMulti" value="#{painelController.datalc}" 
 	    			title="#{painelController.tituloChart}" markerCaption="none"
@@ -67,7 +66,64 @@
         			<fiji:chartData type="name" value="#{painelController.nameslc}" />
     		</fiji:lineChart>
     	</div>
-		</h:form>
+    	
+    	<rich:spacer height="50"/>
+    	
+	    <div align="center">
+	    	<fiji:columnChart id="columnChartMulti" value="#{painelController.mesMap}" 
+	    			title="#{painelController.tituloChart}" barColors="#{painelController.colorscc}" 
+	    			captionX="Mês" captionY="Quantidade de Jovens" 
+	    			toolTipValue="{y} {name} encaminhados em {x}"
+                    legendCaption="Linha de Ação" legendPosition="top" 
+                    subtitle="#{painelController.subTituloChart}" width="700" height="500"
+                    rulersValuesHighlight="none">
+        			<fiji:chartData type="name" value="#{painelController.namescc}" />
+    		</fiji:columnChart>
+	    </div>
+	    
+	    <rich:spacer height="50"/>
+	    
+	    <div align="center">
+	    	<fiji:stackedColumnChart id="stackedColumnChart" value="#{painelController.datascc}"
+                    title="#{painelController.tituloChart}" subtitle="#{painelController.subTituloChart}" 
+                    captionX="Ano/Periodo" captionY="Quantidade de Jovens" legendCaption="Linha de Ação" 
+                    barColors="#{painelController.colorsscc}" width="700" height="500"
+                    rulersValuesHighlight="none" toolTipValue="{y} {name} encaminhados em {x}">
+        			<fiji:chartData type="name" value="#{painelController.namesscc}" />
+    		</fiji:stackedColumnChart>
+	    </div>
+	    
+	    <rich:spacer height="50"/>
+	    
+	    <div align="center">
+		    
+		<h:panelGrid columns="2">
+		        <fiji:barChart id="barChartMulti" value="#{painelController.commonData}"
+		            title="#{painelController.tituloChart}" subtitle="#{painelController.subTituloChart}"
+		            legendCaption="Projeto" legendPosition="top" captionX="Quantidade de Jovens"
+		            captionY="Ano/Periodo" barColors="#{painelController.totalColors}" width="500"
+		            height="350" onitemclick="moveItem(event.x); return true;"
+		            barCaption="none" toolTipValue="{y} jovens do {name} encaminhados em {x}">
+		            <fiji:chartData type="name" value="Projeto Primeiro Passo" />
+		            <fiji:chartData type="y" value="#{painelController.dataTotal}" />
+		        </fiji:barChart>
+		        <fiji:barChart id="selectedItemsChart" value="#{painelController.selectedData}"
+		            title="#{painelController.tituloChart}" subtitle="#{painelController.subTituloChart}"
+		            legendCaption="Linha de Ação" legendPosition="top" captionX="Quantidade de Jovens"
+		            captionY="Ano/Periodo" barColors="#{painelController.colorsfa}" width="500"
+		            height="350" rulersValuesHighlight="none" toolTipValue="{y} {name} encaminhados em {x}">
+		            <fiji:chartData type="name" value="#{painelController.namesfa}" />
+		        </fiji:barChart>
+		        
+		        <a4j:jsFunction action="#{painelController.showDetails}" name="moveItem" 
+	    			ajaxSingle="true" oncomplete="$('selectedItemsChart:component').update();" >
+	    			<a4j:actionparam name="param1"
+	    				assignTo="#{painelController.currentCountry}"/>
+	   			</a4j:jsFunction>
+			</h:panelGrid>         	        	        		        
+	    </div>
+	        
+	</h:form>
 		
 	</ui:define>
 </ui:composition>
