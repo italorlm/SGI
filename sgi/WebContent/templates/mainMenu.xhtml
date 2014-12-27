@@ -123,6 +123,18 @@
                                       								
 							</rich:dropDownMenu>
 							
+							<rich:dropDownMenu
+								rendered="true">
+								<f:facet name="label">
+									<h:panelGroup>
+									<h:outputText value="Paineis"  />
+									</h:panelGroup>
+								</f:facet>
+
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Painel do Secretario" action="#{painelController.listar}"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Painel do Coordenador" action="#{painelController.listar}"/>                                                                 								
+							</rich:dropDownMenu>
+							
 							
  						
 							<rich:dropDownMenu>
