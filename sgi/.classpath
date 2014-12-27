@@ -13,5 +13,7 @@
 			<attribute name="owner.project.facets" value="jst.web;#system#"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fiji-api-1.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fiji-ui-1.0.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
