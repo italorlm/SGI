@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fiji="http://exadel.com/fiji"
+	template="/templates/template.xhtml">
+	<ui:define name="barra">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td width="100%" valign="top" align="center" nowrap="nowrap"
+					style="padding: 6px 0 0 0; font-size: 12px; font-weight: bold; color: #000000; font-family: verdana;">
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+	<ui:define name="corpo">
+
+		<h:form>
+		 <ui:param name="bean" value="#{painelController}" />
+		 <div align="center">
+		 <a4j:outputPanel ajaxRendered="true"><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
+		 <br/>
+		 
+		 
+		 <rich:simpleTogglePanel switchType="client" 
+		 		label="Filtro do Grafico Estatistico">		 							
+				<h:panelGrid columns="10">
+				
+				<h:outputText value="Nome:"/>					
+				<h:inputText id="nome" value="" size="60" />
+														
+				<a4j:commandButton styleClass="buttonAdicionar"
+					value="Gerar Grafico" action="#{painelController.filtrar}" />
+					
+				</h:panelGrid>					
+		</rich:simpleTogglePanel>
+		
+		
+		</div> 
+		<br/>
+			 
+		<div align="center">
+		
+			<fiji:barChart id="barChartMulti" value="#{painelController.data}" 
+						title="#{painelController.tituloBarChart}" 
+	                    subtitle="#{painelController.subTituloBarChart}" 
+	                    legendCaption="Jovens" legendPosition="top" 
+	                    captionX="Quantidade de Jovens" captionY="Periodo/Ano" 
+	                    barColors="#{painelController.colors}" 
+	                    toolTipValue="{x} teve {y} {name} encaminhados" 
+	                    width="500" height="500" barCaption="none">
+	        			<fiji:chartData type="name" value="#{painelController.names}" />
+	    	</fiji:barChart>
+	    
+	    </div>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
