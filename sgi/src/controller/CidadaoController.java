@@ -28,12 +28,12 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 	
 	@Resource
 	MunicipioUfController municipioUfController;
-
+	
 	public CidadaoController(){
 		injetaDao();
 		filtro = new Cidadao();
 	}
-	
+		
 	@Override
 	public void limpar() throws InstantiationException, IllegalAccessException {
 		itemsMunicipios = new ArrayList<SelectItem>();

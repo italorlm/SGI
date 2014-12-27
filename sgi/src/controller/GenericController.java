@@ -7,11 +7,8 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 
 import model.BaseModel;
-import model.Cidadao;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import util.MessageUtil;
 import context.AppContext;
