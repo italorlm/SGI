@@ -132,45 +132,37 @@
    <PROCESS-ITEM-OUTPUT ID="listarCargo::#paginas#cargo#listagem.xhtml"
     NAME="output28" PATH="/paginas/cargo/listagem.xhtml"
     TARGET="rules:#paginas#cargo#listagem.xhtml" TITLE="listarCargo" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="listarEtnia::#paginas#etnia#listagem.xhtml"
-    NAME="output29" PATH="/paginas/etnia/listagem.xhtml"
-    TARGET="rules:#paginas#etnia#listagem.xhtml" TITLE="listarEtnia" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="cadastrarEscolaridade::#paginas#escolaridade#cadastro.xhtml"
-    NAME="output30" PATH="/paginas/escolaridade/cadastro.xhtml"
-    TARGET="rules:#paginas#escolaridade#cadastro.xhtml"
-    TITLE="cadastrarEscolaridade" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="listarEscolaridade::#paginas#escolaridade#listagem.xhtml"
-    NAME="output31" PATH="/paginas/escolaridade/listagem.xhtml"
-    TARGET="rules:#paginas#escolaridade#listagem.xhtml"
-    TITLE="listarEscolaridade" model-entity="JSFProcessItemOutput"/>
+    ID="painelSecretarioCoordenador::#paginas#painel#painel.xhtml"
+    NAME="output30" PATH="/paginas/painel/painel.xhtml"
+    TARGET="rules:#paginas#painel#painel.xhtml"
+    TITLE="painelSecretarioCoordenador" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="cadastrarProjeto::#paginas#projeto#cadastro.xhtml"
-    NAME="output32" PATH="/paginas/projeto/cadastro.xhtml"
+    NAME="output33" PATH="/paginas/projeto/cadastro.xhtml"
     TARGET="rules:#paginas#projeto#cadastro.xhtml"
     TITLE="cadastrarProjeto" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="listarProjeto::#paginas#projeto#listagem.xhtml" NAME="output33"
+    ID="listarProjeto::#paginas#projeto#listagem.xhtml" NAME="output34"
     PATH="/paginas/projeto/listagem.xhtml"
     TARGET="rules:#paginas#projeto#listagem.xhtml" TITLE="listarProjeto" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="cadastrarPrograma::#paginas#programa#cadastro.xhtml"
-    NAME="output34" PATH="/paginas/programa/cadastro.xhtml"
+    NAME="output35" PATH="/paginas/programa/cadastro.xhtml"
     TARGET="rules:#paginas#programa#cadastro.xhtml"
     TITLE="cadastrarPrograma" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="listarPrograma::#paginas#programa#listagem.xhtml"
-    NAME="output35" PATH="/paginas/programa/listagem.xhtml"
+    NAME="output36" PATH="/paginas/programa/listagem.xhtml"
     TARGET="rules:#paginas#programa#listagem.xhtml"
     TITLE="listarPrograma" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="cadastrarUsuario::#paginas#usuario#cadastro.xhtml"
-    NAME="output36" PATH="/paginas/usuario/cadastro.xhtml"
+    NAME="output37" PATH="/paginas/usuario/cadastro.xhtml"
     TARGET="rules:#paginas#usuario#cadastro.xhtml"
     TITLE="cadastrarUsuario" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="listarUsuario::#paginas#usuario#listagem.xhtml" NAME="output37"
+    ID="listarUsuario::#paginas#usuario#listagem.xhtml" NAME="output38"
     PATH="/paginas/usuario/listagem.xhtml"
     TARGET="rules:#paginas#usuario#listagem.xhtml" TITLE="listarUsuario" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
@@ -235,20 +227,12 @@
   NAME="rules:#paginas#tipoMaterialPermanente#listagem.xhtml"
   PATH="/paginas/tipoMaterialPermanente/listagem.xhtml"
   SHAPE="304,1345,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#paginas#escolaridade#listagem.xhtml"
-  PATH="/paginas/escolaridade/listagem.xhtml" SHAPE="304,1281,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#paginas#etnia#cadastro.xhtml"
-  PATH="/paginas/etnia/cadastro.xhtml" SHAPE="304,1169,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM
   NAME="rules:#paginas#tipoMaterialPermanente#cadastro.xhtml"
   PATH="/paginas/tipoMaterialPermanente/cadastro.xhtml"
   SHAPE="304,1233,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#paginas#etnia#listagem.xhtml"
-  PATH="/paginas/etnia/listagem.xhtml" SHAPE="304,1281,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#paginas#grupo#listagem.xhtml"
   PATH="/paginas/grupo/listagem.xhtml" SHAPE="304,1233,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#paginas#escolaridade#cadastro.xhtml"
-  PATH="/paginas/escolaridade/cadastro.xhtml" SHAPE="304,1169,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#paginas#grupo#cadastro.xhtml"
   PATH="/paginas/grupo/cadastro.xhtml" SHAPE="304,1169,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM
@@ -259,4 +243,6 @@
   NAME="rules:#paginas#programaGovernamental#listagem.xhtml"
   PATH="/paginas/programaGovernamental/listagem.xhtml"
   SHAPE="304,1297,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#paginas#painel#painel.xhtml"
+  PATH="/paginas/painel/painel.xhtml" SHAPE="304,1297,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
