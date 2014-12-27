@@ -151,24 +151,10 @@
    <to-view-id>/paginas/cargo/listagem.xhtml</to-view-id>
   </navigation-case>
   
-   <!-- ETNIA -->
+   <!-- PAINEL SECRETARIO COORDENADOR -->  
   <navigation-case>
-   <from-outcome>cadastrarEtnia</from-outcome>
-   <to-view-id>/paginas/etnia/cadastro.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>listarEtnia</from-outcome>
-   <to-view-id>/paginas/etnia/listagem.xhtml</to-view-id>
-  </navigation-case>
-  
-   <!-- ESCOLARIDADE -->
-  <navigation-case>
-   <from-outcome>cadastrarEscolaridade</from-outcome>
-   <to-view-id>/paginas/escolaridade/cadastro.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>listarEscolaridade</from-outcome>
-   <to-view-id>/paginas/escolaridade/listagem.xhtml</to-view-id>
+   <from-outcome>painelSecretarioCoordenador</from-outcome>
+   <to-view-id>/paginas/painel/painel.xhtml</to-view-id>
   </navigation-case>
   
   <!-- PROJETO -->
