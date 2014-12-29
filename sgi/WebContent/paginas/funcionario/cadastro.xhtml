@@ -25,7 +25,14 @@
 							<rich:spacer width="5"/>
 							<div class="campoObrigatorio">*</div>
 							<h:inputText id="nome" value="#{funcionarioController.objeto.nome}"
-								required="true" requiredMessage="Informe o Nome." size="80"/>							
+								required="true" requiredMessage="Informe o Nome." size="80"/>
+								<rich:suggestionbox id="suggestionBox" for="nome" 
+                    		suggestionAction="#{cidadaoController.suggestionBox}" var="row" >  
+                      
+		                    <h:column>  
+		                        <h:outputText value="#{row.nome}" />  
+		                    </h:column>  
+                		</rich:suggestionbox>							
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
