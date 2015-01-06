@@ -17,8 +17,8 @@ import javax.persistence.Table;
 @Table(name="tb_contrato_parcela")
 public class ContratoParcela extends BaseModel {
 
-	@SequenceGenerator(name="car",allocationSize=1, sequenceName="tb_contrato_parcela_id_seq")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="car")
+	@SequenceGenerator(name="cpa",allocationSize=1, sequenceName="tb_contrato_parcela_id_seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="cpa")
 	@Id
 	Long id;
 	

@@ -1,23 +1,28 @@
 package controller;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletContext;
 
-import model.Cargo;
-import model.Cidadao;
 import model.Contrato;
+import model.ContratoArquivo;
 import model.ContratoParcela;
-import model.SubGrupo;
 
+import org.richfaces.event.UploadEvent;
+import org.richfaces.model.UploadItem;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import dao.ContratoArquivoDao;
 import dao.ContratoDao;
 import dao.ContratoParcelaDao;
 
@@ -26,14 +31,23 @@ import dao.ContratoParcelaDao;
 public class ContratoController extends GenericController<Contrato, ContratoDao> {
 
 	List<SelectItem> selectItems;
-	List<ContratoParcela> parcelasExcluidas, parcelas;
+	List<ContratoParcela> parcelasExcluidas, parcelas;	
+	List<ContratoArquivo> arquivosExcluidos, arquivos;
+	List<UploadItem> uploadItems;
+	
+	private boolean autoUpload = false;
+	private int uploadsAvailable = 10;
 	
 	boolean mostrarModalParcela;
 	
 	ContratoParcela contratoParcela;
+	ContratoArquivo contratoArquivo;
 	
 	@Resource
 	ContratoParcelaDao contratoParcelaDao;
+	
+	@Resource
+	ContratoArquivoDao contratoArquivoDao;
 	
 	final static String DAO_CONCRETO = "contratoDaoImp";
 
@@ -46,6 +60,9 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	public void limpar() throws InstantiationException, IllegalAccessException {
 		parcelas = new ArrayList<ContratoParcela>();
 		parcelasExcluidas = new ArrayList<ContratoParcela>();
+		arquivos = new ArrayList<ContratoArquivo>();
+		arquivosExcluidos = new ArrayList<ContratoArquivo>();
+		uploadItems = new ArrayList<UploadItem>();
 		super.limpar();
 	}
 
@@ -83,25 +100,62 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	@Override
 	public String salvar() {
 		String retorno = null;
-		
-		retorno = super.salvar();
-		
-		if(!parcelas.isEmpty()) {
-			for(ContratoParcela contratoParcela : parcelas) {
-				if(objeto.getId()!=null) {
-					contratoParcela.setContrato(objeto);
-					contratoParcelaDao.salvarOuAtualizar(contratoParcela);
-				}				
-			}
-		}
-		
-		if(!parcelasExcluidas.isEmpty()) {
-			for(ContratoParcela contratoParcela : parcelasExcluidas) {
-				if(contratoParcela.getId()!=null) {
-					contratoParcelaDao.excluir(contratoParcela);
+		try {
+			retorno = super.salvar();
+			
+			if(!parcelas.isEmpty()) {
+				for(ContratoParcela contratoParcela : parcelas) {
+					if(objeto.getId()!=null) {
+						contratoParcela.setContrato(objeto);
+						contratoParcelaDao.salvarOuAtualizar(contratoParcela);
+					}				
 				}
 			}
-		}
+			
+			if(!parcelasExcluidas.isEmpty()) {
+				for(ContratoParcela contratoParcela : parcelasExcluidas) {
+					if(contratoParcela.getId()!=null) {
+						contratoParcelaDao.excluir(contratoParcela);
+					}
+				}
+			}
+			
+			if(!uploadItems.isEmpty()) {
+				FacesContext facesContext = FacesContext.getCurrentInstance();
+				ServletContext servletContext = (ServletContext) 
+						facesContext.getExternalContext().getContext();
+				String realTargetPath = servletContext.getRealPath("/");
+				for(UploadItem item : uploadItems) {
+					String filePathName = item.getFileName();
+					String fileName = "";
+					StringTokenizer st = new StringTokenizer(filePathName, "\\");
+					while(st.hasMoreElements()) {
+						fileName = st.nextToken();
+					}
+					realTargetPath = realTargetPath + "uploads\\" + fileName;
+					OutputStream out = new FileOutputStream(realTargetPath);
+					out.write(item.getData());
+					out.close();
+					
+					contratoArquivo = new ContratoArquivo();
+					contratoArquivo.setContrato(objeto);
+					contratoArquivo.setArquivo(item.getFileName());
+					contratoArquivoDao.salvarOuAtualizar(contratoArquivo);
+				}
+			}
+			
+			if(!arquivosExcluidos.isEmpty()) {
+				for(ContratoArquivo contratoArquivo : arquivosExcluidos) {
+					if(contratoArquivo.getId()!=null) {
+						contratoArquivoDao.excluir(contratoArquivo);
+					}
+				}
+			}
+			
+			uploadItems.clear();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}	
 		
 		return retorno;
 	}
@@ -109,6 +163,7 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	@Override
 	public String editar() {
 		parcelas = contratoParcelaDao.findByParcela(objeto);
+		arquivos = contratoArquivoDao.findByArquivo(objeto);
 		return super.editar();
 	}
 	
@@ -143,6 +198,18 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		parcelasExcluidas.add(contratoParcela);
 	}
 	
+	public void excluirArquivo() {
+		if(!arquivos.isEmpty()) {
+			for(ContratoArquivo contratoArquivo : arquivos) {
+				if(contratoArquivo.equals(this.contratoArquivo)) {
+					arquivos.remove(contratoArquivo);
+				}
+			}
+		}
+		
+		arquivosExcluidos.add(contratoArquivo);
+	}
+	
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(Contrato contrato : getListagem()) {
@@ -154,6 +221,12 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 					suggestions.add(contrato);
 		}
 	}
+	
+	public void listener(UploadEvent event) throws Exception{
+        UploadItem item = event.getUploadItem();
+        uploadItems.add(item);
+        uploadsAvailable--;
+    }
 
 	public void setSelectItems(List<SelectItem> selectItems) {
 		this.selectItems = selectItems;
@@ -190,6 +263,47 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	public void setMostrarModalParcela(boolean mostrarModalParcela) {
 		this.mostrarModalParcela = mostrarModalParcela;
 	}
-		
+
+	public int getUploadsAvailable() {
+		return uploadsAvailable;
+	}
+
+	public boolean isAutoUpload() {
+		return autoUpload;
+	}
+
+	public List<ContratoArquivo> getArquivosExcluidos() {
+		return arquivosExcluidos;
+	}
+
+	public void setArquivosExcluidos(List<ContratoArquivo> arquivosExcluidos) {
+		this.arquivosExcluidos = arquivosExcluidos;
+	}
+
+	public List<ContratoArquivo> getArquivos() {
+		return arquivos;
+	}
+
+	public void setArquivos(List<ContratoArquivo> arquivos) {
+		this.arquivos = arquivos;
+	}
+
+	public List<UploadItem> getUploadItems() {
+		return uploadItems;
+	}
+
+	public void setUploadItems(List<UploadItem> uploadItems) {
+		this.uploadItems = uploadItems;
+	}
+
+	public ContratoArquivo getContratoArquivo() {
+		return contratoArquivo;
+	}
+
+	public void setContratoArquivo(ContratoArquivo contratoArquivo) {
+		this.contratoArquivo = contratoArquivo;
+	}
+	
+	
 }
 
