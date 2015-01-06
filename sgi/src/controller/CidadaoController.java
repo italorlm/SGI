@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,6 +13,9 @@ import javax.faces.model.SelectItem;
 import model.Cidadao;
 import model.Municipio;
 
+import org.joda.time.DateTime;
+import org.joda.time.Period;
+import org.joda.time.Years;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -93,10 +97,21 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 	}
 	
 	public String validaInformacao(Cidadao cidadao) {
+//		System.out.println(Years.yearsBetween(new DateTime(cidadao.getDataNascimento().getTime()),
+//						new DateTime(new Date().getTime())).getYears());
+		
 		if(cidadao.getNome()==null || cidadao.getNome().isEmpty())
-			return "O campo Nome é obrigatório!";		
-		else if(!CpfValidator.validaCPF(cidadao.getCpf()))
+			return "O campo Nome é obrigatório!";
+		if(cidadao.getDataNascimento()==null)
+			return "O campo Data de Nascimento é obrigatório!";
+		if(cidadao.getCpf()==null || cidadao.getCpf().isEmpty())
+			return "O campo CPF é obrigatório!";		
+		if(!CpfValidator.validaCPF(cidadao.getCpf()))
 			return "CPF Inválido!";
+		if(cidadao.getPispasep()==null || cidadao.getPispasep().isEmpty() && 
+				Years.yearsBetween(new DateTime(cidadao.getDataNascimento().getTime()),
+						new DateTime(new Date().getTime())).getYears() >= 18)
+			return "O campo PIS/PASEP é obrigatório para maior de 18 anos!";			
 		
 		return null;
 	}
