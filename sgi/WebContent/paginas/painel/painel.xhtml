@@ -107,7 +107,9 @@
 		            <fiji:chartData type="name" value="Projeto Primeiro Passo" />
 		            <fiji:chartData type="y" value="#{painelController.dataTotal}" />
 		        </fiji:barChart>
-		        <fiji:barChart id="selectedItemsChart" value="#{painelController.selectedData}"
+		        
+		        <fiji:barChart id="selectedItemsChart" value="#{painelController.selectedData}" 
+		        	rendered="#{painelController.exibirChartDetails}"
 		            title="#{painelController.tituloChart}" subtitle="#{painelController.subTituloChart}"
 		            legendCaption="Linha de Ação" legendPosition="top" captionX="Quantidade de Jovens"
 		            captionY="Ano/Periodo" barColors="#{painelController.colorsfa}" width="500"
@@ -116,11 +118,13 @@
 		        </fiji:barChart>
 		        
 		        <a4j:jsFunction action="#{painelController.showDetails}" name="moveItem" 
-	    			ajaxSingle="true" oncomplete="$('selectedItemsChart:component').update();" >
+	    			ajaxSingle="true" oncomplete="$('selectedItemsChart:component').update();">
 	    			<a4j:actionparam name="param1"
 	    				assignTo="#{painelController.currentCountry}"/>
 	   			</a4j:jsFunction>
-			</h:panelGrid>         	        	        		        
+			</h:panelGrid>  
+			
+			        	        		        
 	    </div>
 	        
 	</h:form>

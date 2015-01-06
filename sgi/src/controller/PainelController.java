@@ -68,6 +68,8 @@ public class PainelController {
 	// Chart labels
 	private String tituloChart = "Quantidade de Jovens Encaminhados";
 	private String subTituloChart = "Periodo - 01/01/2012 à 31/12/2014";
+	
+	private boolean exibirChartDetails = false;
 
 	public PainelController() {
 		super();
@@ -328,6 +330,7 @@ public class PainelController {
 		currentMedals = getMedalCountsByCountry(currentCountry);
 		selectedData.clear();
 		selectedData.put(currentCountry, currentMedals);
+		exibirChartDetails = true;
 	}
 	
 //	public void showDetailsLinhaSelected() {
@@ -439,5 +442,15 @@ public class PainelController {
 	public void setSelectedDataLinha(Map<String, Integer[]> selectedDataLinha) {
 		this.selectedDataLinha = selectedDataLinha;
 	}
+
+	public boolean isExibirChartDetails() {
+		return exibirChartDetails;
+	}
+
+	public void setExibirChartDetails(boolean exibirChartDetails) {
+		this.exibirChartDetails = exibirChartDetails;
+	}
+	
+	
 	
 }
