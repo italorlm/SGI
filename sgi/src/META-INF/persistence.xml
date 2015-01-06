@@ -13,7 +13,12 @@
 		    <property name="hibernate.show_sql" value="true" />
 		    <property name="hibernate.generate_statistics" value="true" />
 		    <property name="dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>		    
-		    <property name="hibernate.hbm2ddl.auto" value="update"/>	    
+		    
+		    <property name="hibernate.ejb.event.post-insert" value="org.hibernate.envers.event.AuditEventListener" />
+			<property name="hibernate.ejb.event.post-update" value="org.hibernate.envers.event.AuditEventListener" />
+			<property name="hibernate.ejb.event.post-delete" value="org.hibernate.envers.event.AuditEventListener" />
+		    
+		    <property name="hibernate.hbm2ddl.auto" value="upload"/>	    
 		</properties>
 	</persistence-unit>
 </persistence>
