@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +27,9 @@ public class Funcionario extends BaseModel{
 	UnidadeCptr unidadeCptr;
 	
 	String telefone;
+	
+	@Column(name="data_admissao")
+	Date dataAdmissao;
 
 	public Long getId() {
 		return id;
@@ -64,6 +69,14 @@ public class Funcionario extends BaseModel{
 
 	public void setUnidadeCptr(UnidadeCptr unidadeCptr) {
 		this.unidadeCptr = unidadeCptr;
+	}
+	
+	public Date getDataAdmissao() {
+		return dataAdmissao;
+	}
+
+	public void setDataAdmissao(Date dataAdmissao) {
+		this.dataAdmissao = dataAdmissao;
 	}
 
 	@Override
