@@ -21,7 +21,7 @@
 					<rich:tab label="CADASTRO DE FUNCIONÁRIO">
 					
 						<h:panelGrid columns="9">
-							<h:outputText value="Nome" />
+							<h:outputText value="Nome:" />
 							<rich:spacer width="5"/>
 							<div class="campoObrigatorio">*</div>
 							<h:inputText id="nome" value="#{funcionarioController.objeto.nome}"
@@ -38,20 +38,28 @@
 						<rich:spacer height="5"/>
 						
 						<h:panelGrid columns="9">
-							<h:outputText value="Telefone" />
+							<h:outputText value="Telefone:" />
 							<div class="campoObrigatorio">*</div>
 							<h:inputText size="15" id="telefone" value="#{funcionarioController.objeto.telefone}" 
 							required="true" requiredMessage="Informe o Telefone">
 							    <rich:jQuery selector="#telefone" timing="onload" query="mask('(99)9999-9999')"/>
-							</h:inputText>							
+							</h:inputText>	
+							
+							<h:outputText value="Data Admissão:" />
+								<div class="campoObrigatorio">*</div>
+								<rich:calendar id="dataAdmissao" 
+									value="#{funcionarioController.objeto.dataAdmissao}"
+									datePattern="dd/MM/yyyy" size="5" required="true"
+									requiredMessage="Informe a Data Admissão"/>						
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
 						<h:panelGrid columns="9">
-							<h:outputText value="Unidade" />
+							<h:outputText value="Unidade:" />
 							<div class="campoObrigatorio">*</div>
 							<h:selectOneMenu id="unidade" converter="entityConverter" 
-								value="#{funcionarioController.objeto.unidadeCptr}">
+								value="#{funcionarioController.objeto.unidadeCptr}"
+								required="true" requiredMessage="Informe a Unidade">
 						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
 						  	<f:selectItems value="#{unidadeCptrController.selectItems}"/>
 						</h:selectOneMenu>						
@@ -61,8 +69,9 @@
 							<h:panelGrid columns="9">
 							<h:outputText value="Situação:" />
 							<div class="campoObrigatorio">*</div>
-							<h:selectOneMenu id="situacao" 
-								value="#{funcionarioController.objeto.situacao}">
+							<h:selectOneMenu id="situacao" required="true"
+								value="#{funcionarioController.objeto.situacao}" 
+								requiredMessage="Informe a Situação">
 							  	<f:selectItem itemLabel="Selecione" itemValue=""/>
 							  	<f:selectItem itemLabel="Ativo" itemValue="1"/>
 							  	<f:selectItem itemLabel="Inativo" itemValue="2"/>
