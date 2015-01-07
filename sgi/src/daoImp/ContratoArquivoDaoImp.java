@@ -24,4 +24,18 @@ implements ContratoArquivoDao{
 		return c.add(Restrictions.eq("contrato",filtro)).list();		
 	}
 
+	@Override
+	@Transactional
+	public ContratoArquivo findByNomeArquivo(String filtro) {
+		try{
+			return (ContratoArquivo) getEntityManager().createQuery("select ca from ContratoArquivo ca " +
+					"where ca.arquivo=:arquivo")
+				.setParameter("arquivo", filtro)
+				.getSingleResult();
+		} catch(Exception e) {
+			return null;
+		}
+				
+	}
+
 }

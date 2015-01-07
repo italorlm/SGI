@@ -21,7 +21,7 @@ public class ContratoArquivo extends BaseModel {
 	@ManyToOne
 	@JoinColumn(name="contrato_id")
 	Contrato contrato;
-	
+		
 	String arquivo;
 
 	public Long getId() {
