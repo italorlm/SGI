@@ -1,17 +1,24 @@
 package controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 
 import model.Contrato;
 import model.ContratoArquivo;
@@ -29,15 +36,17 @@ import dao.ContratoParcelaDao;
 @Component
 @Scope("globalSession")
 public class ContratoController extends GenericController<Contrato, ContratoDao> {
-
+	private String pastaUpload = "C:/Apache/apache-tomcat-6.0.41/uploads/sgi";
+	
 	List<SelectItem> selectItems;
 	List<ContratoParcela> parcelasExcluidas, parcelas;	
 	List<ContratoArquivo> arquivosExcluidos, arquivos;
 	List<UploadItem> uploadItems;
 	
 	private boolean autoUpload = false;
-	private int uploadsAvailable = 10;
-	
+	private int uploadsAvailable = 10;	
+	private int statusArquivo = 1;
+		
 	boolean mostrarModalParcela;
 	
 	ContratoParcela contratoParcela;
@@ -121,19 +130,9 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 			}
 			
 			if(!uploadItems.isEmpty()) {
-				FacesContext facesContext = FacesContext.getCurrentInstance();
-				ServletContext servletContext = (ServletContext) 
-						facesContext.getExternalContext().getContext();
-				String realTargetPath = servletContext.getRealPath("/");
 				for(UploadItem item : uploadItems) {
-					String filePathName = item.getFileName();
-					String fileName = "";
-					StringTokenizer st = new StringTokenizer(filePathName, "\\");
-					while(st.hasMoreElements()) {
-						fileName = st.nextToken();
-					}
-					realTargetPath = realTargetPath + "uploads\\" + fileName;
-					OutputStream out = new FileOutputStream(realTargetPath);
+					String fileName = item.getFileName();
+					OutputStream out = new FileOutputStream(pastaUpload + "/" + fileName);
 					out.write(item.getData());
 					out.close();
 					
@@ -147,6 +146,8 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 			if(!arquivosExcluidos.isEmpty()) {
 				for(ContratoArquivo contratoArquivo : arquivosExcluidos) {
 					if(contratoArquivo.getId()!=null) {
+						File file = new File(pastaUpload + "/" + contratoArquivo.getArquivo());
+						file.delete();
 						contratoArquivoDao.excluir(contratoArquivo);
 					}
 				}
@@ -188,22 +189,20 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	
 	public void excluirParcela() {
 		if(!parcelas.isEmpty()) {
-			for(ContratoParcela contratoParcela : parcelas) {
-				if(contratoParcela.equals(this.contratoParcela)) {
-					parcelas.remove(contratoParcela);
-				}
+			for(Iterator<ContratoParcela> i = parcelas.iterator(); i.hasNext();) {
+				if(i.next().equals(contratoParcela))
+					i.remove();
 			}
-		} 
+		}
 		
 		parcelasExcluidas.add(contratoParcela);
 	}
 	
 	public void excluirArquivo() {
 		if(!arquivos.isEmpty()) {
-			for(ContratoArquivo contratoArquivo : arquivos) {
-				if(contratoArquivo.equals(this.contratoArquivo)) {
-					arquivos.remove(contratoArquivo);
-				}
+			for(Iterator<ContratoArquivo> i = arquivos.iterator(); i.hasNext();) {
+				if(i.next().equals(contratoArquivo))
+					i.remove();
 			}
 		}
 		
@@ -223,10 +222,62 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	}
 	
 	public void listener(UploadEvent event) throws Exception{
+		statusArquivo = 0; //status de erro na transferencia do arquivo;
         UploadItem item = event.getUploadItem();
-        uploadItems.add(item);
-        uploadsAvailable--;
+		ContratoArquivo verificaArquivo = contratoArquivoDao.findByNomeArquivo(item.getFileName());
+		if (verificaArquivo == null) {
+			uploadItems.add(item);
+			uploadsAvailable--;
+		} else {
+			statusArquivo = 1; //status de arquivo já existente no diretorio.			
+			throw new Exception();
+		}
+
     }
+	
+	public void downloadArquivo() {
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		ServletContext servletContext = (ServletContext) context.getContext();
+		// Obtem o caminho para o arquivo e efetua a leitura
+		byte[] arquivo = readFile(new File(pastaUpload + "/" + contratoArquivo.getArquivo()));
+		HttpServletResponse response = (HttpServletResponse) context.getResponse();
+		// configura o arquivo que vai voltar para o usuario.
+		response.setHeader("Content-Disposition", 
+				"attachment;filename=\"" + contratoArquivo.getArquivo() + "\"");
+		response.setContentLength(arquivo.length);
+		// isso faz abrir a janelinha de download
+		response.setContentType("application/download");
+		// envia o arquivo de volta
+		try {
+			OutputStream out = response.getOutputStream();
+			out.write(arquivo);
+			out.flush();
+			out.close();
+			FacesContext.getCurrentInstance().responseComplete();
+		} catch (IOException e) {
+			System.out.print("Erro no envio do arquivo");
+			e.printStackTrace();
+		}
+	}
+
+	// efetua a leitura do arquivo
+	public static byte[] readFile(File file) {
+		int len = (int) file.length();
+		byte[] sendBuf = new byte[len];
+		FileInputStream inFile = null;
+		try {
+			inFile = new FileInputStream(file);
+			inFile.read(sendBuf, 0, len);
+
+		} catch (FileNotFoundException e) {
+			System.out.print("Arquivo não encontrado");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.print("Erro na leitura do arquivo");
+			e.printStackTrace();
+		}
+		return sendBuf;
+	}
 
 	public void setSelectItems(List<SelectItem> selectItems) {
 		this.selectItems = selectItems;
@@ -303,7 +354,24 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	public void setContratoArquivo(ContratoArquivo contratoArquivo) {
 		this.contratoArquivo = contratoArquivo;
 	}
-	
-	
+
+	public String getTransferError() {
+		if(statusArquivo == 0) 
+			return "Erro ao Transferir o arquivo.";
+		else
+			return "Já existe um arquivo com este nome. Altere o nome.";		 
+	}
+
+	public int getStatusArquivo() {
+		return statusArquivo;
+	}
+
+	public void setStatusArquivo(int statusArquivo) {
+		this.statusArquivo = statusArquivo;
+	}
+
+	public String getPastaUpload() {
+		return pastaUpload;
+	}	
 }
 
