@@ -1,10 +1,17 @@
 package controller;
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+
+import model.Acesso;
 import model.Usuario;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import dao.AcessoDao;
 import dao.UsuarioDao;
 import util.FacesUtils;
 
@@ -14,8 +21,13 @@ public class LoginController {
 
 	private boolean logado;
 	String login,senha;
+	
 	@Resource
 	UsuarioDao usuarioDao;
+	
+	@Resource
+	AcessoDao acessoDao;
+	
 	boolean erroLogin;
 	Usuario usuario;
 
@@ -68,6 +80,9 @@ public class LoginController {
 			logado = true; 
 			erroLogin =false;
 			resultado = "sucessoLogin";	
+			
+			Acesso acesso = new Acesso(usuario.getLogin(), new Date());
+			acessoDao.salvar(acesso);
 		}else{
 			erroLogin = true;
 			resultado = "erroLogin";
