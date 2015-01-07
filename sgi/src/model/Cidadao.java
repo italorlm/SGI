@@ -42,10 +42,8 @@ public class Cidadao extends BaseModel {
 	Integer ufNascimento;
 	
 	Integer naturalidade;
-	
-	@ManyToOne
-	@JoinColumn(name="etnia_id")
-	Etnia etnia;
+		
+	Integer etnia;
 	
 	@Column(name="fone_res")
 	String telefoneResidencial;
@@ -72,10 +70,8 @@ public class Cidadao extends BaseModel {
 	String bairro;
 	
 	String complemento;
-	
-	@ManyToOne
-	@JoinColumn(name="escolaridade_id")
-	Escolaridade escolaridade;
+
+	Integer escolaridade;
 	
 	@Column(name="frequenta_escola")
 	Integer frequentaEscola;
@@ -254,20 +250,20 @@ public class Cidadao extends BaseModel {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
-	public Etnia getEtnia() {
+
+	public Integer getEtnia() {
 		return etnia;
 	}
 
-	public void setEtnia(Etnia etnia) {
+	public void setEtnia(Integer etnia) {
 		this.etnia = etnia;
 	}
 
-	public Escolaridade getEscolaridade() {
+	public Integer getEscolaridade() {
 		return escolaridade;
 	}
 
-	public void setEscolaridade(Escolaridade escolaridade) {
+	public void setEscolaridade(Integer escolaridade) {
 		this.escolaridade = escolaridade;
 	}
 
