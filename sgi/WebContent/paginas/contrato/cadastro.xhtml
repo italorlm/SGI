@@ -191,7 +191,10 @@
 									immediateUpload="#{fileUploadBean.autoUpload}"
 									maxFilesQuantity="#{contratoController.uploadsAvailable}"
 									acceptedTypes="jpg, gif, png, bmp"
-									ontyperejected="alert('Somente arquivos com extensão PDF, DOC, XLS e PPT são aceitos.');">
+									ontyperejected="alert('Somente arquivos com extensão PDF, DOC, XLS e PPT são aceitos.');"
+									uploadControlLabel="Enviar" transferErrorLabel="#{contratoController.transferError}"
+									cancelEntryControlLabel="Cancelar" clearControlLabel="Limpar" doneLabel="Transferência Concluida"
+									clearAllControlLabel="Limpar Tudo">
 									<a4j:support event="onuploadcomplete" reRender="tabela" />
 								</rich:fileUpload>							
 
