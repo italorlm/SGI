@@ -1,10 +1,6 @@
-/META-INF
 /context
 /controller
 /cripto
 /dao
 /daoImp
-/exception
-/filter
 /model
-/util

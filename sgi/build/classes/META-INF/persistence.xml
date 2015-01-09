@@ -6,10 +6,10 @@
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.connection.url"
-				value="jdbc:postgresql://localhost:5433/sgi" />
+				value="jdbc:postgresql://ciclopes:5432/sgi" />
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-			<property name="hibernate.connection.username" value="postgres" />
-			<property name="hibernate.connection.password" value="postgres" />
+			<property name="hibernate.connection.username" value="websga" />
+			<property name="hibernate.connection.password" value="wbsgea42" />
 		    <property name="hibernate.show_sql" value="true" />
 		    <property name="hibernate.generate_statistics" value="true" />
 		    <property name="dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>		    
@@ -18,7 +18,7 @@
 			<property name="hibernate.ejb.event.post-update" value="org.hibernate.envers.event.AuditEventListener" />
 			<property name="hibernate.ejb.event.post-delete" value="org.hibernate.envers.event.AuditEventListener" />
 		    
-		    <property name="hibernate.hbm2ddl.auto" value="upload"/>	    
+		    <property name="hibernate.hbm2ddl.auto" value="update"/>	    
 		</properties>
 	</persistence-unit>
 </persistence>
