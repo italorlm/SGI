@@ -73,15 +73,14 @@
 
 								<rich:spacer width="50"></rich:spacer>
 
-								<a4j:outputPanel ajaxRendered="true" id="painelArquivo" 
-										rendered="#{projetoController.arquivos.size==0}">
+								<a4j:outputPanel ajaxRendered="true" id="painelArquivo" >
 									<rich:dataTable value="#{projetoController.arquivos}"
 										align="center" id="tabelaArquivo" style="width:100;height:100"
 										rows="10"
 										onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
 										onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
-										rowClasses="odd-row,even-row" rendered="true"
-										columnClasses="col" var="row">
+										rowClasses="odd-row,even-row" columnClasses="col" var="row"
+										rendered="#{projetoController.arquivos.size()!=0}">
 										<f:facet name="header">
 											<rich:columnGroup>
 

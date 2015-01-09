@@ -1,17 +1,14 @@
 package controller;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
@@ -26,7 +23,6 @@ import model.Contrato;
 import model.ContratoArquivo;
 import model.ContratoParcela;
 
-import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 import org.springframework.context.annotation.Scope;
@@ -39,8 +35,9 @@ import dao.ContratoParcelaDao;
 @Component
 @Scope("globalSession")
 public class ContratoController extends GenericController<Contrato, ContratoDao> {
-//	private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi";
-	private String pastaUpload = "E:/Tomcat 6.0/uploads/sgi";
+	private String pastaUpload = "C:/Apache/apache-tomcat-6.0.41/uploads/sgi/contrato";
+//	private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi/contrato";
+//	private String pastaUpload = "E:/Tomcat 6.0/uploads/sgi/contrato";
 	
 	List<SelectItem> selectItems;
 	List<ContratoParcela> parcelasExcluidas, parcelas;	

@@ -39,8 +39,9 @@ import dao.ProjetoDao;
 @Component
 @Scope("globalSession")
 public class ProjetoController extends GenericController<Projeto, ProjetoDao> {
-//	private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi";
-	private String pastaUpload = "E:/Tomcat 6.0/uploads/sgi";
+	private String pastaUpload = "C:/Apache/apache-tomcat-6.0.41/uploads/sgi/projeto";
+//	private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi/projeto";
+//	private String pastaUpload = "E:/Tomcat 6.0/uploads/sgi/projeto";
 	
 	List<SelectItem> selectItems;
 	List<ProjetoArquivo> arquivosExcluidos, arquivos;
@@ -61,6 +62,14 @@ public class ProjetoController extends GenericController<Projeto, ProjetoDao> {
 		injetaDao();		
 		filtro = new Projeto();
 	}
+	
+	@Override
+		public void limpar() throws InstantiationException, IllegalAccessException {
+			arquivosExcluidos = new ArrayList<ProjetoArquivo>();
+			arquivos = new ArrayList<ProjetoArquivo>();
+			uploadItems = new ArrayList<UploadItem>();
+			super.limpar();
+		}
 
 	@Override
 	public void setaNavegacao() {
