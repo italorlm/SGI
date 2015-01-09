@@ -23,7 +23,7 @@
 						<h:panelGrid columns="4">
 							<h:outputText value="Nome:" />
 							<div class="campoObrigatorio">*</div>
-							<rich:spacer width="11" />
+							<rich:spacer width="25" />
 							<h:inputText id="nome" value="#{projetoController.objeto.nome}"
 								required="true" requiredMessage="Informe o Nome." size="80" />
 						</h:panelGrid>
@@ -32,15 +32,15 @@
 							<h:outputText value="Descrição:" />							
 							<rich:spacer width="11" />
 							<h:inputTextarea id="descricao" value="#{projetoController.objeto.descricao}"
-								size="50" />
+								 rows="5" cols="60"/>
 						</h:panelGrid>
 						
 						<h:panelGrid columns="4">
-							<h:outputText value="Custo(R$):"/>
+							<h:outputText value="Investimento(R$):"/>
 								<rich:spacer width="11"/>
-								<h:inputText id="custo" size="20"
+								<h:inputText id="investimento" size="35"
 								   	value="#{projetoController.objeto.custo}">
-								   	<rich:jQuery selector="#custo"
+								   	<rich:jQuery selector="#investimento"
 	                                query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})" timing="onload" />
 						   		</h:inputText>
 						</h:panelGrid>
