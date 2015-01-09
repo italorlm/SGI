@@ -30,6 +30,8 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 	List<SelectItem> selectItems, itemsMunicipios, itemsMunicipiosResidencial;
 	final static String DAO_CONCRETO = "cidadaoDaoImp";
 	
+	private String cpfBackup;
+	
 	@Resource
 	MunicipioUfController municipioUfController;
 	
@@ -83,23 +85,11 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 	
 	@Override
 	public String editar() {
-		String msgErro = null;
-		
-		msgErro = validaInformacao(objeto);
-				
-		if(msgErro==null) {
-			return super.editar();			
-		} else {			
-	        FacesContext context = FacesContext.getCurrentInstance();
-	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));
-			return null;
-		}
+		cpfBackup = objeto.getCpf();
+		return super.editar();	
 	}
 	
 	public String validaInformacao(Cidadao cidadao) {
-//		System.out.println(Years.yearsBetween(new DateTime(cidadao.getDataNascimento().getTime()),
-//						new DateTime(new Date().getTime())).getYears());
-		
 		if(cidadao.getNome()==null || cidadao.getNome().isEmpty())
 			return "O campo Nome é obrigatório!";
 		if(cidadao.getDataNascimento()==null)
@@ -108,6 +98,14 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 			return "O campo CPF é obrigatório!";		
 		if(!CpfValidator.validaCPF(cidadao.getCpf()))
 			return "CPF Inválido!";
+		if(cidadao.getId()==null) {
+			if(dao.findByCpf(cidadao.getCpf())!=null)
+				return "Cidadão já cadastrado! O CPF informado já existe na Base de Dados.";
+		} else {
+			if(!cidadao.getCpf().equals(cpfBackup))
+				if(dao.findByCpf(cidadao.getCpf())!=null)
+					return "Cidadão já cadastrado! O CPF informado já existe na Base de Dados.";
+		}
 		if(cidadao.getPispasep()==null || cidadao.getPispasep().isEmpty() && 
 				Years.yearsBetween(new DateTime(cidadao.getDataNascimento().getTime()),
 						new DateTime(new Date().getTime())).getYears() >= 18)
@@ -183,6 +181,16 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 				if(!suggestions.contains(cidadao))
 					suggestions.add(cidadao);
 		}
+	}
+
+	public String getCpfBackup() {
+		return cpfBackup;
+	}
+
+	public void setCpfBackup(String cpfBackup) {
+		this.cpfBackup = cpfBackup;
 	}	
+	
+	
 }
 

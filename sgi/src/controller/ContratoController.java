@@ -1,9 +1,11 @@
 package controller;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import model.Contrato;
 import model.ContratoArquivo;
 import model.ContratoParcela;
 
+import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 import org.springframework.context.annotation.Scope;
@@ -36,7 +39,8 @@ import dao.ContratoParcelaDao;
 @Component
 @Scope("globalSession")
 public class ContratoController extends GenericController<Contrato, ContratoDao> {
-	private String pastaUpload = "C:/Apache/apache-tomcat-6.0.41/uploads/sgi";
+//	private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi";
+	private String pastaUpload = "E:/Tomcat 6.0/uploads/sgi";
 	
 	List<SelectItem> selectItems;
 	List<ContratoParcela> parcelasExcluidas, parcelas;	
@@ -79,7 +83,6 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	public void setaNavegacao() {
 		LISTAGEM = "listarContrato";
 		CADASTRO = "cadastrarContrato";
-
 	}
 
 	@Override
@@ -130,12 +133,12 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 			}
 			
 			if(!uploadItems.isEmpty()) {
-				for(UploadItem item : uploadItems) {
+				for(UploadItem item : uploadItems) {					
 					String fileName = item.getFileName();
 					OutputStream out = new FileOutputStream(pastaUpload + "/" + fileName);
 					out.write(item.getData());
-					out.close();
-					
+					out.close();					
+			        
 					contratoArquivo = new ContratoArquivo();
 					contratoArquivo.setContrato(objeto);
 					contratoArquivo.setArquivo(item.getFileName());
@@ -147,7 +150,7 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 				for(ContratoArquivo contratoArquivo : arquivosExcluidos) {
 					if(contratoArquivo.getId()!=null) {
 						File file = new File(pastaUpload + "/" + contratoArquivo.getArquivo());
-						file.delete();
+						file.delete();						
 						contratoArquivoDao.excluir(contratoArquivo);
 					}
 				}

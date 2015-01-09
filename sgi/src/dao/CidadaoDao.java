@@ -6,6 +6,7 @@ import model.Cidadao;
 
 public interface CidadaoDao extends GenericDao<Cidadao, Long>{
 	
-	public List<Cidadao> findByExample(Cidadao cidadao);	
+	public List<Cidadao> findByExample(Cidadao cidadao);
+	public Cidadao findByCpf(String filtro);
 	
 }
