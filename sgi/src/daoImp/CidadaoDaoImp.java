@@ -37,4 +37,22 @@ implements CidadaoDao{
 		lista = c.list();
 		return lista;
 	}
+	
+	@Override
+	@Transactional
+	public Cidadao findByCpf(String filtro) {
+		Cidadao cidadao = new Cidadao();
+		Criteria c = criaCriteria();
+		
+		if(filtro!=null) {
+			c.add(Restrictions.eq("cpf", filtro));
+		}
+		
+		cidadao = (Cidadao) c.uniqueResult();
+		
+		if(cidadao!=null)
+			return cidadao;
+		else
+			return null;
+	}
 }

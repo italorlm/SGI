@@ -190,8 +190,8 @@
 									fileUploadListener="#{contratoController.listener}" id="upload"
 									immediateUpload="#{fileUploadBean.autoUpload}"
 									maxFilesQuantity="#{contratoController.uploadsAvailable}"
-									acceptedTypes="jpg, gif, png, bmp"
-									ontyperejected="alert('Somente arquivos com extensão PDF, DOC, XLS e PPT são aceitos.');"
+									acceptedTypes="pdf, doc, xls, ppt, odt, ods, odp"
+									ontyperejected="alert('Somente arquivos com extensão PDF, DOC, XLS, PPT, ODT, ODS e ODP são aceitos.');"
 									uploadControlLabel="Enviar" transferErrorLabel="#{contratoController.transferError}"
 									cancelEntryControlLabel="Cancelar" clearControlLabel="Limpar" doneLabel="Transferência Concluida"
 									clearAllControlLabel="Limpar Tudo">
