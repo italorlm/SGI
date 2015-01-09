@@ -200,7 +200,8 @@
 
 								<rich:spacer width="50"></rich:spacer>
 
-								<a4j:outputPanel ajaxRendered="true" id="painelArquivo">
+								<a4j:outputPanel ajaxRendered="true" id="painelArquivo"
+										rendered="#{contratoController.arquivos.size==0}">
 									<rich:dataTable value="#{contratoController.arquivos}"
 										align="center" id="tabelaArquivo" style="width:100;height:100" rows="10"
 										onRowMouseOver="this.style.backgroundColor='#CCCCCC'"

@@ -18,7 +18,7 @@
 			<property name="hibernate.ejb.event.post-update" value="org.hibernate.envers.event.AuditEventListener" />
 			<property name="hibernate.ejb.event.post-delete" value="org.hibernate.envers.event.AuditEventListener" />
 		    
-		    <property name="hibernate.hbm2ddl.auto" value="upload"/>	    
+		    <property name="hibernate.hbm2ddl.auto" value="update"/>	    
 		</properties>
 	</persistence-unit>
 </persistence>
