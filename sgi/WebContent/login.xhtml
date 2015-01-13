@@ -13,38 +13,19 @@
 	template="/templates/template.xhtml">
 
 	<ui:define name="corpo">
-		 
-		<h:form>
-			<table align="center" width="25%" bgcolor="B4EEB4" id="tableLogin" >
-			   <tr>
-			     <td>
-			  <h:outputText styleClass="msgErro" value="Login ou senha Inválidos!" rendered="#{loginController.erroLogin}"/>
-		       </td>
-		       </tr>
-			  
-			<tr>    
-			     <td>
-			      <h:outputText styleClass="fonte" value="Login:"/>
-			    	<h:inputText  value="#{loginController.login}" size="15" />
-			 	</td>
-			 	
-		 	</tr>
-			 	
-		 	<tr>
-		 	 <td>
-	 	 	  <h:outputText styleClass="fonte" value="Senha:" />
-			  <h:inputSecret  value="#{loginController.senha}" size="15" />
-		    </td>
-			</tr>
-			
-			<tr align="left">
-			  <td>
-				<h:commandButton  styleClass="buttonAdicionar1" id="btnEnviar" value="Entrar" action="#{loginController.logar}"  />
-			  </td> 
-			</tr>
-				
-			</table>
+		<div align="center">
+		<h:form rendered="#{loginController.logado==false}">
+			<h:outputText styleClass="msgErro" value="Login ou Senha Inválidos!"
+				rendered="#{loginController.erroLogin}" />
+			<ol class="forms">
+				<li><h:outputLabel styleClass="label" value="Usuário" /> <h:inputText
+						styleClass="input" value="#{loginController.login}" /></li>
+				<li><h:outputLabel styleClass="label" value="Senha" /> <h:inputSecret
+						styleClass="input" value="#{loginController.senha}" /></li>
+				<li class="buttons"><h:commandButton styleClass="botao"
+						id="btnEnviar" value="Entrar" action="#{loginController.logar}" /></li>
+			</ol>
 		</h:form>
-		
+		</div>
 	</ui:define>
 </ui:composition>
