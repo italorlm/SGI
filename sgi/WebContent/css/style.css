@@ -59,7 +59,7 @@ div.tres {
 	height: 20px;
 	background-image: url(../imagens/impressora.jpg);
 	background-position: 0 0;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 	margin: 0 auto;
 }
 
@@ -96,9 +96,8 @@ div.tres {
 	height: 10px;
 	background-image: url(../imagens/btnEditar.jpg);
 	background-position: 0 0;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 	margin: 0 auto;
-	
 }
 
 #logado {
@@ -118,9 +117,6 @@ div.tres {
 	height: 300px;
 	background-color: #F5F5DC;
 }
-
-
-
 
 .buttonAdicionar {
 	display: block;
@@ -150,7 +146,6 @@ div.tres {
 	font: Georgia;
 }
 
-
 .msgErro {
 	font-style: italic;
 	font-size: 14px;
@@ -170,7 +165,6 @@ div.tres {
 
 .campoObrigatorio {
 	color: #FF0000;
-	
 }
 
 .teste {
@@ -200,10 +194,10 @@ div.tres {
 	bottom: 0;
 }
 
-.flash{
+.flash {
 	position: static;
 	bottom: 0;
-	}
+}
 
 .class_warn {
 	text-decoration: underline
@@ -229,39 +223,44 @@ div.tres {
 	left: 50px;
 	background-color: pink;
 }
-.fonte{
-  font-family: Verdana;
- }
- 
-.input {
-	background: url(imagens/input_text.gif) no-repeat;
-	border:none;
-}
-.extdt-maindiv {
-    border: 1px solid #C0C0C0;
-    abc:xxxxxxxxxxxxxx;
-}
-#edt {
-    height: 100px;
-}
-.fonteEvento{
-	font-size: 12px;
+
+.fonte {
 	font-family: Verdana;
-	align:center;
-}
-#tabelaSub:1:subacao{
-	 background-image: url(../imagens/vermelho.jpg);
-	}
-.fonteQuatorze{	
-	font-size:14px";
 }
 
+.input {
+	background: url(imagens/input_text.gif) no-repeat;
+	border: none;
+}
+
+.extdt-maindiv {
+	border: 1px solid #C0C0C0;
+	abc: xxxxxxxxxxxxxx;
+}
+
+#edt {
+	height: 100px;
+}
+
+.fonteEvento {
+	font-size: 12px;
+	font-family: Verdana;
+	align: center;
+}
+
+#tabelaSub: 1:subacao {
+	background-image: url(../imagens/vermelho.jpg);
+}
+
+.fonteQuatorze {
+	font-size: 14px";
+}
 
 .buttonEditarProjeto {
 	display: block;
 	width: 70px;
 	height: 15px;
-	background-image: url(../imagens/editar3.jpg) ;
+	background-image: url(../imagens/editar3.jpg);
 	background-position: 0 0;
 	margin: 0 auto;
 	background-repeat: no-repeat;
@@ -271,7 +270,7 @@ div.tres {
 	display: block;
 	width: 70px;
 	height: 15px;
-	background-image: url(../imagens/adicionarSubAcao.jpg) ;
+	background-image: url(../imagens/adicionarSubAcao.jpg);
 	background-position: 0 0;
 	margin: 0 auto;
 	background-repeat: no-repeat;
@@ -281,7 +280,7 @@ div.tres {
 	display: block;
 	width: 130px;
 	height: 25px;
-	background-image: url(../imagens/adicionarEvento.jpg) ;
+	background-image: url(../imagens/adicionarEvento.jpg);
 	background-position: 0 0;
 	margin: 0 auto;
 	background-repeat: no-repeat;
@@ -291,7 +290,7 @@ div.tres {
 	display: block;
 	width: 70px;
 	height: 15px;
-	background-image: url(../imagens/adicionarAcao.jpg) ;
+	background-image: url(../imagens/adicionarAcao.jpg);
 	background-position: 0 0;
 	margin: 0 auto;
 	background-repeat: no-repeat;
@@ -301,7 +300,7 @@ div.tres {
 	display: block;
 	width: 70px;
 	height: 25px;
-	background-image: url(../imagens/adicionar.jpg) ;
+	background-image: url(../imagens/adicionar.jpg);
 	background-position: 0 0;
 	margin: 0 auto;
 	background-repeat: no-repeat;
@@ -311,10 +310,85 @@ div.tres {
 	display: block;
 	width: 70px;
 	height: 15px;
-	background-image: url(../imagens/excluir.jpg) ;
+	background-image: url(../imagens/excluir.jpg);
 	background-position: 0 0;
 	margin: 0 auto;
 	background-repeat: no-repeat;
 }
 
+.forms li {
+	position: relative;
+}
 
+.forms {
+	width: 300px;
+	padding: 150px;
+	list-style: none;
+}
+
+.forms li {
+	margin-bottom: 5px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.forms .buttons {
+	margin-bottom: 0;
+}
+
+.label {
+	background: #99FF99;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	cursor: pointer;
+	display: block;
+	float: left;
+	margin: 7px 0 0;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	text-transform: uppercase;
+	padding: 5px 15px 5px 10px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	width: 70px;
+}
+
+.input {
+	background: #ddd;
+	border-radius: 10px;
+	border: 1px solid #bbb;
+	box-shadow: -1px 0 1px rgba(0, 0, 0, 0.25);
+	float: right;
+	font: inherit;
+	font-size: 14px;
+	height: 20px;
+	margin: 0;
+	-moz-border-radius: 10px;
+	-moz-box-shadow: -1px 0 1px rgba(0, 0, 0, 0.25);
+	outline: none;
+	padding: 10px 5px;
+	position: relative;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: -1px 0 1px rgba(0, 0, 0, 0.25);
+	width: 193px;
+}
+
+.botao {
+	background: #006633;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+	color: white;
+	cursor: pointer;
+	float: right;
+	font: inherit;
+	-moz-border-radius: 5px;
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+	overflow: visible;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+	width: auto;
+	height: auto;
+}
