@@ -64,12 +64,12 @@ public class ProjetoController extends GenericController<Projeto, ProjetoDao> {
 	}
 	
 	@Override
-		public void limpar() throws InstantiationException, IllegalAccessException {
-			arquivosExcluidos = new ArrayList<ProjetoArquivo>();
-			arquivos = new ArrayList<ProjetoArquivo>();
-			uploadItems = new ArrayList<UploadItem>();
-			super.limpar();
-		}
+	public void limpar() throws InstantiationException, IllegalAccessException {
+		arquivosExcluidos = new ArrayList<ProjetoArquivo>();
+		arquivos = new ArrayList<ProjetoArquivo>();
+		uploadItems = new ArrayList<UploadItem>();
+		super.limpar();
+	}
 
 	@Override
 	public void setaNavegacao() {
