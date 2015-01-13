@@ -19,7 +19,7 @@ import util.FacesUtils;
 @Scope("globalSession")
 public class LoginController {
 
-	private boolean logado;
+	private boolean logado = false;
 	String login,senha;
 	
 	@Resource
