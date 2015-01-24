@@ -9,6 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
+@Audited
 @Entity
 @Table(name="tb_contrato_arquivo")
 public class ContratoArquivo extends BaseModel {

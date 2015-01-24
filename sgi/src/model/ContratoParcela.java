@@ -13,6 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
+@Audited
 @Entity
 @Table(name="tb_contrato_parcela")
 public class ContratoParcela extends BaseModel {

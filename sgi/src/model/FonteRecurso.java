@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
+@Audited
 @Entity
 @Table(name="tb_fonte_recurso")
 public class FonteRecurso extends BaseModel {
