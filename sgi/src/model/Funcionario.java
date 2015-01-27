@@ -7,11 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
+@Audited
 @Entity
-@Table(name="tb_Funcionario")
+@Table(name="tb_funcionario")
 public class Funcionario extends BaseModel{
 	
 	@SequenceGenerator(name="map",allocationSize=1, sequenceName="tb_funcionario_id_seq")
@@ -23,10 +28,15 @@ public class Funcionario extends BaseModel{
 	
 	Integer situacao;
 	
-	@Column(name="unidade_cptr_id")
+	@ManyToOne
+	@JoinColumn(name="unidade_cptr_id")
 	UnidadeCptr unidadeCptr;
 	
 	String telefone;
+	
+	@ManyToOne
+	@JoinColumn(name="cargo_id")
+	Cargo cargo;
 	
 	@Column(name="data_admissao")
 	Date dataAdmissao;
@@ -77,6 +87,14 @@ public class Funcionario extends BaseModel{
 
 	public void setDataAdmissao(Date dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
+	}
+	
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
 	}
 
 	@Override

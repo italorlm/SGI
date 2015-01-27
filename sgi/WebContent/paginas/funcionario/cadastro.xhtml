@@ -21,9 +21,9 @@
 					<rich:tab label="CADASTRO DE FUNCIONÁRIO">
 					
 						<h:panelGrid columns="9">
-							<h:outputText value="Nome:" />
-							<rich:spacer width="5"/>
+							<h:outputText value="Nome:" />							
 							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="9"/>
 							<h:inputText id="nome" value="#{funcionarioController.objeto.nome}"
 								required="true" requiredMessage="Informe o Nome." size="80"/>
 								<rich:suggestionbox id="suggestionBox" for="nome" 
@@ -33,6 +33,20 @@
 		                        <h:outputText value="#{row.nome}" />  
 		                    </h:column>  
                 		</rich:suggestionbox>							
+						</h:panelGrid>
+						
+						<rich:spacer height="5"/>
+						
+						<h:panelGrid columns="9">
+							<h:outputText value="Cargo:" />
+							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="8"/>
+							<h:selectOneMenu id="cargo" converter="entityConverter" 
+								value="#{funcionarioController.objeto.cargo}"
+								required="true" requiredMessage="Informe o Cargo">
+						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+						  	<f:selectItems value="#{cargoController.selectItems}"/>
+						</h:selectOneMenu>						
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
@@ -54,9 +68,11 @@
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
+						
 						<h:panelGrid columns="9">
 							<h:outputText value="Unidade:" />
 							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="0"/>							
 							<h:selectOneMenu id="unidade" converter="entityConverter" 
 								value="#{funcionarioController.objeto.unidadeCptr}"
 								required="true" requiredMessage="Informe a Unidade">
@@ -66,7 +82,8 @@
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
-							<h:panelGrid columns="9">
+						
+						<h:panelGrid columns="9">
 							<h:outputText value="Situação:" />
 							<div class="campoObrigatorio">*</div>
 							<h:selectOneMenu id="situacao" required="true"
