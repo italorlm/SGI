@@ -44,7 +44,8 @@
 
                              <rich:menuItem rendered="true" ajaxSingle="false" value="Cidadão" action="#{cidadaoController.listar}"/>
                              <rich:menuItem rendered="true" ajaxSingle="false" value="Unidades CPTR" action="#{unidadeCptrController.listar}"/> 
-                             <rich:menuItem rendered="true" ajaxSingle="false" value="Unidades Externas" action="#{unidadeExternaController.listar}"/>                           
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Unidades Externas" action="#{unidadeExternaController.listar}"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Usuário" action="#{usuarioController.listar}"/>                           
                          </rich:dropDownMenu>
 							
 						<rich:dropDownMenu
@@ -128,6 +129,17 @@
                              <rich:menuItem rendered="true" ajaxSingle="false" value="Painel do Coordenador" action="#{painelController.listar}"/>                                                                 								
 							</rich:dropDownMenu>
 							
+							<rich:dropDownMenu
+								rendered="true">
+								<f:facet name="label">
+									<h:panelGroup>
+									<h:outputText value="Ajuda"  />
+									</h:panelGroup>
+								</f:facet>
+
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Manual" action="#{perfilController.imprimirManual}"/>                                                                                              								
+							</rich:dropDownMenu>
+							
 							
  						
 							<rich:dropDownMenu>
@@ -156,10 +168,10 @@
 <a4j:outputPanel rendered="#{not loginController.logado}">
 
 
-	<div style="top:100%"  class="rodape" align="center">
+	<div style="top:auto" class="rodape" align="center">
 		
 	    <br/><br/><br/><br/>
-		<img width="100%" height="70" src="#{ctx}/imagens/rodape.jpg" />
+		<img width="100%" height="100" src="#{ctx}/imagens/rodape.jpg" />
 	</div>
 
 	
