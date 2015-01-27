@@ -52,10 +52,9 @@
 						    <div class="campoObrigatorio">*</div>
 						     <rich:spacer width="13" />
 						   <h:selectOneMenu value="#{usuarioController.objeto.perfil}" converter="entityConverter"
-						   required="true" requiredMessage="Informe o Perfil">
+						   	required="true" requiredMessage="Informe o Perfil">
 						        <f:selectItem itemLabel="Selecione" itemValue=""/>
-						        <f:selectItems value="#{perfilController.selectItems}"/>
-						    <a4j:support ajaxSingle="true" event="onchange" reRender="painelPolo"/>
+						        <f:selectItems value="#{perfilController.selectItems}"/>						    
 						   </h:selectOneMenu>
 						   </h:panelGrid>
 					

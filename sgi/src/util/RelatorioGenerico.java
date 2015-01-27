@@ -27,9 +27,8 @@ public class RelatorioGenerico {
 			
 			File fsgp = new File(ctx.getRealPath("/imagens/logosgp.jpg"));
 			BufferedImage logosgp = ImageIO.read(fsgp);
-			parameters.put("logosgp", logosgp);
-			
-			
+			parameters.put("logosgp", logosgp);	
+
 			File festado = new File(ctx.getRealPath("/imagens/logo_estado.jpg"));
 			BufferedImage logoEstado = ImageIO.read(festado);
 			parameters.put("logoEstado", logoEstado);

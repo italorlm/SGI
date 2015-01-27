@@ -47,8 +47,8 @@ public class CargoController extends GenericController<Cargo, CargoDao> {
 	public List<SelectItem> getSelectItems() {		
 		selectItems = new ArrayList<SelectItem>();
 		if(selectItems.size()==0){
-			for(Cargo a : getListagem()){
-				selectItems.add(new SelectItem(a,a.getNome()));
+			for(Cargo c : getListagem()){
+				selectItems.add(new SelectItem(c,c.getNome()));
 			}
 		}
 		return selectItems;
