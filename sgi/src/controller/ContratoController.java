@@ -35,9 +35,9 @@ import dao.ContratoParcelaDao;
 @Component
 @Scope("globalSession")
 public class ContratoController extends GenericController<Contrato, ContratoDao> {
-	private String pastaUpload = "C:/Apache/apache-tomcat-6.0.41/uploads/sgi/contrato";
-//	private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi/contrato";
-//	private String pastaUpload = "E:/Tomcat 6.0/uploads/sgi/contrato";
+//	private String pastaUpload = "C:/Apache/apache-tomcat-6.0.41/uploads/sgi/contrato"; //HomeLocal
+//	private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi/contrato"; JobLocal
+	private String pastaUpload = "E:/Tomcat 6.0/uploads/sgi/contrato"; //Proteus
 	
 	List<SelectItem> selectItems;
 	List<ContratoParcela> parcelasExcluidas, parcelas;	
