@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
+@Audited
 @Entity
 @Table(name="tb_cidadao")
 public class Cidadao extends BaseModel {
@@ -82,8 +85,9 @@ public class Cidadao extends BaseModel {
 	@Column(name="qtd_dependente")
 	String qtdDependentes;
 	
-	@Column(name="programa_governo")
-	Integer programaGovernamental;
+	@ManyToOne
+	@JoinColumn(name="programa_governo")
+	ProgramaGovernamental programaGovernamental;
 	
 	@Column(name="ja_trabalhou")
 	Integer jaTrabalhou;
@@ -91,14 +95,14 @@ public class Cidadao extends BaseModel {
 	@Column(name="ultima_empresa")
 	String ultimaEmpresa;
 	
-	@Column(name="num_cptr")
-	String numeroCptr;
+	@Column(name="num_cpts")
+	String numeroCpts;
 	
-	@Column(name="serie_cptr")
-	String serieCptr;
+	@Column(name="serie_cpts")
+	String serieCpts;
 	
-	@Column(name="data_emiss_cptr")
-	Date dataEmissaoCptr;
+	@Column(name="data_emiss_cpts")
+	Date dataEmissaoCpts;
 	
 	@Column(name="pis_pasep")
 	String pispasep;
@@ -112,7 +116,7 @@ public class Cidadao extends BaseModel {
 	@Column(name="zona_titulo")
 	String zonaTitulo;
 	
-	@Column(name="secao_cptr")
+	@Column(name="secao_titulo")
 	String secaoTitulo;
 	
 	public Long getId() {
@@ -323,11 +327,11 @@ public class Cidadao extends BaseModel {
 		this.qtdDependentes = qtdDependentes;
 	}
 
-	public Integer getProgramaGovernamental() {
+	public ProgramaGovernamental getProgramaGovernamental() {
 		return programaGovernamental;
 	}
 
-	public void setProgramaGovernamental(Integer programaGovernamental) {
+	public void setProgramaGovernamental(ProgramaGovernamental programaGovernamental) {
 		this.programaGovernamental = programaGovernamental;
 	}
 
@@ -347,28 +351,28 @@ public class Cidadao extends BaseModel {
 		this.ultimaEmpresa = ultimaEmpresa;
 	}
 
-	public String getNumeroCptr() {
-		return numeroCptr;
+	public String getNumeroCpts() {
+		return numeroCpts;
 	}
 
-	public void setNumeroCptr(String numeroCptr) {
-		this.numeroCptr = numeroCptr;
+	public void setNumeroCpts(String numeroCpts) {
+		this.numeroCpts = numeroCpts;
 	}
 
-	public String getSerieCptr() {
-		return serieCptr;
+	public String getSerieCpts() {
+		return serieCpts;
 	}
 
-	public void setSerieCptr(String serieCptr) {
-		this.serieCptr = serieCptr;
+	public void setSerieCpts(String serieCpts) {
+		this.serieCpts = serieCpts;
 	}
 
-	public Date getDataEmissaoCptr() {
-		return dataEmissaoCptr;
+	public Date getDataEmissaoCpts() {
+		return dataEmissaoCpts;
 	}
 
-	public void setDataEmissaoCptr(Date dataEmissaoCptr) {
-		this.dataEmissaoCptr = dataEmissaoCptr;
+	public void setDataEmissaoCpts(Date dataEmissaoCpts) {
+		this.dataEmissaoCpts = dataEmissaoCpts;
 	}
 
 	public String getPispasep() {

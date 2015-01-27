@@ -264,7 +264,7 @@
 						        <rich:spacer width="10"/>
 						         
 						        <h:outputLabel value="Programa Governamental:" />
-								     <h:selectOneMenu id="progGoverno" 
+								     <h:selectOneMenu id="progGoverno" converter="entityConverter" 
 								     	value="#{cidadaoController.objeto.programaGovernamental}">
 						        	 <f:selectItem itemLabel="Selecione" itemValue=""/>
 						        	 <f:selectItems value="#{programaGovernamentalController.selectItems}"/>
@@ -306,20 +306,20 @@
 							</legend>
 					
 					<h:panelGrid columns="16">					 
-					      <h:outputLabel value="CPTR:" />
+					      <h:outputLabel value="CPTS:" />
 					  		<rich:spacer width="10"/>
 					      <h:inputText id="numCptr" size="30" 
-					      	value="#{cidadaoController.objeto.numeroCptr}"/>
+					      	value="#{cidadaoController.objeto.numeroCpts}"/>
 					      <rich:spacer width="10"/>
 					           
 					      <h:outputLabel value="Série:" />
 					      	<h:inputText id="serieCptr" size="15" 
-					      		value="#{cidadaoController.objeto.serieCptr}"/>
+					      		value="#{cidadaoController.objeto.serieCpts}"/>
 					      <rich:spacer width="10"/>
 					       
 					      <h:outputLabel value="Data Emissão:" />					      	
 					      		<rich:calendar id="dtEmissaoCptr" 
-									value="#{cidadaoController.objeto.dataEmissaoCptr}"
+									value="#{cidadaoController.objeto.dataEmissaoCpts}"
 									datePattern="dd/MM/yyyy" size="5" />
 					      <rich:spacer width="10"/>
 					</h:panelGrid>
