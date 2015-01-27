@@ -25,8 +25,9 @@ public class TipoMaterialPermanenteController extends GenericController<TipoMate
 	public TipoMaterialPermanenteController(){
 		injetaDao();		
 		filtro = new TipoMaterialPermanente();
+		trazerTodos = true;
 	}
-
+	
 	@Override
 	public void setaNavegacao() {
 		LISTAGEM = "listarTipoMaterialPermanente";
