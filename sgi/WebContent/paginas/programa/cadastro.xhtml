@@ -12,44 +12,192 @@
 
 	<ui:define name="corpo">
 		<h:form acceptcharset="UTF-8">
-              <ui:param name="bean" value="#{programaController}" />
-			 <a4j:outputPanel ajaxRendered="true"><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
+			<ui:param name="bean" value="#{programaController}" />
+			<a4j:outputPanel ajaxRendered="true">
+				<h:messages errorStyle="color: red" infoStyle="color: green" />
+			</a4j:outputPanel>
 			<div align="center">
 				<rich:tabPanel width="80%" height="150">
 					<br />
 
 					<rich:tab label="CADASTRO DE PROGRAMA">
-					
+
 						<h:panelGrid columns="4">
 							<h:outputText value="Nome:" />
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="11" />
 							<h:inputText id="nome" value="#{programaController.objeto.nome}"
 								required="true" requiredMessage="Informe o Nome." size="80" />
-						</h:panelGrid>			
+						</h:panelGrid>
+
+						<rich:spacer height="10"/>
+	
+						<fieldset>
+							<legend>
+								<font color="blue">MAP's</font>
+							</legend>
+							<div>
+								<a4j:commandLink reRender="panelMap"
+									styleClass="buttonAddPadrao"
+									actionListener="#{programaController.mostrarModalMap}"
+									oncomplete="Richfaces.showModalPanel('modalMap');" />
+							</div>
+
+							<ui:decorate template="../../templates/listagem/header.xhtml">
+								<ui:param name="titulo" value="MAP's" />
+								<ui:param name="largura" value="74%" />
+							</ui:decorate>
+
+							<a4j:outputPanel ajaxRendered="true" id="painelMap">
+								<rich:dataTable value="#{programaController.programaMaps}"
+									align="center" width="74%" id="tabela" rows="10"
+									onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
+									onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+									rowClasses="odd-row,even-row" rendered="true"
+									columnClasses="col" var="row">
+									<f:facet name="header">
+										<rich:columnGroup>
+
+											<rich:column style="text-align:center">
+												<h:outputText styleClass="headerText" value="MAP" />
+											</rich:column>
+
+											<rich:column />
+											<rich:column />
+
+										</rich:columnGroup>
+									</f:facet>
+
+									<rich:column style="text-align:center">
+										<h:outputText value="#{row.nome}" />
+									</rich:column>
+
+									<rich:column style="text-align:center">
+										<a4j:commandLink reRender="panelMap"
+											oncomplete="Richfaces.showModalPanel('modalMap')"
+											id="commandEditar" styleClass="buttonVisualizar" value=""
+											actionListener="#{programaController.mostrarModalMap}">
+											<f:setPropertyActionListener value="#{row}"
+												target="#{programaController.programaMap}" />
+										</a4j:commandLink>
+									</rich:column>
+
+									<rich:column>
+										<a4j:commandLink immediate="true"
+											oncomplete="Richfaces.showModalPanel('excluirMap')"
+											id="commandRemoverMap" styleClass="buttonRemover" value="">
+											<f:setPropertyActionListener value="#{row}"
+												target="#{programaController.programaMap}" />
+										</a4j:commandLink>
+									</rich:column>
+
+									<ui:decorate template="../../templates/listagem/footer.xhtml">
+										<ui:param name="tamanho"
+											value="#{programaController.programaMaps.size()}" />
+									</ui:decorate>
+
+								</rich:dataTable>
+							</a4j:outputPanel>
+						</fieldset>
+
 					</rich:tab>
 
 				</rich:tabPanel>
 
 				<br />
 
-                <ui:decorate template="../../templates/cadastro/botoes.xhtml">
-		    	     <ui:param name="salvar" value="salvar" />
-			         <ui:param name="listar" value="listar" />
-			        </ui:decorate>
-				
+				<ui:decorate template="../../templates/cadastro/botoes.xhtml">
+					<ui:param name="salvar" value="salvar" />
+					<ui:param name="listar" value="listar" />
+				</ui:decorate>
+
 				<table style="left: 30px">
 					<tr>
 						<td><font size="2">
 								<div align="center" class="campoObrigatorio">*Campo de
-									Preenchimento Obrigatório</div> </font>
-						</td>
+									Preenchimento Obrigatório</div>
+						</font></td>
 					</tr>
 				</table>
 
 			</div>
 
 		</h:form>
+
+		<a4j:outputPanel id="panelMap">
+			<rich:modalPanel rendered="#{programaController.mostrarModalMap}"
+				id="modalMap" width="700" height="130" resizeable="false"
+				moveable="true">
+				<f:facet name="header">
+					<h:outputText style="font-size:12px" value="Novo MAP" />
+				</f:facet>
+
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:form>
+							<h:commandLink id="fecharDiv" styleClass="buttonRemover"
+								onclick="Richfaces.hideModalPanel('modalMap')" />
+						</h:form>
+					</h:panelGroup>
+				</f:facet>
+
+				<h:form>
+					<div align="center">
+						<h:panelGrid columns="2">
+							<h:outputText style="font-size:14px" value="MAP:" />
+							<h:inputText id="parcela" size="90"
+								value="#{programaController.programaMap.nome}" />
+						</h:panelGrid>
+						
+						<rich:spacer height="5"/>
+												
+						<h:commandButton reRender="tabela" styleClass="buttonAdicionar"
+							value="Cadastrar" action="#{programaController.adicionarMap}" />
+					</div>
+
+				</h:form>
+
+			</rich:modalPanel>
+		</a4j:outputPanel>
+
+		<a4j:outputPanel id="panelExcluirMap">
+			<rich:modalPanel id="excluirMap" width="280" height="120"
+				resizeable="false" moveable="true">
+				<f:facet name="header">
+					<h:outputText value="Atenção!" />
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:graphicImage value="/images/fechar.png" styleClass="hidelink"
+							id="hidelinkParcela" />
+						<rich:componentControl for="confirmaExcluir" attachTo="hidelink"
+							operation="hide" event="onclick" />
+					</h:panelGroup>
+				</f:facet>
+				<center>
+					<h:form>
+
+						<h:panelGrid columns="3" cellspacing="1">
+							<table align="center">
+								<tr align="center">
+									<td><h:outputText align="left"
+											value="Confirma exclusão do item?" /></td>
+								</tr>
+
+								<tr>
+									<td><a4j:commandButton reRender="tabela"
+											styleClass="buttonAdicionar" value="Sim"
+											action="#{programaController.excluirMap}"
+											onclick="Richfaces.hideModalPanel('excluirMap')" /> <a4j:commandButton
+											styleClass="buttonAdicionar" value="Não"
+											onclick="Richfaces.hideModalPanel('excluirMap')" /></td>
+								</tr>
+							</table>
+						</h:panelGrid>
+					</h:form>
+				</center>
+			</rich:modalPanel>
+		</a4j:outputPanel>
 
 	</ui:define>
 
