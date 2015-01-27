@@ -32,15 +32,29 @@
 						</h:panelGrid>
 
 						<h:panelGrid columns="4">
+							<h:outputText value="Programa:" />
+							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="6" />
+							<h:selectOneMenu value="#{projetoController.objeto.programa}"
+								converter="entityConverter" required="true"
+								requiredMessage="Informe o Programa">
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{programaController.selectItems}" />
+								<a4j:support ajaxSingle="true" event="onchange" 
+									action="#{projetoController.buscarMap}" reRender="tabelaMap"/>
+							</h:selectOneMenu>
+						</h:panelGrid>
+
+						<h:panelGrid columns="4">
 							<h:outputText value="Descrição:" />
 							<rich:spacer width="11" />
 							<h:inputTextarea id="descricao"
-								value="#{projetoController.objeto.descricao}" rows="5" cols="60" />
+								value="#{projetoController.objeto.descricao}" rows="5" cols="60" />							
 						</h:panelGrid>
 
 						<h:panelGrid columns="4">
 							<h:outputText value="Investimento(R$):" />
-							<rich:spacer width="11" />
+							<rich:spacer width="5" />
 							<h:inputText id="investimento" size="35"
 								value="#{projetoController.objeto.custo}">
 								<rich:jQuery selector="#investimento"
@@ -49,6 +63,31 @@
 							</h:inputText>
 						</h:panelGrid>
 
+						<rich:spacer height="10" />
+						
+						<fieldset>
+						   	<legend><font color="blue">MAP's</font></legend> 
+						   
+						   	<h:panelGrid columns="4">
+								<rich:dataTable border="0" align="center" width="100%" id="tabelaMap" 
+									rows="100" onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
+									onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+									rowClasses="odd-row,even-row" rendered="true"
+									columnClasses="col" var="row"
+									value="#{projetoController.programaMaps}">
+		
+									<rich:column style="text-align:center">
+										<h:outputText style="font-size:12px" value="#{row.nome}" />
+									</rich:column>
+	
+									<rich:column style="text-align:center">
+										<h:selectBooleanCheckbox value="#{row.check}" />
+									</rich:column>
+							</rich:dataTable>
+							</h:panelGrid>
+						   
+						</fieldset>
+						
 						<rich:spacer height="10" />
 
 						<fieldset>
@@ -73,7 +112,7 @@
 
 								<rich:spacer width="50"></rich:spacer>
 
-								<a4j:outputPanel ajaxRendered="true" id="painelArquivo" >
+								<a4j:outputPanel ajaxRendered="true" id="painelArquivo">
 									<rich:dataTable value="#{projetoController.arquivos}"
 										align="center" id="tabelaArquivo" style="width:100;height:100"
 										rows="10"
@@ -182,7 +221,7 @@
 			</div>
 
 		</h:form>
-		
+
 		<a4j:outputPanel id="panelExcluirArquivo">
 			<rich:modalPanel id="excluirArquivo" width="280" height="120"
 				resizeable="false" moveable="true">

@@ -1,19 +1,17 @@
 package model;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import org.hibernate.envers.Audited;
+
+@Audited
 @Entity
 @Table(name="tb_projeto")
 public class Projeto extends BaseModel{
@@ -28,6 +26,10 @@ public class Projeto extends BaseModel{
 	String descricao;
 	
 	String custo;
+	
+	@ManyToOne
+	@JoinColumn(name="programa_id")
+	Programa programa;
 
 	public Long getId() {
 		return id;
@@ -59,6 +61,14 @@ public class Projeto extends BaseModel{
 
 	public void setCusto(String custo) {
 		this.custo = custo;
+	}
+	
+	public Programa getPrograma() {
+		return programa;
+	}
+
+	public void setPrograma(Programa programa) {
+		this.programa = programa;
 	}
 
 	@Override
