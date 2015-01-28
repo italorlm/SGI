@@ -22,6 +22,7 @@ public class CargoController extends GenericController<Cargo, CargoDao> {
 	public CargoController(){
 		injetaDao();		
 		filtro = new Cargo();
+		trazerTodos = true;
 	}
 
 	@Override
