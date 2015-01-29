@@ -32,10 +32,16 @@
 										
 					<h:panelGrid columns="3">
 					
-					<h:outputText value="Nome:"/>					
-					<rich:spacer width="20"/>
-					<h:inputText 
-								size="60" />
+					<h:outputText value="Nome:" />							
+							<rich:spacer width="15"/>
+							<h:inputText id="nome" value="#{funcionarioController.filtro.nome}" size="80"/>
+							<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
+                    			suggestionAction="#{funcionarioController.suggestionBox}" var="row" >                      
+			                    <h:column>  
+			                        <h:outputText value="#{row.nome}" />			                         
+			                    </h:column>			                    
+                			</rich:suggestionbox>
+                			
 					</h:panelGrid>
 														
 					
@@ -46,8 +52,6 @@
 										
 					</rich:tab>
 				</rich:tabPanel>
-		
-		
 		</div> 
 		<br/>
 			 

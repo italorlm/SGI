@@ -34,7 +34,7 @@
 						<h:outputText value="Código:"/>					
 						<rich:spacer width="20"/>
 						<h:inputText id="codigo" value="#{materialConsumoController.filtro.codigo}"	size="60" />
-							<rich:suggestionbox id="suggestionBoxCodigo" for="codigo" 
+							<rich:suggestionbox id="suggestionBoxCodigo" for="codigo" nothingLabel="Nenhum registro encontrado"
 	                    		suggestionAction="#{materialConsumoController.suggestionBox}" var="row" >  
 	                      
 			                    <h:column>  

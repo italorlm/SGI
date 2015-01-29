@@ -33,7 +33,7 @@
 					<h:outputText value="Nome:"/>					
 					<rich:spacer width="20"/>
 					<h:inputText id="nome" value="#{projetoController.filtro.nome}" size="60" />
-						<rich:suggestionbox id="suggestionBox" for="nome" 
+						<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     		suggestionAction="#{projetoController.suggestionBox}" var="row" >  
                       
 		                    <h:column>  

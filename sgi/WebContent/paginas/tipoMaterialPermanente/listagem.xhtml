@@ -35,8 +35,8 @@
 					<h:outputText value="Nome:"/>					
 					<rich:spacer width="20"/>
 					<h:inputText id="nome" value="#{tipoMaterialPermanenteController.filtro.nome}" size="60" />
-						<rich:suggestionbox id="suggestionBox" for="nome" 
-                    		suggestionAction="#{programaGovernamentalController.suggestionBox}" var="row" >  
+						<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
+                    		suggestionAction="#{tipoMaterialPermanenteController.suggestionBox}" var="row" >  
                       
 		                    <h:column>  
 		                        <h:outputText value="#{row.nome}" />  

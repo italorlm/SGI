@@ -35,7 +35,7 @@
 					<rich:spacer width="20"/>					
 					<h:inputText id="nome" value="#{cidadaoController.filtro.nome}" 
 						size="60" />
-						<rich:suggestionbox id="suggestionBox" for="nome" 
+						<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     		suggestionAction="#{cidadaoController.suggestionBox}" var="row" >  
                       
 		                    <h:column>  
