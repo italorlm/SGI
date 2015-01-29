@@ -1,16 +1,19 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
 
 import model.Cargo;
+import model.Cidadao;
 import model.Funcionario;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import dao.DaoBdDirhu;
 import dao.FuncionarioDao;
 
 @Component
@@ -20,6 +23,8 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 
 	List<SelectItem> selectItems;
 	final static String DAO_CONCRETO = "funcionarioDaoImp";
+	
+	DaoBdDirhu daoBdDirhu = new DaoBdDirhu();
 
 	public FuncionarioController(){
 		injetaDao();
@@ -62,8 +67,18 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 	}
 
 	@Override
-	public void filtrarSuggestionBox(String userInput) {
-		// TODO Auto-generated method stub
+	public void filtrarSuggestionBox(String userInput) {		
+		try {
+			List<Funcionario> lista = daoBdDirhu.buscarFuncionarios();
+			for(Funcionario funcionario : lista) {
+				if(funcionario.getNome().toLowerCase().contains(userInput.toLowerCase()))
+					if(!suggestions.contains(funcionario))
+						suggestions.add(funcionario);
+			}
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		}
 	}
+		
 }
 
