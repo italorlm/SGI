@@ -15,24 +15,34 @@
               <ui:param name="bean" value="#{funcionarioController}" />
 			 <a4j:outputPanel ajaxRendered="true"><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
 			<div align="center">
-				<rich:tabPanel width="80%" height="150">
+				<rich:tabPanel id="tabFunc" width="80%" height="150">
 					<br />
 
 					<rich:tab label="CADASTRO DE FUNCIONÁRIO">
 					
 						<h:panelGrid columns="9">
+							<h:outputText value="Matricula:" />							
+							<rich:spacer width="7"/>
+							<h:inputText id="matricula" value="#{funcionarioController.objeto.matricula}" size="10" disabled="true"/>														
+						</h:panelGrid>
+					
+						<rich:spacer height="5"/>
+					
+						<h:panelGrid columns="9">
 							<h:outputText value="Nome:" />							
 							<div class="campoObrigatorio">*</div>
-							<rich:spacer width="9"/>
+							<rich:spacer width="15"/>
 							<h:inputText id="nome" value="#{funcionarioController.objeto.nome}"
 								required="true" requiredMessage="Informe o Nome." size="80"/>
-								<rich:suggestionbox id="suggestionBox" for="nome" 
-                    		suggestionAction="#{cidadaoController.suggestionBox}" var="row" >  
-                      
-		                    <h:column>  
-		                        <h:outputText value="#{row.nome}" />  
-		                    </h:column>  
-                		</rich:suggestionbox>							
+							<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
+                    			suggestionAction="#{funcionarioController.suggestionBox}" var="row" >                      
+			                    <h:column>  
+			                        <h:outputText value="#{row.nome}" />			                         
+			                    </h:column>  
+			                    <a4j:support event="onselect" reRender="matricula,email">
+			                    	<f:setPropertyActionListener value="#{row}" target="#{funcionarioController.objeto}" />
+			                    </a4j:support>
+                			</rich:suggestionbox>							
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
@@ -40,13 +50,22 @@
 						<h:panelGrid columns="9">
 							<h:outputText value="Cargo:" />
 							<div class="campoObrigatorio">*</div>
-							<rich:spacer width="8"/>
+							<rich:spacer width="13"/>
 							<h:selectOneMenu id="cargo" converter="entityConverter" 
-								value="#{funcionarioController.objeto.cargo}"
-								required="true" requiredMessage="Informe o Cargo">
-						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
-						  	<f:selectItems value="#{cargoController.selectItems}"/>
-						</h:selectOneMenu>						
+									value="#{funcionarioController.objeto.cargo}"
+									required="false" requiredMessage="Informe o Cargo">
+							  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+							  	<f:selectItems value="#{cargoController.selectItems}"/>
+							</h:selectOneMenu>
+							
+							<rich:spacer width="5"/>
+							
+							<h:outputText value="Data Admissão:" />
+								<div class="campoObrigatorio">*</div>
+								<rich:calendar id="dataAdmissao" 
+									value="#{funcionarioController.objeto.dataAdmissao}"
+									datePattern="dd/MM/yyyy" size="5" required="false"
+									requiredMessage="Informe a Data Admissão"/>						
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
@@ -54,17 +73,30 @@
 						<h:panelGrid columns="9">
 							<h:outputText value="Telefone:" />
 							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="1"/>
 							<h:inputText size="15" id="telefone" value="#{funcionarioController.objeto.telefone}" 
-							required="true" requiredMessage="Informe o Telefone">
+							required="false" requiredMessage="Informe o Telefone">
 							    <rich:jQuery selector="#telefone" timing="onload" query="mask('(99)9999-9999')"/>
 							</h:inputText>	
 							
-							<h:outputText value="Data Admissão:" />
-								<div class="campoObrigatorio">*</div>
-								<rich:calendar id="dataAdmissao" 
-									value="#{funcionarioController.objeto.dataAdmissao}"
-									datePattern="dd/MM/yyyy" size="5" required="true"
-									requiredMessage="Informe a Data Admissão"/>						
+							<rich:spacer width="5"/>
+							
+							<h:outputText value="Celular:" />
+							<div class="campoObrigatorio">*</div>
+							<h:inputText size="15" id="celular" value="#{funcionarioController.objeto.celular}" 
+							required="false" requiredMessage="Informe o Celular">
+							    <rich:jQuery selector="#celular" timing="onload" query="mask('(99)9999-9999')"/>
+							</h:inputText>						
+						</h:panelGrid>
+						
+						<rich:spacer height="5"/>
+						
+						<h:panelGrid columns="9">
+							<h:outputText value="Email:" />							
+							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="18"/>
+							<h:inputText id="email" value="#{funcionarioController.objeto.email}"
+								required="false" requiredMessage="Informe o Email." size="80"/>														
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
@@ -72,10 +104,10 @@
 						<h:panelGrid columns="9">
 							<h:outputText value="Unidade:" />
 							<div class="campoObrigatorio">*</div>
-							<rich:spacer width="0"/>							
+							<rich:spacer width="3"/>							
 							<h:selectOneMenu id="unidade" converter="entityConverter" 
 								value="#{funcionarioController.objeto.unidadeCptr}"
-								required="true" requiredMessage="Informe a Unidade">
+								required="false" requiredMessage="Informe a Unidade">
 						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
 						  	<f:selectItems value="#{unidadeCptrController.selectItems}"/>
 						</h:selectOneMenu>						
@@ -86,7 +118,8 @@
 						<h:panelGrid columns="9">
 							<h:outputText value="Situação:" />
 							<div class="campoObrigatorio">*</div>
-							<h:selectOneMenu id="situacao" required="true"
+							<rich:spacer width="0"/>	
+							<h:selectOneMenu id="situacao" required="false"
 								value="#{funcionarioController.objeto.situacao}" 
 								requiredMessage="Informe a Situação">
 							  	<f:selectItem itemLabel="Selecione" itemValue=""/>
