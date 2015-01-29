@@ -48,16 +48,16 @@ public class MunicipioUfController {
 	}
 
 	public String buscarPorMunicipio(Integer codigoMunicipio) throws SQLException{
-		Municipio m = crp.buscaMunicipioId(codigoMunicipio);
+		Municipio m = crp.buscarMunicipioPorId(codigoMunicipio);
 		return m.getNome().toUpperCase();
 	}
 	
 	public List<Municipio> buscarMunicipioPorEstado(Integer codigoEstado) throws SQLException {
-		return crp.buscaMunicipioEstado(codigoEstado);
+		return crp.buscarMunicipioPorEstado(codigoEstado);
 	}
 	
 	public List<SelectItem> selectItemsMunicipioPorEstado(Integer codigoEstado) throws SQLException {
-		return municipios(crp.buscaMunicipioEstado(codigoEstado));
+		return municipios(crp.buscarMunicipioPorEstado(codigoEstado));
 	}
 	
 	public List<SelectItem> municipios(List<Municipio> lista) throws SQLException {
@@ -66,5 +66,9 @@ public class MunicipioUfController {
 				municipios.add(new SelectItem(new Long(m.getId()), m.getNome().toUpperCase()));
 			}		
 		return municipios;
+	}
+	
+	public List<Municipio> buscarMunicipioPorCodigoIbge(Integer codIbge) throws SQLException {
+		return crp.buscarMunicipioPorCodigoIbge(codIbge);
 	}
 }
