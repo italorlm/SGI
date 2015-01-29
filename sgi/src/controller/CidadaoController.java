@@ -3,6 +3,7 @@ package controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import javax.faces.model.SelectItem;
 import model.Cidadao;
 import model.Municipio;
 
+import org.dom4j.Element;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.joda.time.Years;
@@ -20,6 +22,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import util.CpfValidator;
+import ws.CepWS;
 import dao.CidadaoDao;
 
 @Component
@@ -114,6 +117,29 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 		return null;
 	}
 	
+	public void popularEnderecoCep() throws NumberFormatException, SQLException {		
+		for (Iterator i = CepWS.buscarCep(objeto.getCep()).elementIterator(); i.hasNext();) {
+			List<Municipio> municipios = new ArrayList<Municipio>();
+			Element element = (Element) i.next();
+            
+            if (!element.getQualifiedName().equals("erro")) {
+            	if (element.getQualifiedName().equals("ibge")) 
+            		municipios = municipioUfController.buscarMunicipioPorCodigoIbge(Integer.parseInt(element.getText()));
+            	
+            	if(municipios.size()==1) {
+            		objeto.setMunicipio(municipios.get(0).getId());
+            		objeto.setUf(municipios.get(0).getIdEstado());
+            	}
+            	
+                if (element.getQualifiedName().equals("bairro"))
+                    objeto.setBairro(element.getText());
+
+                if (element.getQualifiedName().equals("logradouro"))
+                    objeto.setEndereco(element.getText());
+            }
+        }
+	}
+	
 	public List<SelectItem> getSelectItems() {
 		selectItems = new ArrayList<SelectItem>();
 		if(selectItems.size()==0){
@@ -177,7 +203,7 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(Cidadao cidadao : getListagem()) {
-			if(cidadao.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+			if(cidadao.getNome().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(cidadao))
 					suggestions.add(cidadao);
 		}
