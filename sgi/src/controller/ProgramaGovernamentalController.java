@@ -5,14 +5,11 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
 import model.ProgramaGovernamental;
-import model.Projeto;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import dao.CargoDao;
 import dao.ProgramaGovernamentalDao;
 
 @Component
@@ -64,7 +61,7 @@ public class ProgramaGovernamentalController extends GenericController<ProgramaG
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(ProgramaGovernamental programaGovernamental : getListagem()) {
-			if(programaGovernamental.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+			if(programaGovernamental.getNome().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(programaGovernamental))
 					suggestions.add(programaGovernamental);
 		}

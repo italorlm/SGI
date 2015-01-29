@@ -17,11 +17,6 @@ import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Cargo;
-import model.Cidadao;
-import model.Contrato;
-import model.ContratoArquivo;
-import model.Programa;
 import model.ProgramaMap;
 import model.Projeto;
 import model.ProjetoArquivo;
@@ -32,9 +27,6 @@ import org.richfaces.model.UploadItem;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import dao.CargoDao;
-import dao.ContratoDao;
-import dao.ProgramaDao;
 import dao.ProgramaMapDao;
 import dao.ProjetoArquivoDao;
 import dao.ProjetoDao;
@@ -43,10 +35,8 @@ import dao.ProjetoMapDao;
 @Component
 @Scope("globalSession")
 public class ProjetoController extends GenericController<Projeto, ProjetoDao> {
-	// private String pastaUpload =
-	// "C:/Apache/apache-tomcat-6.0.41/uploads/sgi/projeto"; //HomeLocal
-	// private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi/projeto";
-	// //JobLocal
+	// private String pastaUpload = "C:/Apache/apache-tomcat-6.0.41/uploads/sgi/projeto"; //HomeLocal
+	// private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi/projeto"; //JobLocal
 	private String pastaUpload = "E:/Tomcat 6.0/uploads/sgi/projeto"; // Proteus
 
 	List<SelectItem> selectItems;
@@ -211,7 +201,7 @@ public class ProjetoController extends GenericController<Projeto, ProjetoDao> {
 	public void filtrarSuggestionBox(String userInput) {
 		for (Projeto projeto : getListagem()) {
 			if (projeto.getNome().toLowerCase()
-					.startsWith(userInput.toLowerCase()))
+					.contains(userInput.toLowerCase()))
 				if (!suggestions.contains(projeto))
 					suggestions.add(projeto);
 		}

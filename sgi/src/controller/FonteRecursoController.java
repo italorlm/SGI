@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
-import model.Cidadao;
 import model.FonteRecurso;
 
 import org.springframework.context.annotation.Scope;
@@ -31,6 +29,7 @@ public class FonteRecursoController extends GenericController<FonteRecurso,Fonte
 	public FonteRecursoController(){
 		injetaDao();
 		filtro = new FonteRecurso();
+		trazerTodos = true;
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class FonteRecursoController extends GenericController<FonteRecurso,Fonte
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(FonteRecurso fonteRecurso : getListagem()) {
-			if(fonteRecurso.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+			if(fonteRecurso.getNome().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(fonteRecurso))
 					suggestions.add(fonteRecurso);
 		}

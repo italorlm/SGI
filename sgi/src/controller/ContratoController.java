@@ -212,10 +212,10 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(Contrato contrato : getListagem()) {
-			if(contrato.getExecutor().toLowerCase().startsWith(userInput.toLowerCase()))
+			if(contrato.getExecutor().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(contrato))
 					suggestions.add(contrato);
-			if(contrato.getContrato().toLowerCase().startsWith(userInput.toLowerCase()))
+			if(contrato.getContrato().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(contrato))
 					suggestions.add(contrato);
 		}

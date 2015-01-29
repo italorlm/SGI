@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
 import model.MaterialPermanente;
 
 import org.springframework.context.annotation.Scope;
@@ -59,7 +58,7 @@ public class MaterialPermanenteController extends GenericController<MaterialPerm
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(MaterialPermanente materialPermanente : getListagem()) {
-			if(materialPermanente.getDescricao().toLowerCase().startsWith(userInput.toLowerCase()))
+			if(materialPermanente.getDescricao().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(materialPermanente))
 					suggestions.add(materialPermanente);
 		}

@@ -8,19 +8,12 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
-import model.Cidadao;
-import model.Contrato;
-import model.ContratoParcela;
-import model.MaterialPermanente;
 import model.Programa;
 import model.ProgramaMap;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import dao.CargoDao;
-import dao.ContratoDao;
 import dao.ProgramaDao;
 import dao.ProgramaMapDao;
 
@@ -134,7 +127,7 @@ public class ProgramaController extends GenericController<Programa, ProgramaDao>
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(Programa programa : getListagem()) {
-			if(programa.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+			if(programa.getNome().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(programa))
 					suggestions.add(programa);
 		}

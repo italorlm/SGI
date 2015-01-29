@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
-import model.Cidadao;
 import model.DotacaoOrcamentaria;
 
 import org.springframework.context.annotation.Scope;
@@ -63,7 +61,7 @@ public class DotacaoOrcamentariaController extends GenericController<DotacaoOrca
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(DotacaoOrcamentaria dotacaoOrcamentaria : getListagem()) {
-			if(dotacaoOrcamentaria.getCodigo().toString().startsWith(userInput))
+			if(dotacaoOrcamentaria.getCodigo().toString().contains(userInput))
 				if(!suggestions.contains(dotacaoOrcamentaria))
 					suggestions.add(dotacaoOrcamentaria);
 		}

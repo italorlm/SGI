@@ -5,14 +5,11 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import model.Programa;
-import model.UnidadeCptr;
 import model.UnidadeExterna;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import dao.UnidadeCptrDao;
 import dao.UnidadeExternaDao;
 
 @Component
@@ -67,7 +64,7 @@ public class UnidadeExternaController extends GenericController<UnidadeExterna,U
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(UnidadeExterna unidadeExterna : getListagem()) {
-			if(unidadeExterna.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+			if(unidadeExterna.getNome().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(unidadeExterna))
 					suggestions.add(unidadeExterna);
 		}

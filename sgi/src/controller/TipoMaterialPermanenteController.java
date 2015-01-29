@@ -5,14 +5,11 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
 import model.TipoMaterialPermanente;
-import model.UnidadeCptr;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import dao.CargoDao;
 import dao.TipoMaterialPermanenteDao;
 
 @Component
@@ -24,8 +21,7 @@ public class TipoMaterialPermanenteController extends GenericController<TipoMate
 
 	public TipoMaterialPermanenteController(){
 		injetaDao();		
-		filtro = new TipoMaterialPermanente();
-		trazerTodos = true;
+		filtro = new TipoMaterialPermanente();		
 	}
 	
 	@Override
@@ -65,7 +61,7 @@ public class TipoMaterialPermanenteController extends GenericController<TipoMate
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		for(TipoMaterialPermanente tipoMaterialPermanente : getListagem()) {
-			if(tipoMaterialPermanente.getNome().toLowerCase().startsWith(userInput.toLowerCase()))
+			if(tipoMaterialPermanente.getNome().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(tipoMaterialPermanente))
 					suggestions.add(tipoMaterialPermanente);
 		}
