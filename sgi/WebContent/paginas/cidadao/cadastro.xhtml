@@ -157,7 +157,7 @@
 								<font color="blue">Endereço Residencial</font>
 							</legend>
 
-							<h:panelGrid columns="13">
+							<h:panelGrid columns="18">
 								<h:outputText value="CEP:" />
 								<rich:spacer width="5"/>
 								<h:inputText id="cep" value="#{cidadaoController.objeto.cep}" >
@@ -172,6 +172,23 @@
 									value="#{cidadaoController.objeto.endereco}"/>
 								<rich:spacer width="5"/>
 								
+								<h:outputText value="Numero:" />
+								<rich:spacer width="4"/>
+								<h:inputText id="numeroResidencia" size="40" 
+									value="#{cidadaoController.objeto.numeroResidencia}"/>
+								<rich:spacer width="5"/>
+								
+								<h:outputText value="Complemento" />
+								<h:inputText id="complemento" size="40" 
+									value="#{cidadaoController.objeto.complemento}"/>
+								<rich:spacer width="5"/>
+							</h:panelGrid>
+							
+							<h:panelGrid columns="13">	
+								<h:outputText value="Bairro:" />
+								<h:inputText id="bairro" value="#{cidadaoController.objeto.bairro}"/>
+								<rich:spacer width="5"/>
+							
 								<h:outputText value="UF:" />
 								<h:selectOneMenu id="uf" value="#{cidadaoController.objeto.uf}">
 								    <f:selectItem itemLabel="Selecione" itemValue=""/>
@@ -187,18 +204,7 @@
 								    <f:selectItem itemLabel="Selecione" itemValue=""/>
 								    <f:selectItems value="#{cidadaoController.itemsMunicipiosResidencial}"/>
 								</h:selectOneMenu>							
-							</h:panelGrid>
-							
-							<h:panelGrid columns="11">
-								<h:outputText value="Bairro:" />
-								<h:inputText id="bairro" value="#{cidadaoController.objeto.bairro}"/>
-								<rich:spacer width="5"/>
-								
-								<h:outputText value="Complemento" />
-								<h:inputText id="complemento" size="40" 
-									value="#{cidadaoController.objeto.complemento}"/>
-								<rich:spacer width="5"/>														
-							</h:panelGrid>							
+							</h:panelGrid>																				
 						</fieldset>
 
 					</rich:tab>
