@@ -17,7 +17,7 @@ public class DaoCrp {
 	SQLException {
 		Class.forName("net.sourceforge.jtds.jdbc.Driver");
 		return DriverManager.getConnection(
-				"jdbc:postgresql://localhost:5433/corporativo", "postgres",
+				"jdbc:postgresql://localhost:5432/corporativo", "postgres",
 		"postgres");
 	}
 
@@ -50,7 +50,7 @@ public class DaoCrp {
 		return municipios;
 	}
 	
-	public Municipio buscaMunicipioId(Integer codigo) throws SQLException {
+	public Municipio buscarMunicipioPorId(Integer codigo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -78,7 +78,7 @@ public class DaoCrp {
 		return municipio;
 	}
 	
-	public List<Municipio> buscaMunicipioEstado(Integer estado) throws SQLException {
+	public List<Municipio> buscarMunicipioPorEstado(Integer estado) throws SQLException {
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -92,6 +92,36 @@ public class DaoCrp {
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				municipios.add(new Municipio(rs.getInt("id"), rs.getString("nome")));				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (con != null)
+				con.close();
+		}		
+		return municipios;
+	}
+	
+	public List<Municipio> buscarMunicipioPorCodigoIbge(Integer codIbge) throws SQLException {
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		List<Municipio> municipios = new ArrayList<Municipio>();
+		try {
+			String sql = "select id, nome, idestado, codigo_macreg,"
+					+ " codigo_micreg, codigo_por from municipio"
+				+ " where codigoibge = ? order by nome";
+			con = getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, codIbge);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				municipios.add(new Municipio(rs.getInt("id"), rs.getString("nome"), rs.getInt("idestado"), 
+						rs.getInt("codigo_macreg"), rs.getInt("codigo_micreg"), rs.getInt("codigo_por")));				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,6 +164,7 @@ public class DaoCrp {
 		}
 		return ufs;
 	}
+	
 }
 
 
