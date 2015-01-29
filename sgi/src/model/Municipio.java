@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Municipio implements Serializable{
 	
-	Integer id;
+	Integer id, idEstado, idMacroRegiao, idMicroRegiao, idPorte;
 	
 	String nome;
 	
@@ -15,6 +15,16 @@ public class Municipio implements Serializable{
 	public Municipio(Integer id, String nome) {
 		this.id = id;
 		this.nome = nome;
+	}
+	
+	public Municipio(Integer id, String nome, Integer idEstado, 
+			Integer idMacroRegiao, Integer idMicroRegiao, Integer idPorte) {
+		this.id = id;
+		this.nome = nome;
+		this.idEstado = idEstado;
+		this.idMacroRegiao = idMacroRegiao;
+		this.idMicroRegiao = idMicroRegiao;
+		this.idPorte = idPorte;
 	}
 	
 	public Integer getId() {
@@ -31,6 +41,38 @@ public class Municipio implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Integer getIdEstado() {
+		return idEstado;
+	}
+
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
+	}
+
+	public Integer getIdMacroRegiao() {
+		return idMacroRegiao;
+	}
+
+	public void setIdMacroRegiao(Integer idMacroRegiao) {
+		this.idMacroRegiao = idMacroRegiao;
+	}
+
+	public Integer getIdMicroRegiao() {
+		return idMicroRegiao;
+	}
+
+	public void setIdMicroRegiao(Integer idMicroRegiao) {
+		this.idMicroRegiao = idMicroRegiao;
+	}
+
+	public Integer getIdPorte() {
+		return idPorte;
+	}
+
+	public void setIdPorte(Integer idPorte) {
+		this.idPorte = idPorte;
 	}
 
 	@Override

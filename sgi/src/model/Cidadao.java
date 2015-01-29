@@ -73,6 +73,9 @@ public class Cidadao extends BaseModel {
 	String bairro;
 	
 	String complemento;
+	
+	@Column(name="num_residencia")
+	String numeroResidencia;
 
 	Integer escolaridade;
 	
@@ -413,6 +416,14 @@ public class Cidadao extends BaseModel {
 
 	public void setSecaoTitulo(String secaoTitulo) {
 		this.secaoTitulo = secaoTitulo;
+	}
+	
+	public String getNumeroResidencia() {
+		return numeroResidencia;
+	}
+
+	public void setNumeroResidencia(String numeroResidencia) {
+		this.numeroResidencia = numeroResidencia;
 	}
 
 	@Override
