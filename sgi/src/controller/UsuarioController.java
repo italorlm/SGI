@@ -64,7 +64,21 @@ public class UsuarioController extends GenericController<Usuario, UsuarioDao> {
 		JRBeanCollectionDataSource ds =new JRBeanCollectionDataSource(lista);
 		new RelatorioGenerico().imprimir(ctx,parameters, caminhoRelatorio, ds, "Usuarios.pdf");
 	}
-	
+
+	public List<SelectItem> getSelectItems() {
+		return selectItems;
+	}
+
+	public void setSelectItems(List<SelectItem> selectItems) {
+		this.selectItems = selectItems;
+	}
+
+	@Override
+	public void filtrarSuggestionBox(String userInput) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void imprimirManual() throws IOException{
 		try {
 			ServletContext ctx = (ServletContext) FacesContext
@@ -111,20 +125,4 @@ public class UsuarioController extends GenericController<Usuario, UsuarioDao> {
 		is.close();
 		return bytes;
 	}
-
-	public List<SelectItem> getSelectItems() {
-		return selectItems;
-	}
-
-	public void setSelectItems(List<SelectItem> selectItems) {
-		this.selectItems = selectItems;
-	}
-
-	@Override
-	public void filtrarSuggestionBox(String userInput) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 }
