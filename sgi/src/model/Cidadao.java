@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.envers.Audited;
 
@@ -121,6 +122,9 @@ public class Cidadao extends BaseModel {
 	
 	@Column(name="secao_titulo")
 	String secaoTitulo;
+	
+	@Transient
+	boolean cepValido = true;
 	
 	public Long getId() {
 		return id;
@@ -424,6 +428,14 @@ public class Cidadao extends BaseModel {
 
 	public void setNumeroResidencia(String numeroResidencia) {
 		this.numeroResidencia = numeroResidencia;
+	}
+	
+	public boolean isCepValido() {
+		return cepValido;
+	}
+
+	public void setCepValido(boolean cepValido) {
+		this.cepValido = cepValido;
 	}
 
 	@Override
