@@ -17,8 +17,8 @@ public class DaoCrp {
 	SQLException {
 		Class.forName("net.sourceforge.jtds.jdbc.Driver");
 		return DriverManager.getConnection(
-				"jdbc:postgresql://localhost:5432/corporativo", "postgres",
-		"postgres");
+				"jdbc:postgresql://ciclopes:5432/corporativo", "guest",
+		"setasguestpwd");
 	}
 
 	public List<Municipio> listaMunicipios() throws SQLException {
@@ -106,7 +106,7 @@ public class DaoCrp {
 		return municipios;
 	}
 	
-	public List<Municipio> buscarMunicipioPorCodigoIbge(Integer codIbge) throws SQLException {
+	public List<Municipio> buscarMunicipioPorCodigoIbge(String codIbge) throws SQLException {
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -117,7 +117,7 @@ public class DaoCrp {
 				+ " where codigoibge = ? order by nome";
 			con = getConnection();
 			pst = con.prepareStatement(sql);
-			pst.setInt(1, codIbge);
+			pst.setString(1, codIbge);
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				municipios.add(new Municipio(rs.getInt("id"), rs.getString("nome"), rs.getInt("idestado"), 

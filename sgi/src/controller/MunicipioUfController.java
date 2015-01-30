@@ -68,7 +68,7 @@ public class MunicipioUfController {
 		return municipios;
 	}
 	
-	public List<Municipio> buscarMunicipioPorCodigoIbge(Integer codIbge) throws SQLException {
+	public List<Municipio> buscarMunicipioPorCodigoIbge(String codIbge) throws SQLException {
 		return crp.buscarMunicipioPorCodigoIbge(codIbge);
 	}
 }
