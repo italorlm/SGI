@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import model.Cargo;
 import model.MaterialPermanente;
 
 import org.springframework.context.annotation.Scope;

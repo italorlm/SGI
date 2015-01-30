@@ -6,7 +6,11 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.SelectItem;
 
+import model.Cargo;
+import model.Cidadao;
+import model.Grupo;
 import model.MaterialConsumo;
+import model.MaterialPermanente;
 import model.SubGrupo;
 
 import org.springframework.context.annotation.Scope;

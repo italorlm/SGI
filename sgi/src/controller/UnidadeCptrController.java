@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import model.Programa;
 import model.UnidadeCptr;
+import model.UnidadeExterna;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

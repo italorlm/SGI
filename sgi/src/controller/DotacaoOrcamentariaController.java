@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import model.Cargo;
+import model.Cidadao;
 import model.DotacaoOrcamentaria;
 
 import org.springframework.context.annotation.Scope;

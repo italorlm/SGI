@@ -65,5 +65,8 @@ public class PerfilController extends GenericController<Perfil, PerfilDao> {
 	@Override
 	public void filtrarSuggestionBox(String userInput) {
 		// TODO Auto-generated method stub		
-	}	
+	}
+	
+	
+
 }

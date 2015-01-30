@@ -17,6 +17,11 @@ import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Cargo;
+import model.Cidadao;
+import model.Contrato;
+import model.ContratoArquivo;
+import model.Programa;
 import model.ProgramaMap;
 import model.Projeto;
 import model.ProjetoArquivo;
@@ -27,6 +32,9 @@ import org.richfaces.model.UploadItem;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import dao.CargoDao;
+import dao.ContratoDao;
+import dao.ProgramaDao;
 import dao.ProgramaMapDao;
 import dao.ProjetoArquivoDao;
 import dao.ProjetoDao;

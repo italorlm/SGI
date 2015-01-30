@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import model.Cargo;
 import model.TipoMaterialPermanente;
+import model.UnidadeCptr;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import dao.CargoDao;
 import dao.TipoMaterialPermanenteDao;
 
 @Component

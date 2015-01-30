@@ -7,12 +7,15 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
+import model.Cargo;
 import model.Grupo;
+import model.MaterialConsumo;
 import model.SubGrupo;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import dao.CargoDao;
 import dao.GrupoDao;
 import dao.SubGrupoDao;
 
