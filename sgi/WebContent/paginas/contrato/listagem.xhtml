@@ -21,137 +21,133 @@
 	<ui:define name="corpo">
 
 		<h:form>
-			<ui:param name="bean" value="#{contratoController}" />
-			<div align="center">
-				<a4j:outputPanel ajaxRendered="true">
-					<h:messages errorStyle="color: red" infoStyle="color: green" />
-				</a4j:outputPanel>
-				<br />
-
-
-				<rich:tabPanel width="74%" height="150">
+		 <ui:param name="bean" value="#{contratoController}" />
+		 <div align="center">
+		 <a4j:outputPanel ajaxRendered="true"><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
+		 <br/>
+		 
+		 
+		 <rich:tabPanel width="74%" height="150">
 					<rich:tab align="center" label="CONSULTA DE CONTRATO">
-
-						<h:panelGrid columns="3">
-							<h:outputText value="Executor:" />
-							<rich:spacer width="20" />
+										
+					<h:panelGrid columns="3">					
+						<h:outputText value="Executor:"/>					
+							<rich:spacer width="20"/>
 							<h:inputText id="executor"
 								valor="#{contratoController.filtro.executor}" size="60" />
-							<rich:suggestionbox id="suggestionBoxExecutor" for="executor"
-								nothingLabel="Nenhum registro encontrado"
-								suggestionAction="#{contratoController.suggestionBox}" var="row">
-
-								<h:column>
-									<h:outputText value="#{row.executor}" />
-								</h:column>
-							</rich:suggestionbox>
-						</h:panelGrid>
-
-						<h:panelGrid columns="3">
-							<h:outputText value="Contrato:" />
-							<rich:spacer width="20" />
+								<rich:suggestionbox id="suggestionBoxExecutor" for="executor" nothingLabel="Nenhum registro encontrado"
+                    				suggestionAction="#{contratoController.suggestionBox}" var="row" >  
+                      
+				                    <h:column>  
+				                        <h:outputText value="#{row.executor}" />  
+				                    </h:column>  
+		                		</rich:suggestionbox>
+					</h:panelGrid>
+					
+					<h:panelGrid columns="3">					
+						<h:outputText value="Contrato:"/>					
+							<rich:spacer width="20"/>
 							<h:inputText id="contrato"
 								valor="#{contratoController.filtro.contrato}" size="30" />
-							<rich:suggestionbox id="suggestionBoxContrato" for="contrato"
-								suggestionAction="#{contratoController.suggestionBox}" var="row">
-
-								<h:column>
-									<h:outputText value="#{row.contrato}" />
-								</h:column>
-							</rich:suggestionbox>
-						</h:panelGrid>
-
-						<h:panelGrid columns="3">
-							<h:outputText value="Fonte de Recurso:" />
-							<h:selectOneMenu id="fonteRecurso" converter="entityConverter"
-								value="#{contratoController.filtro.fonteRecurso}">
-								<f:selectItem itemLabel="Selecione" itemValue="" />
-								<f:selectItems value="#{fonteRecursoController.selectItems}" />
-							</h:selectOneMenu>
-						</h:panelGrid>
-
-
-						<ui:decorate template="../../templates/listagem/acoes.xhtml">
-							<ui:param name="filtrar" value="filtrar" />
-							<ui:param name="novo" value="novo" />
-						</ui:decorate>
-
+								<rich:suggestionbox id="suggestionBoxContrato" for="contrato" 
+                    				suggestionAction="#{contratoController.suggestionBox}" var="row" >  
+                      
+				                    <h:column>  
+				                        <h:outputText value="#{row.contrato}" />  
+				                    </h:column>  
+		                		</rich:suggestionbox>
+					</h:panelGrid>
+					
+					<h:panelGrid columns="3">
+						<h:outputText value="Fonte de Recurso:" />							
+						<h:selectOneMenu id="fonteRecurso" converter="entityConverter" 
+							value="#{contratoController.filtro.fonteRecurso}">
+						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+						  	<f:selectItems value="#{fonteRecursoController.selectItems}"/>
+						</h:selectOneMenu>								
+					</h:panelGrid>
+														
+					
+					<ui:decorate template="../../templates/listagem/acoes.xhtml">
+		    	     <ui:param name="filtrar" value="filtrar" />
+			         <ui:param name="novo" value="novo" />
+			        </ui:decorate>
+										
 					</rich:tab>
 				</rich:tabPanel>
-
-
-			</div>
-			<br />
-
+		
+		
+		</div> 
+		<br/>
+			 
 			<div align="center">
-
-				<ui:decorate template="../../templates/listagem/header.xhtml">
-					<ui:param name="titulo" value="Contrato" />
-					<ui:param name="largura" value="74%" />
-				</ui:decorate>
+			
+			<ui:decorate template="../../templates/listagem/header.xhtml">
+			 	<ui:param name="titulo" value="Contrato" />
+				<ui:param name="largura" value="74%"/>
+			</ui:decorate>
 
 				<a4j:outputPanel ajaxRendered="true" id="painel">
-					<rich:dataTable align="center" width="74%" id="tabela" rows="5"
+					<rich:dataTable  align="center" width="74%" id="tabela" rows="5"
 						onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
 						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
 						rowClasses="odd-row,even-row" rendered="true" columnClasses="col"
 						var="row" value="#{contratoController.listagem}">
 						<f:facet name="header">
 							<rich:columnGroup>
-
+							
 								<rich:column style="text-align:center">
 									<h:outputText styleClass="headerText" value="Executor" />
 								</rich:column>
-
+								
 								<rich:column style="text-align:center">
 									<h:outputText styleClass="headerText" value="Contrato" />
 								</rich:column>
-
+								
 								<rich:column style="text-align:center">
 									<h:outputText styleClass="headerText" value="Exercicio" />
 								</rich:column>
-
+								
 								<rich:column style="text-align:center">
 									<h:outputText styleClass="headerText" value="Fonte Recurso" />
 								</rich:column>
-
-								<rich:column />
-
+								
+								<rich:column/>
+							
 							</rich:columnGroup>
 						</f:facet>
-
+						
 						<rich:column style="text-align:center">
 							<h:outputText value="#{row.executor}" />
 						</rich:column>
-
+						
 						<rich:column style="text-align:center">
 							<h:outputText value="#{row.contrato}" />
-						</rich:column>
-
+						</rich:column>	
+						
 						<rich:column style="text-align:center">
 							<h:outputText value="#{row.exercicio}" />
 						</rich:column>
-
+						
 						<rich:column style="text-align:center">
 							<h:outputText value="#{row.fonteRecurso.nome}" />
-						</rich:column>
-
+						</rich:column>	
+						
 						<ui:decorate template="../../templates/listagem/editar.xhtml">
-							<ui:param name="editar" value="editar" />
-							<ui:param name="valor" value="#{row}" />
-							<ui:param name="alvo" value="#{contratoController.objeto}" />
-						</ui:decorate>
-
-						<ui:decorate template="../../templates/listagem/footer.xhtml">
-							<ui:param name="tamanho"
-								value="#{contratoController.listagem.size()}" />
-						</ui:decorate>
-
+					       <ui:param name="editar" value="editar"/>
+					       <ui:param name="valor" value="#{row}" />
+					       <ui:param name="alvo" value="#{contratoController.objeto}" />
+						</ui:decorate>								
+					
+			 	<ui:decorate template="../../templates/listagem/footer.xhtml">
+				   <ui:param name="tamanho" value="#{contratoController.listagem.size()}" />
+			    </ui:decorate>
+					
 					</rich:dataTable>
 				</a4j:outputPanel>
 			</div>
 		</h:form>
-
-
+	
+		
 	</ui:define>
 </ui:composition>
