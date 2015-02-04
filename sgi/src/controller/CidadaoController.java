@@ -33,8 +33,8 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 	List<SelectItem> selectItems, itemsMunicipios, itemsMunicipiosResidencial;
 	final static String DAO_CONCRETO = "cidadaoDaoImp";
 	
-	private String cpfBackup;
-	
+	private String cpfBackup;	
+		
 	@Resource
 	MunicipioUfController municipioUfController;
 	
@@ -44,9 +44,14 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 	}
 		
 	@Override
-	public void limpar() throws InstantiationException, IllegalAccessException {
-		itemsMunicipios = new ArrayList<SelectItem>();
-		itemsMunicipiosResidencial = new ArrayList<SelectItem>();
+	public void limpar() throws InstantiationException, IllegalAccessException {		
+		try {
+			itemsMunicipios = new ArrayList<SelectItem>();
+			itemsMunicipiosResidencial = municipioUfController.getMunicipios();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		super.limpar();
 	}
 
@@ -117,27 +122,54 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 		return null;
 	}
 	
-	public void popularEnderecoCep() throws NumberFormatException, SQLException {		
-		for (Iterator i = CepWS.buscarCep(objeto.getCep()).elementIterator(); i.hasNext();) {
-			List<Municipio> municipios = new ArrayList<Municipio>();
-			Element element = (Element) i.next();
-            
-            if (!element.getQualifiedName().equals("erro")) {
-            	if (element.getQualifiedName().equals("ibge")) 
-            		municipios = municipioUfController.buscarMunicipioPorCodigoIbge(Integer.parseInt(element.getText()));
-            	
-            	if(municipios.size()==1) {
-            		objeto.setMunicipio(municipios.get(0).getId());
-            		objeto.setUf(municipios.get(0).getIdEstado());
-            	}
-            	
-                if (element.getQualifiedName().equals("bairro"))
-                    objeto.setBairro(element.getText());
+	//Carrega dados via WebService (XML) - viacep.com.br
+	public void carregarDadosEndereco() throws NumberFormatException, SQLException {
+		try {
+			String msgErro = "CEP Invalido!";
+			objeto.setCep(objeto.getCep().replace("_", ""));
+			if(objeto.getCep()!=null && objeto.getCep().length()==9) {
+				for (Iterator i = CepWS.buscarCep(objeto.getCep()).elementIterator(); i.hasNext();) {
+					List<Municipio> municipios = new ArrayList<Municipio>();
+					Element element = (Element) i.next();
+		            
+		            if (!element.getQualifiedName().equals("erro")) {	
+		            	objeto.setCepValido(true);
+		            	
+		            	if (element.getQualifiedName().equals("ibge")) 
+		            		municipios = municipioUfController.buscarMunicipioPorCodigoIbge(element.getText());
+		            	
+		            	if(municipios.size()==1) {
+		            		objeto.setUf(municipios.get(0).getIdEstado());
+		            		buscarCidadesResidencial();
+		            		objeto.setMunicipio(municipios.get(0).getId());	            		
+		            	}
+		            	
+		                if (element.getQualifiedName().equals("bairro"))
+		                    objeto.setBairro(element.getText());
 
-                if (element.getQualifiedName().equals("logradouro"))
-                    objeto.setEndereco(element.getText());
-            }
-        }
+		                if (element.getQualifiedName().equals("logradouro"))
+		                    objeto.setEndereco(element.getText());
+		            } else if(element.getQualifiedName().equals("erro")){
+		            	itemsMunicipiosResidencial.clear();
+		            	objeto.setCepValido(false);
+		            	objeto.setUf(null);
+		            	objeto.setMunicipio(null);
+		            	objeto.setBairro("");
+		            	objeto.setEndereco("");	            	
+		            } 
+		        }
+			} else {
+				FacesContext context = FacesContext.getCurrentInstance();
+		        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));				
+			}
+		} catch(Exception e) {
+			itemsMunicipiosResidencial.clear();
+        	objeto.setCepValido(false);
+        	objeto.setUf(null);
+        	objeto.setMunicipio(null);
+        	objeto.setBairro("");
+        	objeto.setEndereco("");
+		}		
 	}
 	
 	public List<SelectItem> getSelectItems() {
@@ -159,7 +191,19 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 	}
 	
 	public void buscarCidadesResidencial() throws SQLException {
-		itemsMunicipiosResidencial.clear();		
+		List<Municipio> municipios = new ArrayList<Municipio>();		
+		
+		if(objeto.getUf()!=null)
+			municipios = municipioUfController.buscarMunicipioPorEstado(objeto.getUf());
+				
+		if(municipios.size()!=0) {
+			itemsMunicipiosResidencial.clear();	
+			for(Municipio municipio : municipios) {
+				itemsMunicipiosResidencial.add(new SelectItem(municipio, municipio.getNome().toUpperCase()));
+			}
+		} 
+		
+//		itemsMunicipiosResidencial.clear();		
 	}
 
 	public List<SelectItem> getItemsMunicipios() throws SQLException {
@@ -182,17 +226,6 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 	}
 
 	public List<SelectItem> getItemsMunicipiosResidencial() throws SQLException {
-		List<Municipio> municipios = new ArrayList<Municipio>();
-		
-		if(objeto.getUf()!=null)
-			municipios = municipioUfController.buscarMunicipioPorEstado(objeto.getUf());
-		
-		if(municipios.size()!=0) {
-			for(Municipio municipio : municipios) {
-				itemsMunicipiosResidencial.add(new SelectItem(municipio, municipio.getNome().toUpperCase()));
-			}
-		}
-		
 		return itemsMunicipiosResidencial;
 	}
 
@@ -215,8 +248,7 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 
 	public void setCpfBackup(String cpfBackup) {
 		this.cpfBackup = cpfBackup;
-	}	
-	
-	
-}
+	}
+}	
+
 

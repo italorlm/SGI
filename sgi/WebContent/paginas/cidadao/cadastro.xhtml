@@ -151,46 +151,52 @@
 						</h:panelGrid>
 						
                         <rich:spacer width="1" height="10"  />
-
+                        
+					<a4j:outputPanel id="panelComplemento">
                        <fieldset>
 							<legend>
 								<font color="blue">Endereço Residencial</font>
 							</legend>
-
+						
 							<h:panelGrid columns="18">
 								<h:outputText value="CEP:" />
-								<rich:spacer width="5"/>
+								<rich:spacer width="5"/>								
 								<h:inputText id="cep" value="#{cidadaoController.objeto.cep}" >
 									<rich:jQuery selector="#cep" query="mask('99999-999')"
-									timing="onload" />
-								</h:inputText>
+										timing="onload" />
+									<a4j:support event="onblur" ajaxSingle="true" 
+										action="#{cidadaoController.carregarDadosEndereco}" 
+										reRender="endereco,bairro,uf,municipio,municipioDisabled,panelComplemento"/>
+								</h:inputText>								
 								<rich:spacer width="5"/>
 								
 								<h:outputText value="Endereço:" />
-								<rich:spacer width="10"/>
-								<h:inputText id="endereco" size="40" 
+								<rich:spacer width="5"/>
+								<h:inputText id="endereco" size="55" disabled="#{cidadaoController.objeto.cepValido==true}"
 									value="#{cidadaoController.objeto.endereco}"/>
 								<rich:spacer width="5"/>
 								
 								<h:outputText value="Numero:" />
 								<rich:spacer width="4"/>
-								<h:inputText id="numeroResidencia" size="40" 
+								<h:inputText id="numeroResidencia" size="5" 
 									value="#{cidadaoController.objeto.numeroResidencia}"/>
 								<rich:spacer width="5"/>
 								
-								<h:outputText value="Complemento" />
+								<h:outputText value="Complemento:" />
 								<h:inputText id="complemento" size="40" 
 									value="#{cidadaoController.objeto.complemento}"/>
 								<rich:spacer width="5"/>
 							</h:panelGrid>
-							
+						
 							<h:panelGrid columns="13">	
 								<h:outputText value="Bairro:" />
-								<h:inputText id="bairro" value="#{cidadaoController.objeto.bairro}"/>
+								<h:inputText id="bairro" size="38" disabled="#{cidadaoController.objeto.cepValido==true}"
+									value="#{cidadaoController.objeto.bairro}"/>
 								<rich:spacer width="5"/>
 							
 								<h:outputText value="UF:" />
-								<h:selectOneMenu id="uf" value="#{cidadaoController.objeto.uf}">
+								<h:selectOneMenu id="uf" value="#{cidadaoController.objeto.uf}"
+									disabled="#{cidadaoController.objeto.cepValido==true}">
 								    <f:selectItem itemLabel="Selecione" itemValue=""/>
 								    <f:selectItems value="#{municipioUfController.ufs}"/>
 								    <a4j:support event="onchange" reRender="municipio" 
@@ -199,13 +205,16 @@
 								<rich:spacer width="5"/> 
 								
 								<h:outputText value="Municipio:" />
-								<h:selectOneMenu id="municipio" 
-									value="#{cidadaoController.objeto.municipio}">
+								<h:selectOneMenu id="municipio" rendered="#{cidadaoController.objeto.cepValido==false}"
+									value="#{cidadaoController.objeto.municipio}" disabled="false">
 								    <f:selectItem itemLabel="Selecione" itemValue=""/>
 								    <f:selectItems value="#{cidadaoController.itemsMunicipiosResidencial}"/>
-								</h:selectOneMenu>							
-							</h:panelGrid>																				
+								</h:selectOneMenu>	
+								<h:inputText id="municipioDisabled" rendered="#{cidadaoController.objeto.cepValido==true}"
+									value="#{municipioUfController.buscarPorMunicipio(cidadaoController.objeto.municipio)}" disabled="true"/>
+							</h:panelGrid>																								
 						</fieldset>
+					</a4j:outputPanel>
 
 					</rich:tab>
 
