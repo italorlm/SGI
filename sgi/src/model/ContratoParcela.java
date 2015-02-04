@@ -28,10 +28,13 @@ public class ContratoParcela extends BaseModel {
 	String parcela;
 	
 	@Column(name="data_vencimento")
-	Date dataVencimento;
+	String dataVencimento;
 	
 	@Column(name="data_pagamento")
-	Date dataPagamento;
+	String dataPagamento;
+	
+	@Column(name="valor_parcial")
+	String valorParcial;
 	
 	@ManyToOne
 	@JoinColumn(name="contrato_id")
@@ -53,19 +56,19 @@ public class ContratoParcela extends BaseModel {
 		this.parcela = parcela;
 	}
 
-	public Date getDataVencimento() {
+	public String getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(Date dataVencimento) {
+	public void setDataVencimento(String dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 
-	public Date getDataPagamento() {
+	public String getDataPagamento() {
 		return dataPagamento;
 	}
 
-	public void setDataPagamento(Date dataPagamento) {
+	public void setDataPagamento(String dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
 	
@@ -75,6 +78,14 @@ public class ContratoParcela extends BaseModel {
 
 	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
+	}
+	
+	public String getValorParcial() {
+		return valorParcial;
+	}
+
+	public void setValorParcial(String valorParcial) {
+		this.valorParcial = valorParcial;
 	}
 
 	@Override
