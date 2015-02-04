@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import util.StringUtils;
 import dao.ContratoDao;
 
 @Component
@@ -24,11 +25,11 @@ implements ContratoDao{
 		List<Contrato> lista = new ArrayList<Contrato>();
 		Criteria c = criaCriteria();
 		
-		if(filtro.getExecutor()!=null && !(filtro.getExecutor().isEmpty())){
+		if(StringUtils.isValid(filtro.getExecutor())){
 			c.add(Restrictions.ilike("executor", filtro.getExecutor(),MatchMode.ANYWHERE));
 		}
 		
-		if(filtro.getContrato()!=null && !(filtro.getContrato().isEmpty())){
+		if(StringUtils.isValid(filtro.getContrato())){
 			c.add(Restrictions.ilike("contrato", filtro.getContrato(),MatchMode.ANYWHERE));
 		}
 		

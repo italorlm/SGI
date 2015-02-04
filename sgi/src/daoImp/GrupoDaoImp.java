@@ -13,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import util.StringUtils;
 import dao.CargoDao;
 import dao.GrupoDao;
 
@@ -26,7 +27,7 @@ implements GrupoDao{
 		List<Grupo> lista = new ArrayList<Grupo>();
 		Criteria c = criaCriteria();
 		
-		if(filtro.getNome()!=null && !(filtro.getNome().isEmpty())){
+		if(StringUtils.isValid(filtro.getNome())){
 			c.add(Restrictions.ilike("nome", filtro.getNome(),MatchMode.ANYWHERE));
 		}
 		

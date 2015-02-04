@@ -24,7 +24,7 @@ implements DotacaoOrcamentariaDao{
 		List<DotacaoOrcamentaria> lista = new ArrayList<DotacaoOrcamentaria>();
 		Criteria c = criaCriteria();
 		
-		if(filtro.getCodigo()!=null) {
+		if(filtro.getCodigo()!=0) {
 			c.add(Restrictions.eq("codigo", filtro.getCodigo()));
 		}
 		

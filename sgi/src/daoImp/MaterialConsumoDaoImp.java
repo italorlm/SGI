@@ -23,7 +23,7 @@ implements MaterialConsumoDao{
 		List<MaterialConsumo> lista = new ArrayList<MaterialConsumo>();
 		Criteria c = criaCriteria();
 		
-		if(filtro.getCodigo() != null && !(filtro.getCodigo().isEmpty())){
+		if(StringUtils.isValid(filtro.getCodigo())){
 			c.add(Restrictions.ilike("codigo", filtro.getCodigo(), MatchMode.ANYWHERE));
 		}
 		

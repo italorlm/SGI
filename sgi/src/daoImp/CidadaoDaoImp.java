@@ -26,11 +26,11 @@ implements CidadaoDao{
 		List<Cidadao> lista = new ArrayList<Cidadao>();
 		Criteria c = criaCriteria();
 		
-		if(filtro.getNome()!=null && !(filtro.getNome().isEmpty())){
+		if(StringUtils.isValid(filtro.getNome())){
 			c.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));					
 		}
 		
-		if(filtro.getCpf()!=null && !(filtro.getCpf().isEmpty())){
+		if(StringUtils.isValid(filtro.getCpf())){
 			c.add(Restrictions.eq("cpf", filtro.getCpf()));					
 		}
 		
@@ -44,7 +44,7 @@ implements CidadaoDao{
 		Cidadao cidadao = new Cidadao();
 		Criteria c = criaCriteria();
 		
-		if(filtro!=null) {
+		if(StringUtils.isValid(filtro)) {
 			c.add(Restrictions.eq("cpf", filtro));
 		}
 		
