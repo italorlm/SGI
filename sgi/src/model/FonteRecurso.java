@@ -22,9 +22,6 @@ public class FonteRecurso extends BaseModel {
 	
 	String nome;
 	
-	@Column(name="valor_trimestre")
-	String valorTrimestre;
-
 	public Long getId() {
 		return id;
 	}
@@ -40,15 +37,7 @@ public class FonteRecurso extends BaseModel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public String getValorTrimestre() {
-		return valorTrimestre;
-	}
-
-	public void setValorTrimestre(String valorTrimestre) {
-		this.valorTrimestre = valorTrimestre;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

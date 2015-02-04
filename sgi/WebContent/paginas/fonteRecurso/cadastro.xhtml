@@ -27,23 +27,7 @@
 							<h:inputText size="80" value="#{fonteRecursoController.objeto.nome}" 
 							required="true" requiredMessage="Informe Nome"/>
 								
-						</h:panelGrid>
-						
-						<rich:spacer height="5" />
-						<h:panelGrid columns="3">
-						
-						   <h:outputText value="Val.Trimestre(R$):"/>
-						  
-						  <h:inputText size="20" id="val" value="#{fonteRecursoController.objeto.valorTrimestre}" 
-							required="true" requiredMessage="Informe Valor Trimestre">
-						     <rich:jQuery selector="#val"
-                                query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})" timing="onload" />
-						  </h:inputText>
-						   					  
-						
-						</h:panelGrid>
-												
-												
+						</h:panelGrid>						
 					</rich:tab>
 
 				</rich:tabPanel>
