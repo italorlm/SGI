@@ -20,7 +20,9 @@ public class Contrato extends BaseModel{
 	@SequenceGenerator(name="cnt",allocationSize=1, sequenceName="tb_contrato_id_seq")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="cnt")
 	@Id
-	Long id;	
+	Long id;
+	
+	Integer tipo; //1-Contrato; 2-Convênio
 	
 	String executor;
 	
@@ -30,14 +32,12 @@ public class Contrato extends BaseModel{
 	
 	String exercicio; //Integer?
 	
+	String numero;
+	
 	@ManyToOne
 	@JoinColumn(name="fonte_recurso_id")
 	FonteRecurso fonteRecurso;
-	
-	@ManyToOne
-	@JoinColumn(name="dotacao_orcamentaria_id")
-	DotacaoOrcamentaria dotacaoOrcamentaria;
-	
+		
 	String valor;
 	
 	Integer parcelas;
@@ -90,14 +90,6 @@ public class Contrato extends BaseModel{
 		this.fonteRecurso = fonteRecurso;
 	}
 
-	public DotacaoOrcamentaria getDotacaoOrcamentaria() {
-		return dotacaoOrcamentaria;
-	}
-
-	public void setDotacaoOrcamentaria(DotacaoOrcamentaria dotacaoOrcamentaria) {
-		this.dotacaoOrcamentaria = dotacaoOrcamentaria;
-	}
-
 	public String getValor() {
 		return valor;
 	}
@@ -112,6 +104,22 @@ public class Contrato extends BaseModel{
 
 	public void setParcelas(Integer parcelas) {
 		this.parcelas = parcelas;
+	}
+	
+	public Integer getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}
+	
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	@Override

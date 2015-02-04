@@ -21,18 +21,54 @@
 				<rich:tabPanel width="80%" height="150">
 					<br />
 
-					<rich:tab label="CADASTRO DE CONTRATO">
+					<rich:tab label="CADASTRO DE CONTRATO/CONVÊNIO">
+						
+						<h:panelGrid columns="10">						
+							<h:outputText value="Tipo:" />
+							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="12"/>
+							<h:selectOneMenu id="tipo" value="#{contratoController.objeto.tipo}"
+								required="true" requiredMessage="Informe o Tipo.">
+								<f:selectItem itemLabel="Selecione" itemValue=""/>
+								<f:selectItem itemLabel="Contrato" itemValue="1"/>
+								<f:selectItem itemLabel="Convênio" itemValue="2"/>
+								<a4j:support event="onchange"
+									reRender="panel,contrato"/>
+							</h:selectOneMenu>	
+							
+							<rich:spacer width="10" />
+							<a4j:outputPanel id="panel">
+							<h:outputText id="contrato" value="Contrato:" 
+								rendered="#{contratoController.objeto.tipo==1}"/>
+							<h:outputText value="Convênio:" 
+								rendered="#{contratoController.objeto.tipo==2}"/>
+							<rich:spacer width="5"/>							
+							<h:inputText value="#{contratoController.objeto.contrato}" size="20" 
+								rendered="#{contratoController.objeto.tipo==1 or 
+									contratoController.objeto.tipo==2}"/>
+							</a4j:outputPanel>
+						</h:panelGrid>
+						
+						<rich:spacer height="10" />
+
+						<h:panelGrid columns="10">
+							<h:outputText value="Exercicio:" />
+							<h:inputText id="exercicio"
+								value="#{contratoController.objeto.exercicio}" size="10" />
+
+							<rich:spacer width="10" />
+
+							<h:outputText value="Nº:" />
+							<h:inputText id="numero"
+								value="#{contratoController.objeto.numero}" size="30" />
+						</h:panelGrid>
+						
+						<rich:spacer height="10" />
 
 						<h:panelGrid columns="10">
 							<h:outputText value="Executor:" />
 							<h:inputText id="executor"
-								value="#{contratoController.objeto.executor}" size="50" />
-
-							<rich:spacer width="10" />
-
-							<h:outputText value="Contrato:" />
-							<h:inputText id="contrato"
-								value="#{contratoController.objeto.contrato}" size="20" />
+								value="#{contratoController.objeto.executor}" size="50" />						
 
 							<rich:spacer width="10" />
 
@@ -44,37 +80,17 @@
 						<rich:spacer height="10" />
 
 						<h:panelGrid columns="10">
-							<h:outputText value="Exercicio:" />
-							<h:inputText id="exercicio"
-								value="#{contratoController.objeto.exercicio}" size="10" />
-						</h:panelGrid>
-
-						<rich:spacer height="10" />
-
-						<h:panelGrid columns="10">
 							<h:outputText value="Fonte de Recurso:" />
 							<h:selectOneMenu id="fonteRecurso" converter="entityConverter"
 								value="#{contratoController.objeto.fonteRecurso}">
 								<f:selectItem itemLabel="Selecione" itemValue="" />
 								<f:selectItems value="#{fonteRecursoController.selectItems}" />
 							</h:selectOneMenu>
-
-							<rich:spacer width="10" />
-
-							<h:outputText value="Dotação Orçamentária:" />
-							<h:selectOneMenu id="dotacaoOrcamentaria"
-								converter="entityConverter"
-								value="#{contratoController.objeto.dotacaoOrcamentaria}">
-								<f:selectItem itemLabel="Selecione" itemValue="" />
-								<f:selectItems
-									value="#{dotacaoOrcamentariaController.selectItems}" />
-							</h:selectOneMenu>
 						</h:panelGrid>
 
 						<rich:spacer height="10" />
 						<h:panelGrid columns="10">
-							<h:outputText value="Valor(R$):" />
-							<rich:spacer width="11" />
+							<h:outputText value="Valor(R$):" />							
 							<h:inputText id="valor" size="20"
 								value="#{contratoController.objeto.valor}">
 								<rich:jQuery selector="#valor"
@@ -307,7 +323,7 @@
 
 		<a4j:outputPanel id="panelParcela">
 			<rich:modalPanel rendered="#{contratoController.mostrarModalParcela}"
-				id="modalParcela" width="700" height="430" resizeable="false"
+				id="modalParcela" width="400" height="250" resizeable="false"
 				moveable="true">
 				<f:facet name="header">
 					<h:outputText style="font-size:12px" value="Nova Parcela" />
@@ -324,25 +340,41 @@
 
 				<h:form>
 					<div align="center">
-						<h:panelGrid columns="2">
-							<h:outputText style="font-size:14px" value="Parcela:" />
-							<h:inputText id="parcela" size="20"
+						<h:panelGrid columns="5">
+							<h:outputText style="font-size:14px" value="Parcela:" />							
+							<rich:inputNumberSpinner id="parcela" size="10"
 								value="#{contratoController.contratoParcela.parcela}" />
 						</h:panelGrid>
-
-						<h:panelGrid columns="2">
-							<h:outputText style="font-size:14px" value="Data de Vencimento:" />
-							<rich:calendar id="dataVencimento"
-								value="#{contratoController.contratoParcela.dataVencimento}"
-								datePattern="dd/MM/yyyy" size="5" />
+						
+						<h:panelGrid columns="10">
+							<h:outputText style="font-size:14px" value="Valor(R$):" />
+							<rich:spacer width="10" />
+							<h:inputText id="valor" size="20"
+								value="#{contratoController.contratoParcela.valorParcial}">
+								<rich:jQuery selector="#valor"
+									query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})"
+									timing="onload" />
+							</h:inputText>
 						</h:panelGrid>
 
-						<h:panelGrid columns="2">
-							<h:outputText style="font-size:14px" value="Data de Pagamento:" />
-							<rich:calendar id="dataPagamento"
-								value="#{contratoController.contratoParcela.dataPagamento}"
-								datePattern="dd/MM/yyyy" size="5" />
+						<h:panelGrid columns="5">
+							<h:outputText style="font-size:14px" value="Mês Desembolso:" />
+							<h:inputText id="dataDesembolso"								 
+								value="#{contratoController.contratoParcela.dataVencimento}" >
+								<rich:jQuery selector="#dataDesembolso" query="mask('99/9999')" timing="onload"/>
+							</h:inputText>
 						</h:panelGrid>
+							
+						<h:panelGrid columns="5">
+							<h:outputText style="font-size:14px" value="Mês Pagamento:" />
+							<rich:spacer width="2" />
+							<h:inputText id="dataPagamento"
+								value="#{contratoController.contratoParcela.dataPagamento}" >
+								<rich:jQuery selector="#dataPagamento" query="mask('99/9999')" timing="onload"/>
+							</h:inputText>
+						</h:panelGrid>
+
+						<rich:spacer height="10"/>
 
 						<h:commandButton reRender="tabela" styleClass="buttonAdicionar"
 							value="Cadastrar" action="#{contratoController.adicionarParcela}" />
