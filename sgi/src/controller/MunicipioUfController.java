@@ -48,8 +48,12 @@ public class MunicipioUfController {
 	}
 
 	public String buscarPorMunicipio(Integer codigoMunicipio) throws SQLException{
-		Municipio m = crp.buscarMunicipioPorId(codigoMunicipio);
-		return m.getNome().toUpperCase();
+		if(codigoMunicipio!=0) {
+			Municipio m = crp.buscarMunicipioPorId(codigoMunicipio);
+			return m.getNome().toUpperCase();
+		} else {
+			return "";
+		}
 	}
 	
 	public List<Municipio> buscarMunicipioPorEstado(Integer codigoEstado) throws SQLException {
