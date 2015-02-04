@@ -1,11 +1,2 @@
-/controller
 /dao
-/daoImp
-/model
-/util
 /META-INF
-/ws
-/context
-/cripto
-/exception
-/filter

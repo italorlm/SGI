@@ -19,8 +19,8 @@ public class DaoBdDirhu {
 	SQLException {
 		Class.forName("net.sourceforge.jtds.jdbc.Driver");
 		return DriverManager.getConnection(
-				"jdbc:jtds:sqlserver://localhost:1433/BDDIRHU;namedpipe=true", "admin",
-				"admin");
+				"jdbc:jtds:sqlserver://locahost:1433/BDDIRHU;namedpipe=true", "postgres",
+				"postgres");
 	}
 
 	public List<Funcionario> buscarFuncionarios() throws SQLException {
