@@ -36,11 +36,7 @@ implements ContratoDao{
 		if(filtro.getFonteRecurso()!=null){
 			c.add(Restrictions.eq("contrato", filtro.getFonteRecurso()));
 		}
-		
-		if(filtro.getDotacaoOrcamentaria()!=null){
-			c.add(Restrictions.eq("contrato", filtro.getDotacaoOrcamentaria()));
-		}
-				
+						
 		lista = c.list();
 		return lista;
 	}
