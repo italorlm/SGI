@@ -18,7 +18,7 @@ implements ContratoParcelaDao{
 
 	@Override
 	@Transactional
-	public List<ContratoParcela> findByParcela(Contrato filtro) {
+	public List<ContratoParcela> findByContrato(Contrato filtro) {
 		Criteria c = criaCriteria();
 		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		return c.add(Restrictions.eq("contrato",filtro)).list();		

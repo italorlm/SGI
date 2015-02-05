@@ -7,6 +7,6 @@ import model.ContratoArquivo;
 
 public interface ContratoArquivoDao extends GenericDao<ContratoArquivo, Long>{	
 	
-	public List<ContratoArquivo> findByArquivo(Contrato filtro);
+	public List<ContratoArquivo> findByContrato(Contrato filtro);
 	public ContratoArquivo findByNomeArquivo(String filtro);
 }

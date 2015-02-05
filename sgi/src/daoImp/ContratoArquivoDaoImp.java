@@ -18,7 +18,7 @@ implements ContratoArquivoDao{
 
 	@Override
 	@Transactional
-	public List<ContratoArquivo> findByArquivo(Contrato filtro) {
+	public List<ContratoArquivo> findByContrato(Contrato filtro) {
 		Criteria c = criaCriteria();
 		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		return c.add(Restrictions.eq("contrato",filtro)).list();		
