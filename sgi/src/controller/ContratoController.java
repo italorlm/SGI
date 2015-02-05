@@ -21,7 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Contrato;
 import model.ContratoArquivo;
+import model.ContratoFonteRecurso;
 import model.ContratoParcela;
+import model.FonteRecurso;
 
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
@@ -30,6 +32,7 @@ import org.springframework.stereotype.Component;
 
 import dao.ContratoArquivoDao;
 import dao.ContratoDao;
+import dao.ContratoFonteRecursoDao;
 import dao.ContratoParcelaDao;
 
 @Component
@@ -42,6 +45,7 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	List<SelectItem> selectItems;
 	List<ContratoParcela> parcelasExcluidas, parcelas;	
 	List<ContratoArquivo> arquivosExcluidos, arquivos;
+	List<ContratoFonteRecurso> fonteRecursosExcluidos, fonteRecursos;
 	List<UploadItem> uploadItems;
 	
 	private boolean autoUpload = false;
@@ -49,15 +53,22 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	private int statusArquivo = 1;
 		
 	boolean mostrarModalParcela;
+	boolean mostrarModalFonteRecurso;
 	
 	ContratoParcela contratoParcela;
 	ContratoArquivo contratoArquivo;
+	ContratoFonteRecurso contratoFonteRecurso;
+	
+	FonteRecurso fonteRecursoTemp;
 	
 	@Resource
 	ContratoParcelaDao contratoParcelaDao;
 	
 	@Resource
 	ContratoArquivoDao contratoArquivoDao;
+	
+	@Resource
+	ContratoFonteRecursoDao contratoFonteRecursoDao;
 	
 	final static String DAO_CONCRETO = "contratoDaoImp";
 
@@ -72,6 +83,8 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		parcelasExcluidas = new ArrayList<ContratoParcela>();
 		arquivos = new ArrayList<ContratoArquivo>();
 		arquivosExcluidos = new ArrayList<ContratoArquivo>();
+		fonteRecursos = new ArrayList<ContratoFonteRecurso>();
+		fonteRecursosExcluidos = new ArrayList<ContratoFonteRecurso>();
 		uploadItems = new ArrayList<UploadItem>();
 		super.limpar();
 	}
@@ -129,6 +142,23 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 				}
 			}
 			
+			if(!fonteRecursos.isEmpty()) {
+				for(ContratoFonteRecurso contratoFonteRecurso : fonteRecursos) {
+					if(objeto.getId()!=null) {
+						contratoFonteRecurso.setContrato(objeto);
+						contratoFonteRecursoDao.salvarOuAtualizar(contratoFonteRecurso);
+					}				
+				}
+			}
+			
+			if(!fonteRecursosExcluidos.isEmpty()) {
+				for(ContratoFonteRecurso contratoFonteRecurso : fonteRecursosExcluidos) {
+					if(contratoFonteRecurso.getId()!=null) {
+						contratoFonteRecursoDao.excluir(contratoFonteRecurso);
+					}
+				}
+			}
+			
 			if(!uploadItems.isEmpty()) {
 				for(UploadItem item : uploadItems) {					
 					String fileName = item.getFileName();
@@ -163,14 +193,20 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	
 	@Override
 	public String editar() {
-		parcelas = contratoParcelaDao.findByParcela(objeto);
-		arquivos = contratoArquivoDao.findByArquivo(objeto);
+		parcelas = contratoParcelaDao.findByContrato(objeto);
+		arquivos = contratoArquivoDao.findByContrato(objeto);
+		fonteRecursos = contratoFonteRecursoDao.findByContrato(objeto);
 		return super.editar();
 	}
 	
 	public void mostrarModalParcela(ActionEvent event) {
 		contratoParcela = new ContratoParcela();
 		mostrarModalParcela = true;
+	}
+	
+	public void mostrarModalFonteRecurso(ActionEvent event) {
+		contratoFonteRecurso = new ContratoFonteRecurso();
+		mostrarModalFonteRecurso = true;
 	}
 	
 	public void adicionarParcela() {
@@ -196,6 +232,30 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		}
 		
 		parcelasExcluidas.add(contratoParcela);
+	}
+	
+	public void adicionarFonteRecurso() {
+		String msgErro = "Selecione uma Fonte de Recurso ao Adicionar.";
+		if(fonteRecursoTemp!=null) {
+			contratoFonteRecurso.setFonteRecurso(fonteRecursoTemp);
+			fonteRecursos.add(contratoFonteRecurso);
+			mostrarModalFonteRecurso = false;
+		} else {
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));
+	        mostrarModalParcela = false;
+		}				
+	}
+	
+	public void excluirFonteRecurso() {
+		if(!fonteRecursos.isEmpty()) {
+			for(Iterator<ContratoFonteRecurso> i = fonteRecursos.iterator(); i.hasNext();) {
+				if(i.next().equals(contratoFonteRecurso))
+					i.remove();
+			}
+		}
+		
+		fonteRecursosExcluidos.add(contratoFonteRecurso);
 	}
 	
 	public void excluirArquivo() {
@@ -372,6 +432,50 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 
 	public String getPastaUpload() {
 		return pastaUpload;
+	}
+
+	public boolean isMostrarModalFonteRecurso() {
+		return mostrarModalFonteRecurso;
+	}
+
+	public void setMostrarModalFonteRecurso(boolean mostrarModalFonteRecurso) {
+		this.mostrarModalFonteRecurso = mostrarModalFonteRecurso;
+	}
+
+	public ContratoFonteRecurso getContratoFonteRecurso() {
+		return contratoFonteRecurso;
+	}
+
+	public void setContratoFonteRecurso(ContratoFonteRecurso contratoFonteRecurso) {
+		this.contratoFonteRecurso = contratoFonteRecurso;
+	}
+
+	public List<ContratoFonteRecurso> getFonteRecursosExcluidos() {
+		return fonteRecursosExcluidos;
+	}
+
+	public void setFonteRecursosExcluidos(
+			List<ContratoFonteRecurso> fonteRecursosExcluidos) {
+		this.fonteRecursosExcluidos = fonteRecursosExcluidos;
+	}
+
+	public List<ContratoFonteRecurso> getFonteRecursos() {
+		return fonteRecursos;
+	}
+
+	public void setFonteRecursos(List<ContratoFonteRecurso> fonteRecursos) {
+		this.fonteRecursos = fonteRecursos;
+	}
+
+	public FonteRecurso getFonteRecursoTemp() {
+		return fonteRecursoTemp;
+	}
+
+	public void setFonteRecursoTemp(FonteRecurso fonteRecursoTemp) {
+		this.fonteRecursoTemp = fonteRecursoTemp;
 	}	
+	
+	
+			
 }
 

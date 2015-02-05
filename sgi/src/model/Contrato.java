@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,14 +32,14 @@ public class Contrato extends BaseModel{
 	String exercicio; //Integer?
 	
 	String numero;
-	
-	@ManyToOne
-	@JoinColumn(name="fonte_recurso_id")
-	FonteRecurso fonteRecurso;
-		
+			
 	String valor;
 	
 	Integer parcelas;
+	
+	@ManyToOne
+	@JoinColumn(name="projeto_id")
+	Projeto projeto;
 
 	public Long getId() {
 		return id;
@@ -81,15 +80,7 @@ public class Contrato extends BaseModel{
 	public void setExercicio(String exercicio) {
 		this.exercicio = exercicio;
 	}
-
-	public FonteRecurso getFonteRecurso() {
-		return fonteRecurso;
-	}
-
-	public void setFonteRecurso(FonteRecurso fonteRecurso) {
-		this.fonteRecurso = fonteRecurso;
-	}
-
+	
 	public String getValor() {
 		return valor;
 	}
@@ -120,6 +111,14 @@ public class Contrato extends BaseModel{
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+	
+	public Projeto getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
 	}
 
 	@Override

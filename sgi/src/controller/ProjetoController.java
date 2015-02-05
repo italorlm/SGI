@@ -73,10 +73,12 @@ public class ProjetoController extends GenericController<Projeto, ProjetoDao> {
 	public ProjetoController() {
 		injetaDao();
 		filtro = new Projeto();
+		trazerTodos = true;
 	}
 
 	@Override
 	public void limpar() throws InstantiationException, IllegalAccessException {
+		programaMaps = new ArrayList<ProgramaMap>();
 		arquivosExcluidos = new ArrayList<ProjetoArquivo>();
 		arquivos = new ArrayList<ProjetoArquivo>();
 		uploadItems = new ArrayList<UploadItem>();

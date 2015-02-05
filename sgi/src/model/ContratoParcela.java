@@ -27,11 +27,11 @@ public class ContratoParcela extends BaseModel {
 	
 	String parcela;
 	
-	@Column(name="data_vencimento")
-	String dataVencimento;
+	@Column(name="mes_desembolso")
+	String mesDesembolso;
 	
-	@Column(name="data_pagamento")
-	String dataPagamento;
+	@Column(name="mes_pagamento")
+	String mesPagamento;
 	
 	@Column(name="valor_parcial")
 	String valorParcial;
@@ -55,23 +55,23 @@ public class ContratoParcela extends BaseModel {
 	public void setParcela(String parcela) {
 		this.parcela = parcela;
 	}
-
-	public String getDataVencimento() {
-		return dataVencimento;
-	}
-
-	public void setDataVencimento(String dataVencimento) {
-		this.dataVencimento = dataVencimento;
-	}
-
-	public String getDataPagamento() {
-		return dataPagamento;
-	}
-
-	public void setDataPagamento(String dataPagamento) {
-		this.dataPagamento = dataPagamento;
-	}
 	
+	public String getMesDesembolso() {
+		return mesDesembolso;
+	}
+
+	public void setMesDesembolso(String mesDesembolso) {
+		this.mesDesembolso = mesDesembolso;
+	}
+
+	public String getMesPagamento() {
+		return mesPagamento;
+	}
+
+	public void setMesPagamento(String mesPagamento) {
+		this.mesPagamento = mesPagamento;
+	}
+
 	public Contrato getContrato() {
 		return contrato;
 	}

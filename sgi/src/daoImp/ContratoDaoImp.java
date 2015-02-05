@@ -31,11 +31,7 @@ implements ContratoDao{
 		
 		if(StringUtils.isValid(filtro.getContrato())){
 			c.add(Restrictions.ilike("contrato", filtro.getContrato(),MatchMode.ANYWHERE));
-		}
-		
-		if(filtro.getFonteRecurso()!=null){
-			c.add(Restrictions.eq("contrato", filtro.getFonteRecurso()));
-		}
+		}		
 						
 		lista = c.list();
 		return lista;

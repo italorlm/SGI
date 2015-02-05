@@ -58,16 +58,6 @@
 		                		</rich:suggestionbox>
 					</h:panelGrid>
 					
-					<h:panelGrid columns="3">
-						<h:outputText value="Fonte de Recurso:" />							
-						<h:selectOneMenu id="fonteRecurso" converter="entityConverter" 
-							value="#{contratoController.filtro.fonteRecurso}">
-						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
-						  	<f:selectItems value="#{fonteRecursoController.selectItems}"/>
-						</h:selectOneMenu>								
-					</h:panelGrid>
-														
-					
 					<ui:decorate template="../../templates/listagem/acoes.xhtml">
 		    	     <ui:param name="filtrar" value="filtrar" />
 			         <ui:param name="novo" value="novo" />
@@ -108,10 +98,6 @@
 									<h:outputText styleClass="headerText" value="Exercicio" />
 								</rich:column>
 								
-								<rich:column style="text-align:center">
-									<h:outputText styleClass="headerText" value="Fonte Recurso" />
-								</rich:column>
-								
 								<rich:column/>
 							
 							</rich:columnGroup>
@@ -128,10 +114,6 @@
 						<rich:column style="text-align:center">
 							<h:outputText value="#{row.exercicio}" />
 						</rich:column>
-						
-						<rich:column style="text-align:center">
-							<h:outputText value="#{row.fonteRecurso.nome}" />
-						</rich:column>	
 						
 						<ui:decorate template="../../templates/listagem/editar.xhtml">
 					       <ui:param name="editar" value="editar"/>
