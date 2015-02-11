@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.envers.Audited;
 
@@ -39,6 +40,9 @@ public class ContratoParcela extends BaseModel {
 	@ManyToOne
 	@JoinColumn(name="contrato_id")
 	Contrato contrato;
+	
+	@Transient
+	boolean editado;
 
 	public Long getId() {
 		return id;
@@ -86,6 +90,14 @@ public class ContratoParcela extends BaseModel {
 
 	public void setValorParcial(String valorParcial) {
 		this.valorParcial = valorParcial;
+	}
+	
+	public boolean isEditado() {
+		return editado;
+	}
+
+	public void editado() {
+		this.editado = true;
 	}
 
 	@Override
