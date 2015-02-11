@@ -21,13 +21,13 @@
 				<rich:tabPanel width="80%" height="150">
 					<br />
 
-					<rich:tab label="CADASTRO DE CONTRATO/CONVÊNIO">
+					<rich:tab label="CADASTRO DE CONTRATO/CONVÊNIO" switchType="client">
 
 						<h:panelGrid columns="10">
 							<h:outputText value="Tipo:" />
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="12" />
-							<h:selectOneMenu id="tipo"
+							<h:selectOneMenu id="tipo" 
 								value="#{contratoController.objeto.tipo}" required="true"
 								requiredMessage="Informe o Tipo.">
 								<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -104,7 +104,10 @@
 
 							<h:outputText value="Parcelas:" />
 							<h:inputText id="parcelas"
-								value="#{contratoController.objeto.parcelas}" size="10" />
+								value="#{contratoController.objeto.parcelas}" size="5"	>
+								<a4j:support event="onblur" action="#{contratoController.validaQtdParcela}"
+									reRender="parcelas"/>
+							</h:inputText>
 						</h:panelGrid>
 
 						<rich:spacer height="10" />
@@ -413,6 +416,157 @@
 
 						</fieldset>
 					</rich:tab>
+					
+					<rich:tab label="CADASTRO DE ADITIVO" switchType="client" 
+							rendered="#{contratoController.objeto.id!=null}">
+						<h:panelGrid columns="11">
+							<h:outputText value="Tipo:" />
+							<h:selectOneMenu id="tipoAditivo"  
+								value="#{contratoController.contratoAditivo.tipo}">
+							    <f:selectItem itemLabel="Selecione" itemValue=""/>
+							    <f:selectItem itemLabel="Recurso" itemValue="1"/>
+								<f:selectItem itemLabel="Tempo" itemValue="2"/>																						   							   
+							</h:selectOneMenu>
+							
+							<rich:spacer width="5"/>
+							
+							<h:outputText value="Data:" />								
+								<rich:calendar id="dataAditivo" 
+									value="#{contratoController.contratoAditivo.data}"
+									datePattern="dd/MM/yyyy" size="5" />
+						</h:panelGrid>
+						
+						<rich:spacer height="10"/>
+						
+						<h:panelGrid columns="5" id="panelButton">
+							<h:commandButton styleClass="buttonAdicionar" value="Aditivar"
+								action="#{contratoController.adicionarAditivo}" 
+								rendered="#{contratoController.contratoAditivo.id==null}"/>
+								
+							<h:commandButton styleClass="buttonAdicionar" value="Alterar"
+								action="#{contratoController.adicionarAditivo}" 
+								rendered="#{contratoController.contratoAditivo.id!=null}"/>
+							
+							<rich:spacer height="5"/>
+							
+							<a4j:commandButton styleClass="buttonAdicionar" 
+								value="Novo Aditivo" action="#{contratoController.limparAditivo}" 
+								rendered="#{contratoController.contratoAditivo.id!=null}" 
+								reRender="dataAditivo,tipoAditivo,panelButton"/>
+						</h:panelGrid>
+							
+						<rich:spacer height="10"/>
+						
+						<fieldset>
+							<legend>
+								<font color="blue">Aditivos</font>	
+							</legend>
+						
+							<rich:dataTable align="center" width="74%" rows="10"
+								onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
+								onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+								rowClasses="odd-row,even-row" rendered="true"
+								columnClasses="col" var="row">
+								<f:facet name="header">
+									<rich:columnGroup>
+										<rich:column style="text-align:center">
+											<h:outputText value="Aditivos" />
+										</rich:column>
+
+									</rich:columnGroup>
+								</f:facet>
+							</rich:dataTable>
+
+							<a4j:outputPanel ajaxRendered="true" id="painelAditivo">
+								<rich:dataTable value="#{contratoController.aditivos}"
+									align="center" width="74%" id="tabelaAditivo" rows="10"
+									onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
+									onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+									rowClasses="odd-row,even-row" rendered="true"
+									columnClasses="col" var="row">
+									<f:facet name="header">
+										<rich:columnGroup>
+
+											<rich:column style="text-align:center">
+												<h:outputText styleClass="headerText"
+													value="Data" />
+											</rich:column>
+
+											<rich:column style="text-align:center">
+												<h:outputText styleClass="headerText"
+													value="Tipo" />
+											</rich:column>
+
+											<rich:column />
+											<rich:column />
+
+										</rich:columnGroup>
+									</f:facet>
+									
+									<rich:column style="text-align:center">
+										<h:outputText value="#{row.data}" />
+									</rich:column>
+
+									<rich:column style="text-align:center">
+										<h:outputText value="#{contratoController.retornaTipoAditivo(row.tipo)}" />
+									</rich:column>
+
+									<rich:column style="text-align:center">
+										<a4j:commandLink reRender="dataAditivo,tipoAditivo,panelButton" 
+											rendered="#{row.id!=null}" id="commandEditar" 
+											styleClass="buttonVisualizar" value="" >
+											<f:setPropertyActionListener value="#{row}"
+												target="#{contratoController.contratoAditivo}" />
+										</a4j:commandLink>
+									</rich:column>
+
+									<rich:column>
+										<a4j:commandLink immediate="true" rendered="#{row.id!=null}"
+											oncomplete="Richfaces.showModalPanel('excluirAditivo')"
+											id="commandRemoverAditivo" styleClass="buttonRemover"
+											value="">
+											<f:setPropertyActionListener value="#{row}"
+												target="#{contratoController.contratoAditivo}" />
+										</a4j:commandLink>
+									</rich:column>
+									<f:facet name="footer">
+										<rich:columnGroup>
+											<rich:column style="text-align:center" colspan="12">
+												<rich:datascroller for="tabelaAditivo" pageIndexVar="pageIndex"
+													pagesVar="pages" id="sc2" maxPages="8" align="right">
+													<f:facet name="pages" styleClass="pages">
+														<h:outputText value="#{pageIndex} / #{pages}" />
+													</f:facet>
+													<f:facet name="next">
+														<h:outputText value=">" />
+													</f:facet>
+													<f:facet name="next_disabled">
+														<h:outputText value=">" />
+													</f:facet>
+													<f:facet name="previous">
+														<h:outputText value="&lt;" />
+													</f:facet>
+													<f:facet name="previous_disabled">
+														<h:outputText value="&lt;" />
+													</f:facet>
+												</rich:datascroller>
+												<div align="right">
+													<t:dataScroller id="_scroll" for="tabelaAditivo"
+														rowsCountVar="rowsCount" firstRowIndexVar="firstRowIndex"
+														lastRowIndexVar="lastRowIndex" rendered="true">
+														<h:outputText value="Número de Registros: #{contratoController.aditivos.size()}"
+															style="font-weight: bold;" />
+													</t:dataScroller>
+												</div>
+											</rich:column>
+										</rich:columnGroup>
+									</f:facet>
+									
+								</rich:dataTable>
+							</a4j:outputPanel>
+							</fieldset>											
+					</rich:tab>
+					
 				</rich:tabPanel>
 
 				<br />
@@ -649,6 +803,45 @@
 											onclick="Richfaces.hideModalPanel('excluirArquivo')" /> <a4j:commandButton
 											styleClass="buttonAdicionar" value="Não"
 											onclick="Richfaces.hideModalPanel('excluirArquivo')" /></td>
+								</tr>
+							</table>
+						</h:panelGrid>
+					</h:form>
+				</center>
+			</rich:modalPanel>
+		</a4j:outputPanel>
+		
+		<a4j:outputPanel id="panelExcluirAditivo">
+			<rich:modalPanel id="excluirAditivo" width="280" height="120"
+				resizeable="false" moveable="true">
+				<f:facet name="header">
+					<h:outputText value="Atenção!" />
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:graphicImage value="/images/fechar.png" styleClass="hidelink"
+							id="hidelinkAditivo" />
+						<rich:componentControl for="confirmaExcluir" attachTo="hidelink"
+							operation="hide" event="onclick" />
+					</h:panelGroup>
+				</f:facet>
+				<center>
+					<h:form>
+
+						<h:panelGrid columns="3" cellspacing="1">
+							<table align="center">
+								<tr align="center">
+									<td><h:outputText align="left"
+											value="Confirma exclusão do item?" /></td>
+								</tr>
+
+								<tr>
+									<td><a4j:commandButton reRender="tabelaAditivo"
+											styleClass="buttonAdicionar" value="Sim"
+											action="#{contratoController.excluirAditivo}"
+											onclick="Richfaces.hideModalPanel('excluirAditivo')" /> <a4j:commandButton
+											styleClass="buttonAdicionar" value="Não"
+											onclick="Richfaces.hideModalPanel('excluirAditivo')" /></td>
 								</tr>
 							</table>
 						</h:panelGrid>
