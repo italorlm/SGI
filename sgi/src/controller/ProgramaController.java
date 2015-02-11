@@ -85,7 +85,8 @@ public class ProgramaController extends GenericController<Programa, ProgramaDao>
 				for(ProgramaMap programaMap : programaMaps) {
 					if(objeto.getId()!=null) {
 						programaMap.setPrograma(objeto);
-						programaMapDao.salvarOuAtualizar(programaMap);
+						if(programaMap.isEditado()==true)
+							programaMapDao.salvarOuAtualizar(programaMap);
 					}				
 				}
 			}
@@ -116,6 +117,9 @@ public class ProgramaController extends GenericController<Programa, ProgramaDao>
 	}
 	
 	public void adicionarMap() {
+		if(programaMap.getId()!=null)
+			programaMaps.remove(programaMap);
+		programaMap.editado();
 		programaMaps.add(programaMap);
 		mostrarModalMap = false;
 	}
