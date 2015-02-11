@@ -30,6 +30,9 @@ public class ProgramaMap extends BaseModel {
 	
 	@Transient
 	boolean check;
+	
+	@Transient
+	boolean editado = false;
 
 	public Long getId() {
 		return id;
@@ -61,6 +64,14 @@ public class ProgramaMap extends BaseModel {
 
 	public void setCheck(boolean check) {
 		this.check = check;
+	}
+	
+	public boolean isEditado() {
+		return editado;
+	}
+
+	public void editado() {
+		this.editado = true;
 	}
 
 	@Override

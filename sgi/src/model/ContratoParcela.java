@@ -42,7 +42,7 @@ public class ContratoParcela extends BaseModel {
 	Contrato contrato;
 	
 	@Transient
-	boolean editado;
+	boolean editado = false;
 
 	public Long getId() {
 		return id;
