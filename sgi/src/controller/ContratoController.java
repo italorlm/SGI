@@ -20,6 +20,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Contrato;
+import model.ContratoAditivo;
 import model.ContratoArquivo;
 import model.ContratoFonteRecurso;
 import model.ContratoParcela;
@@ -30,6 +31,7 @@ import org.richfaces.model.UploadItem;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import dao.ContratoAditivoDao;
 import dao.ContratoArquivoDao;
 import dao.ContratoDao;
 import dao.ContratoFonteRecursoDao;
@@ -39,12 +41,13 @@ import dao.ContratoParcelaDao;
 @Scope("globalSession")
 public class ContratoController extends GenericController<Contrato, ContratoDao> {
 //	private String pastaUpload = "C:/Apache/apache-tomcat-6.0.41/uploads/sgi/contrato"; //HomeLocal
-//	private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi/contrato"; JobLocal
+//	private String pastaUpload = "C:/apache-tomcat-6.0/uploads/sgi/contrato"; //JobLocal
 	private String pastaUpload = "E:/Tomcat 6.0/uploads/sgi/contrato"; //Proteus
 	
 	List<SelectItem> selectItems;
 	List<ContratoParcela> parcelasExcluidas, parcelas;	
 	List<ContratoArquivo> arquivosExcluidos, arquivos;
+	List<ContratoAditivo> aditivosExcluidos, aditivos;
 	List<ContratoFonteRecurso> fonteRecursosExcluidos, fonteRecursos;
 	List<UploadItem> uploadItems;
 	
@@ -58,6 +61,7 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	ContratoParcela contratoParcela;
 	ContratoArquivo contratoArquivo;
 	ContratoFonteRecurso contratoFonteRecurso;
+	ContratoAditivo contratoAditivo;
 	
 	FonteRecurso fonteRecursoTemp;
 	
@@ -69,6 +73,9 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	
 	@Resource
 	ContratoFonteRecursoDao contratoFonteRecursoDao;
+	
+	@Resource
+	ContratoAditivoDao contratoAditivoDao;
 	
 	final static String DAO_CONCRETO = "contratoDaoImp";
 
@@ -85,7 +92,10 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		arquivosExcluidos = new ArrayList<ContratoArquivo>();
 		fonteRecursos = new ArrayList<ContratoFonteRecurso>();
 		fonteRecursosExcluidos = new ArrayList<ContratoFonteRecurso>();
+		aditivos = new ArrayList<ContratoAditivo>();
+		aditivosExcluidos = new ArrayList<ContratoAditivo>();
 		uploadItems = new ArrayList<UploadItem>();
+		contratoAditivo = new ContratoAditivo();
 		super.limpar();
 	}
 
@@ -129,7 +139,8 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 				for(ContratoParcela contratoParcela : parcelas) {
 					if(objeto.getId()!=null) {
 						contratoParcela.setContrato(objeto);
-						contratoParcelaDao.salvarOuAtualizar(contratoParcela);
+						if(contratoParcela.isEditado()==true)
+							contratoParcelaDao.salvarOuAtualizar(contratoParcela);
 					}				
 				}
 			}
@@ -146,7 +157,8 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 				for(ContratoFonteRecurso contratoFonteRecurso : fonteRecursos) {
 					if(objeto.getId()!=null) {
 						contratoFonteRecurso.setContrato(objeto);
-						contratoFonteRecursoDao.salvarOuAtualizar(contratoFonteRecurso);
+						if(contratoFonteRecurso.isEditado()==true)
+							contratoFonteRecursoDao.salvarOuAtualizar(contratoFonteRecurso);
 					}				
 				}
 			}
@@ -155,6 +167,22 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 				for(ContratoFonteRecurso contratoFonteRecurso : fonteRecursosExcluidos) {
 					if(contratoFonteRecurso.getId()!=null) {
 						contratoFonteRecursoDao.excluir(contratoFonteRecurso);
+					}
+				}
+			}
+			
+			if(!aditivos.isEmpty()) {
+				for(ContratoAditivo contratoAditivo : aditivos) {
+					contratoAditivo.setContrato(objeto);
+					if(contratoAditivo.isEditado()==true)
+						contratoAditivoDao.salvarOuAtualizar(contratoAditivo);									
+				}
+			}
+			
+			if(!aditivosExcluidos.isEmpty()) {
+				for(ContratoAditivo contratoAditivo : aditivosExcluidos) {
+					if(contratoAditivo.getId()!=null) {
+						contratoAditivoDao.excluir(contratoAditivo);
 					}
 				}
 			}
@@ -183,7 +211,7 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 				}
 			}
 			
-			uploadItems.clear();
+			limpar();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}	
@@ -196,11 +224,12 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		parcelas = contratoParcelaDao.findByContrato(objeto);
 		arquivos = contratoArquivoDao.findByContrato(objeto);
 		fonteRecursos = contratoFonteRecursoDao.findByContrato(objeto);
+		aditivos = contratoAditivoDao.findByContrato(objeto);
 		return super.editar();
 	}
 	
 	public void mostrarModalParcela(ActionEvent event) {
-		contratoParcela = new ContratoParcela();
+		contratoParcela = new ContratoParcela();		
 		mostrarModalParcela = true;
 	}
 	
@@ -210,17 +239,27 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	}
 	
 	public void adicionarParcela() {
-		String msgErro = "Quantidade máxima de parcelas já cadastrada. Aumente a quantidade de parcelas caso for necessário.";
-		if(contratoParcela.getId()==null) {
+		String msgErro = null;		
+		if(objeto.getParcelas()!=null) {
+			if(contratoParcela.getId()!=null)
+				parcelas.remove(contratoParcela);
 			if(parcelas.size() < objeto.getParcelas()) {
+				contratoParcela.editado();
 				parcelas.add(contratoParcela);
 				mostrarModalParcela = false;
 			} else {
-				FacesContext context = FacesContext.getCurrentInstance();
-		        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));
-		        mostrarModalParcela = false;
+				msgErro = "Quantidade máxima de parcelas já cadastrada. "
+						+ "Aumente a quantidade de parcelas caso for necessário.";
 			}
-		}		
+		} else {
+			msgErro = "Informe a quantidade de parcelas.";
+		}
+		
+		if(msgErro!=null) {					
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));
+		    mostrarModalParcela = false;
+		}				
 	}
 	
 	public void excluirParcela() {
@@ -237,7 +276,10 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 	public void adicionarFonteRecurso() {
 		String msgErro = "Selecione uma Fonte de Recurso ao Adicionar.";
 		if(fonteRecursoTemp!=null) {
+			contratoFonteRecurso.editado();
 			contratoFonteRecurso.setFonteRecurso(fonteRecursoTemp);
+			if(contratoFonteRecurso.getId()!=null)
+				fonteRecursos.remove(contratoFonteRecurso);
 			fonteRecursos.add(contratoFonteRecurso);
 			mostrarModalFonteRecurso = false;
 		} else {
@@ -258,6 +300,27 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		fonteRecursosExcluidos.add(contratoFonteRecurso);
 	}
 	
+	public void adicionarAditivo() {		
+		if(contratoAditivo!=null) {
+			contratoAditivo.editado();
+			if(contratoAditivo.getId()!=null)
+				aditivos.remove(contratoAditivo);
+			aditivos.add(contratoAditivo);			
+		} 		
+		contratoAditivo = new ContratoAditivo();
+	}
+	
+	public void excluirAditivo() {
+		if(!aditivos.isEmpty()) {
+			for(Iterator<ContratoAditivo> i = aditivos.iterator(); i.hasNext();) {
+				if(i.next().equals(contratoAditivo))
+					i.remove();
+			}
+		}
+		
+		aditivosExcluidos.add(contratoAditivo);
+	}
+	
 	public void excluirArquivo() {
 		if(!arquivos.isEmpty()) {
 			for(Iterator<ContratoArquivo> i = arquivos.iterator(); i.hasNext();) {
@@ -267,6 +330,15 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		}
 		
 		arquivosExcluidos.add(contratoArquivo);
+	}
+	
+	public void validaQtdParcela() {
+		if(objeto.getParcelas() < parcelas.size())
+			objeto.setParcelas(parcelas.size());		
+	}
+	
+	public void limparAditivo() {
+		contratoAditivo = new ContratoAditivo();
 	}
 	
 	@Override
@@ -305,7 +377,7 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		response.setHeader("Content-Disposition", 
 				"attachment;filename=\"" + contratoArquivo.getArquivo() + "\"");
 		response.setContentLength(arquivo.length);
-		// isso faz abrir a janelinha de download
+		// isso faz abrir a janela de download
 		response.setContentType("application/download");
 		// envia o arquivo de volta
 		try {
@@ -337,6 +409,17 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 			e.printStackTrace();
 		}
 		return sendBuf;
+	}
+	
+	public String retornaTipoAditivo(String string) {	
+		switch (Integer.parseInt(string)) {
+		case 1:				
+			return "Recurso";
+		case 2:				
+			return "Tempo";
+		default:
+			return null;		
+		}
 	}
 
 	public void setSelectItems(List<SelectItem> selectItems) {
@@ -473,9 +556,31 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 
 	public void setFonteRecursoTemp(FonteRecurso fonteRecursoTemp) {
 		this.fonteRecursoTemp = fonteRecursoTemp;
+	}
+
+	public ContratoAditivo getContratoAditivo() {
+		return contratoAditivo;
+	}
+
+	public void setContratoAditivo(ContratoAditivo contratoAditivo) {
+		this.contratoAditivo = contratoAditivo;
+	}
+
+	public List<ContratoAditivo> getAditivosExcluidos() {
+		return aditivosExcluidos;
+	}
+
+	public void setAditivosExcluidos(List<ContratoAditivo> aditivosExcluidos) {
+		this.aditivosExcluidos = aditivosExcluidos;
+	}
+
+	public List<ContratoAditivo> getAditivos() {
+		return aditivos;
+	}
+
+	public void setAditivos(List<ContratoAditivo> aditivos) {
+		this.aditivos = aditivos;
 	}	
 	
-	
-			
 }
 
