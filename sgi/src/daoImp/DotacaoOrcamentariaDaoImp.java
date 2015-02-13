@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import util.StringUtils;
 import dao.DotacaoOrcamentariaDao;
 
 @Component
@@ -24,7 +25,7 @@ implements DotacaoOrcamentariaDao{
 		List<DotacaoOrcamentaria> lista = new ArrayList<DotacaoOrcamentaria>();
 		Criteria c = criaCriteria();
 		
-		if(filtro.getCodigo()!=0) {
+		if(StringUtils.isValid(filtro.getCodigo())) {
 			c.add(Restrictions.eq("codigo", filtro.getCodigo()));
 		}
 		

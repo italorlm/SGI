@@ -21,7 +21,7 @@ public class DotacaoOrcamentaria extends BaseModel {
 	@Id
 	Long id;
 	
-	Integer codigo;
+	String codigo;
 	
 	String valor;
 		
@@ -41,11 +41,11 @@ public class DotacaoOrcamentaria extends BaseModel {
 		this.id = id;
 	}
 
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
