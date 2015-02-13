@@ -199,7 +199,8 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 		if(municipios.size()!=0) {
 			itemsMunicipiosResidencial.clear();	
 			for(Municipio municipio : municipios) {
-				itemsMunicipiosResidencial.add(new SelectItem(municipio, municipio.getNome().toUpperCase()));
+				itemsMunicipiosResidencial.add(new SelectItem(
+						municipio, municipio.getNome().toUpperCase()));
 			}
 		} 
 		
