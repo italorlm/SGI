@@ -20,19 +20,20 @@
 
 					<rich:tab label="CADASTRO DE DOTAÇÃO ORÇAMENTÁRIA">
 					
-						<h:panelGrid columns="4">
+						<h:panelGrid columns="5">
 							<h:outputText value="Código:" />
 							<div class="campoObrigatorio">*</div>
-								<rich:spacer width="5" />
+								<rich:spacer width="1" />
 							<h:inputText id="codigo" value="#{dotacaoOrcamentariaController.objeto.codigo}"
 								required="true" requiredMessage="Informe o Código." size="15"/>								
 						</h:panelGrid>
 						
 						<rich:spacer height="5" />
 						
-						<h:panelGrid columns="3">						
+						<h:panelGrid columns="5">						
 							<h:outputText value="Valor:"/>
-								<rich:spacer width="20" />
+							<div class="campoObrigatorio">*</div>
+								<rich:spacer width="9" />
 							<h:inputText size="20" id="valor" value="#{dotacaoOrcamentariaController.objeto.valor}" 
 									required="true" requiredMessage="Informe Valor Trimestre">
 						    	<rich:jQuery selector="#valor"
@@ -40,7 +41,7 @@
 						  	</h:inputText>							
 						</h:panelGrid>
 						
-						<rich:spacer height="10" />
+						<rich:spacer height="5" />
 						
 						<h:panelGrid columns="3">
 							<h:outputText value="Programa:" />							
@@ -51,11 +52,11 @@
 							</h:selectOneMenu>								
 						</h:panelGrid>
 						
-						<rich:spacer height="10" />
+						<rich:spacer height="5" />
 						
 						<h:panelGrid columns="3">
 							<h:outputText value="Projeto:" />
-							<rich:spacer width="5" />
+							<rich:spacer width="8" />
 							<h:selectOneMenu id="projeto" converter="entityConverter" 
 								value="#{dotacaoOrcamentariaController.objeto.projeto}">
 							  	<f:selectItem itemLabel="Selecione" itemValue=""/>
