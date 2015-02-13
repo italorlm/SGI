@@ -28,11 +28,7 @@ implements ContratoDao{
 		if(StringUtils.isValid(filtro.getExecutor())){
 			c.add(Restrictions.ilike("executor", filtro.getExecutor(),MatchMode.ANYWHERE));
 		}
-		
-		if(StringUtils.isValid(filtro.getContrato())){
-			c.add(Restrictions.ilike("contrato", filtro.getContrato(),MatchMode.ANYWHERE));
-		}		
-						
+								
 		lista = c.list();
 		return lista;
 	}

@@ -25,8 +25,6 @@ public class Contrato extends BaseModel{
 	
 	String executor;
 	
-	String contrato;
-	
 	String aditivo;
 	
 	String exercicio; //Integer?
@@ -55,14 +53,6 @@ public class Contrato extends BaseModel{
 
 	public void setExecutor(String executor) {
 		this.executor = executor;
-	}
-
-	public String getContrato() {
-		return contrato;
-	}
-
-	public void setContrato(String contrato) {
-		this.contrato = contrato;
 	}
 
 	public String getAditivo() {

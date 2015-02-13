@@ -38,12 +38,12 @@
 
 							<rich:spacer width="10" />
 							<a4j:outputPanel id="panel">
-								<h:outputText id="contrato" value="Contrato:"
+								<h:outputText id="contrato" value="Nº Contrato:"
 									rendered="#{contratoController.objeto.tipo==1}" />
-								<h:outputText value="Convênio:"
+								<h:outputText value="Nº Convênio:"
 									rendered="#{contratoController.objeto.tipo==2}" />
 								<rich:spacer width="5" />
-								<h:inputText value="#{contratoController.objeto.contrato}"
+								<h:inputText value="#{contratoController.objeto.numero}"
 									size="20"
 									rendered="#{contratoController.objeto.tipo==1 or 
 									contratoController.objeto.tipo==2}" />
@@ -56,12 +56,6 @@
 							<h:outputText value="Exercicio:" />
 							<h:inputText id="exercicio"
 								value="#{contratoController.objeto.exercicio}" size="10" />
-
-							<rich:spacer width="10" />
-
-							<h:outputText value="Nº:" />
-							<h:inputText id="numero"
-								value="#{contratoController.objeto.numero}" size="30" />
 						</h:panelGrid>
 
 						<rich:spacer height="10" />

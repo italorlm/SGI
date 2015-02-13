@@ -123,7 +123,7 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		selectItems = new ArrayList<SelectItem>();
 		if(selectItems.size()==0){
 			for(Contrato c : getListagem()){
-				selectItems.add(new SelectItem(c,c.getContrato()));
+				selectItems.add(new SelectItem(c,c.getNumero()));
 			}
 		}
 		return selectItems;
@@ -346,10 +346,7 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		for(Contrato contrato : getListagem()) {
 			if(contrato.getExecutor().toLowerCase().contains(userInput.toLowerCase()))
 				if(!suggestions.contains(contrato))
-					suggestions.add(contrato);
-			if(contrato.getContrato().toLowerCase().contains(userInput.toLowerCase()))
-				if(!suggestions.contains(contrato))
-					suggestions.add(contrato);
+					suggestions.add(contrato);			
 		}
 	}
 	

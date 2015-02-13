@@ -43,21 +43,7 @@
 				                    </h:column>  
 		                		</rich:suggestionbox>
 					</h:panelGrid>
-					
-					<h:panelGrid columns="3">					
-						<h:outputText value="Contrato:"/>					
-							<rich:spacer width="20"/>
-							<h:inputText id="contrato"
-								valor="#{contratoController.filtro.contrato}" size="30" />
-								<rich:suggestionbox id="suggestionBoxContrato" for="contrato" 
-                    				suggestionAction="#{contratoController.suggestionBox}" var="row" >  
-                      
-				                    <h:column>  
-				                        <h:outputText value="#{row.contrato}" />  
-				                    </h:column>  
-		                		</rich:suggestionbox>
-					</h:panelGrid>
-					
+										
 					<ui:decorate template="../../templates/listagem/acoes.xhtml">
 		    	     <ui:param name="filtrar" value="filtrar" />
 			         <ui:param name="novo" value="novo" />
@@ -89,11 +75,7 @@
 								<rich:column style="text-align:center">
 									<h:outputText styleClass="headerText" value="Executor" />
 								</rich:column>
-								
-								<rich:column style="text-align:center">
-									<h:outputText styleClass="headerText" value="Contrato" />
-								</rich:column>
-								
+															
 								<rich:column style="text-align:center">
 									<h:outputText styleClass="headerText" value="Exercicio" />
 								</rich:column>
@@ -106,10 +88,6 @@
 						<rich:column style="text-align:center">
 							<h:outputText value="#{row.executor}" />
 						</rich:column>
-						
-						<rich:column style="text-align:center">
-							<h:outputText value="#{row.contrato}" />
-						</rich:column>	
 						
 						<rich:column style="text-align:center">
 							<h:outputText value="#{row.exercicio}" />
