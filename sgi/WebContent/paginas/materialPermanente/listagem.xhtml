@@ -34,7 +34,8 @@
 					
 					<h:outputText value="Descrição:"/>					
 					<rich:spacer width="20"/>
-					<h:inputText id="descricao" value="#{materialPermanenteController.filtro.descricao}" size="60" />
+					<h:inputText id="descricao" value="#{materialPermanenteController.filtro.descricao}" 
+						style="text-transform:uppercase" size="60" />
 						<rich:suggestionbox id="suggestionBox" for="descricao" nothingLabel="Nenhum registro encontrado"
                     		suggestionAction="#{materialPermanenteController.suggestionBox}" var="row" >  
                       

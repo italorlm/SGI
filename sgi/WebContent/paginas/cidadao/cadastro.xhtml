@@ -26,7 +26,7 @@
 							<h:outputText value="Nome:" />
 								<div class="campoObrigatorio">*</div>
 								<rich:spacer width="8" />							
-							<h:inputText id="nome" size="90"
+							<h:inputText id="nome" size="90" style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.nome}" />								
 						</h:panelGrid>
 						
@@ -44,9 +44,9 @@
 	                        
 		                      <h:outputText value="Sexo:" />
 							<h:selectOneMenu id="sexo" value="#{cidadaoController.objeto.sexo}">
-							  <f:selectItem itemLabel="Selecione" itemValue=""/>
-							  <f:selectItem itemLabel="Feminino" itemValue="1"/>
-							  <f:selectItem itemLabel="Masculino" itemValue="2"/>
+							  <f:selectItem itemLabel="SELECIONE" itemValue=""/>
+							  <f:selectItem itemLabel="FEMININO" itemValue="1"/>
+							  <f:selectItem itemLabel="MASCULINO" itemValue="2"/>
 							</h:selectOneMenu> 								 
 						</h:panelGrid>
 						
@@ -57,7 +57,7 @@
 							<div class="campoObrigatorio">*</div>						
 							<rich:spacer width="10"/>
 							<h:inputText id="cpf" value="#{cidadaoController.objeto.cpf}"
-								maxlength="11">
+								maxlength="11" style="text-transform:uppercase">
 								<rich:jQuery selector="#cpf" query="mask('999.999.999-99')" 
 									timing="onload"/>								
 							</h:inputText>
@@ -65,18 +65,19 @@
 							<rich:spacer width="16" />
 							<h:outputText value="RG:" />
 							<h:inputText id="rg" size="20" value="#{cidadaoController.objeto.rg}"
-								maxlength="18"/>
+								maxlength="18" style="text-transform:uppercase"/>
 							
 							<rich:spacer width="16" />
 							<h:outputText value="Órgão Emissor:" />
-							<h:inputText id="orgaoEmissorRg" size="20" 
+							<h:inputText id="orgaoEmissorRg" size="20" style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.orgaoEmissorRg}"/>
 							
 							<rich:spacer width="16" />
 							<h:outputText value="Data Emissão:" />
 							<rich:spacer width="1" />							
 							<h:inputText id="dtEmissaoRg" value="#{cidadaoController.objeto.dataEmissaoRg}"
-                                    	size="10" converterMessage="Data de Emissão do RG Inválida.">
+                                    	size="10" converterMessage="Data de Emissão do RG Inválida."
+                                    	style="text-transform:uppercase" >
                                     <rich:jQuery selector="#dtEmissaoRg" query="mask('99/99/9999')"
 										timing="onload" />
                             </h:inputText>
@@ -107,12 +108,12 @@
 							<h:outputText value="Etnia:" />
 							<h:selectOneMenu id="etnia"  
 								value="#{cidadaoController.objeto.etnia}">
-							    <f:selectItem itemLabel="Selecione" itemValue=""/>
-							    <f:selectItem itemLabel="Amarelo" itemValue="1"/>
-								<f:selectItem itemLabel="Branco" itemValue="2"/>
-								<f:selectItem itemLabel="Indio" itemValue="3"/>
-								<f:selectItem itemLabel="Negro" itemValue="4"/>
-								<f:selectItem itemLabel="Pardo" itemValue="5"/>														   							   
+							    <f:selectItem itemLabel="SELECIONE" itemValue=""/>
+							    <f:selectItem itemLabel="AMARELO" itemValue="1"/>
+								<f:selectItem itemLabel="BRANCO" itemValue="2"/>
+								<f:selectItem itemLabel="INDIO" itemValue="3"/>
+								<f:selectItem itemLabel="NEGRO" itemValue="4"/>
+								<f:selectItem itemLabel="PARDO" itemValue="5"/>														   							   
 							</h:selectOneMenu>
 						</h:panelGrid>
 						
@@ -120,7 +121,7 @@
 						
 						<h:panelGrid columns="11">
 							<h:outputText value="Telefone Residencial:" />
-							<h:inputText id="telRes" size="15" 
+							<h:inputText id="telRes" size="15" style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.telefoneResidencial}">
 								<rich:jQuery selector="#telRes" query="mask('(99)9999-9999')"
 									timing="onload" />
@@ -128,7 +129,7 @@
 							
 							<rich:spacer width="25" />
 							<h:outputText value="Telefone Celular:" />
-							<h:inputText id="telCel" size="15" 
+							<h:inputText id="telCel" size="15" style="text-transform:uppercase" 
 								value="#{cidadaoController.objeto.telefoneCelular}">
 								<rich:jQuery selector="#telCel" query="mask('(99)9999-9999')"
 									timing="onload" />
@@ -136,7 +137,7 @@
 							
 							<rich:spacer width="16" />
 							<h:outputText value="Email:" />
-							<h:inputText id="email" size="30" 
+							<h:inputText id="email" size="30" style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.email}"/>
 						</h:panelGrid>
 						
@@ -145,12 +146,12 @@
 						<h:panelGrid columns="6">
 							<h:outputText value="Nome da Mãe:" />
 							<rich:spacer width="27" />
-							<h:inputText id="nomeMae" size="40" 
+							<h:inputText id="nomeMae" size="40" style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.nomeMae}"/>
 							<rich:spacer width="10" />
 							
 							<h:outputText value="Nome do Pai:" />
-							<h:inputText id="nomePai" size="40" 
+							<h:inputText id="nomePai" size="40" style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.nomePai}"/>
 						</h:panelGrid>
 						
@@ -181,17 +182,17 @@
 								<h:outputText value="Endereço:" />
 								<rich:spacer width="5"/>
 								<h:inputText id="endereco" size="55" disabled="#{cidadaoController.objeto.cepValido==true}"
-									value="#{cidadaoController.objeto.endereco}"/>
+									value="#{cidadaoController.objeto.endereco}" style="text-transform:uppercase"/>
 								<rich:spacer width="5"/>
 								
 								<h:outputText value="Numero:" />
 								<rich:spacer width="4"/>
-								<h:inputText id="numeroResidencia" size="5" 
+								<h:inputText id="numeroResidencia" size="5" style="text-transform:uppercase"
 									value="#{cidadaoController.objeto.numeroResidencia}"/>
 								<rich:spacer width="5"/>
 								
 								<h:outputText value="Complemento:" />
-								<h:inputText id="complemento" size="40" 
+								<h:inputText id="complemento" size="40" style="text-transform:uppercase"
 									value="#{cidadaoController.objeto.complemento}"/>
 								<rich:spacer width="5"/>
 							</h:panelGrid>
@@ -201,7 +202,7 @@
 							<h:panelGrid columns="13">	
 								<h:outputText value="Bairro:" />
 								<h:inputText id="bairro" size="38" disabled="#{cidadaoController.objeto.cepValido==true}"
-									value="#{cidadaoController.objeto.bairro}"/>
+									value="#{cidadaoController.objeto.bairro}" style="text-transform:uppercase"/>
 								<rich:spacer width="5"/>
 							
 								<h:outputText value="UF:" />
@@ -240,19 +241,19 @@
 						        <h:outputText value="Escolaridade" />
 						        <h:selectOneMenu id="escolaridade" 
 						        	value="#{cidadaoController.objeto.escolaridade}">
-						           	<f:selectItem itemLabel="Selecione" itemValue=""/>
-						           	<f:selectItem itemLabel="Ensino Fundamental Completo" itemValue="1"/>
-						           	<f:selectItem itemLabel="Ensino Fundamental Incompleto" itemValue="2"/>
-						           	<f:selectItem itemLabel="Ensino Medio Completo" itemValue="3"/>
-						           	<f:selectItem itemLabel="Ensino Medio Incompleto" itemValue="4"/>
-						           	<f:selectItem itemLabel="Ensino Superior Completo" itemValue="5"/>
-						           	<f:selectItem itemLabel="Ensino Superior Incompleto" itemValue="6"/>
-						           	<f:selectItem itemLabel="Especialização/MBA Completo" itemValue="7"/>
-						           	<f:selectItem itemLabel="Especialização/MBA Incompleto" itemValue="8"/>
-						           	<f:selectItem itemLabel="Mestrado Completo" itemValue="9"/>
-						           	<f:selectItem itemLabel="Mestrado Incompleto" itemValue="10"/>
-						           	<f:selectItem itemLabel="Doutorado Completo" itemValue="11"/>
-						           	<f:selectItem itemLabel="Doutorado Incompleto" itemValue="12"/>
+						           	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
+						           	<f:selectItem itemLabel="ENSINO FUNDAMENTAL COMPLETO" itemValue="1"/>
+						           	<f:selectItem itemLabel="ENSINO FUNDAMENTAL INCOMPLETO" itemValue="2"/>
+						           	<f:selectItem itemLabel="ENSINO MEDIO COMPLETO" itemValue="3"/>
+						           	<f:selectItem itemLabel="ENSINO MEDIO INCOMPLETO" itemValue="4"/>
+						           	<f:selectItem itemLabel="ENSINO SUPERIOR COMPLETO" itemValue="5"/>
+						           	<f:selectItem itemLabel="ENSINO SUPERIOR INCOMPLETO" itemValue="6"/>
+						           	<f:selectItem itemLabel="ESPECIALIZAÇÃO/MBA COMPLETO" itemValue="7"/>
+						           	<f:selectItem itemLabel="ESPECIALIZAÇÃO/MBA INCOMPLETO" itemValue="8"/>
+						           	<f:selectItem itemLabel="MESTRADO COMPLETO" itemValue="9"/>
+						           	<f:selectItem itemLabel="MESTRADO INCOMPLETO" itemValue="10"/>
+						           	<f:selectItem itemLabel="DOUTORADO COMPLETO" itemValue="11"/>
+						           	<f:selectItem itemLabel="DOUTORADO INCOMPLETO" itemValue="12"/>
 						        </h:selectOneMenu>
 							
 							</h:panelGrid>
@@ -263,16 +264,16 @@
 						        <h:outputText value="Frequenta Entidade de Ensino?" />
 						        <h:selectOneMenu id="freqEscola"
 						        	value="#{cidadaoController.objeto.frequentaEscola}">
-						           <f:selectItem itemLabel="Selecione" itemValue=""/>
-						           <f:selectItem itemLabel="Sim" itemValue="1"/>
-						           <f:selectItem itemLabel="Não" itemValue="2"/>
+						           <f:selectItem itemLabel="SELECIONE" itemValue=""/>
+						           <f:selectItem itemLabel="SIM" itemValue="1"/>
+						           <f:selectItem itemLabel="NÃO" itemValue="2"/>
 						           <a4j:support event="onchange" reRender="nomeEscola"/>
 						        </h:selectOneMenu>
 						        
 						        <rich:spacer width="10"/>
 															
 						        <h:outputLabel value="Nome da Entidade de Ensino:" />
-						        <h:inputText id="nomeEscola" size="50" 
+						        <h:inputText id="nomeEscola" size="50" style="text-transform:uppercase"
 						        	value="#{cidadaoController.objeto.nomeEscola}" 
 						        	disabled="#{cidadaoController.objeto.frequentaEscola!=1}" />					    
 					    	</h:panelGrid>					
@@ -288,7 +289,7 @@
 							<h:panelGrid columns="8">							 
 								<h:outputLabel value="Quantidade de Dependentes:" />
 								      <h:inputText id="qtdDependentes" size="8" maxlength="3" 
-					        	value="#{cidadaoController.objeto.qtdDependentes}"/>
+					        	value="#{cidadaoController.objeto.qtdDependentes}" style="text-transform:uppercase"/>
 						        <rich:spacer width="10"/>   					        
 							</h:panelGrid>
 							 
@@ -305,16 +306,16 @@
 					      <h:outputLabel value="Já Trabalhou?" />
 					      <h:selectOneMenu id="jaTrabalhou" 
 					      	value="#{cidadaoController.objeto.jaTrabalhou}">
-					           <f:selectItem itemLabel="Selecione" itemValue=""/>
-					           <f:selectItem itemLabel="Sim" itemValue="1"/>
-					           <f:selectItem itemLabel="Não" itemValue="2"/>
+					           <f:selectItem itemLabel="SELECIONE" itemValue=""/>
+					           <f:selectItem itemLabel="SIM" itemValue="1"/>
+					           <f:selectItem itemLabel="NÃO" itemValue="2"/>
 					           <a4j:support event="onchange" reRender="ultimaEmpresa"/>
 					      </h:selectOneMenu>
 					
 					      <rich:spacer height="20"/>
 					       
 					      <h:outputLabel value="Ultima Empresa:" />
-						      <h:inputText id="ultimaEmpresa" size="50" 
+						      <h:inputText id="ultimaEmpresa" size="50" style="text-transform:uppercase"
 						      	value="#{cidadaoController.objeto.ultimaEmpresa}"
 						      	disabled="#{cidadaoController.objeto.jaTrabalhou!=1}" />
 					 </h:panelGrid>
@@ -329,18 +330,19 @@
 					<h:panelGrid columns="16">					 
 					      <h:outputLabel value="CPTS:" />
 					  		<rich:spacer width="10"/>
-					      <h:inputText id="numCpts" size="30" 
+					      <h:inputText id="numCpts" size="30" style="text-transform:uppercase"
 					      	value="#{cidadaoController.objeto.numeroCpts}"/>
 					      <rich:spacer width="10"/>
 					           
 					      <h:outputLabel value="Série:" />
-					      	<h:inputText id="serieCpts" size="15" 
+					      	<h:inputText id="serieCpts" size="15" style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.serieCpts}"/>
 					      <rich:spacer width="10"/>
 					       
 					      <h:outputLabel value="Data Emissão:" />
 								<h:inputText id="dtEmissaoCpts" value="#{cidadaoController.objeto.dataEmissaoCpts}"
-                                    	size="10" converterMessage="Data de Emissão da CPTS Inválida.">
+                                    	size="10" converterMessage="Data de Emissão da CPTS Inválida."
+                                    	style="text-transform:uppercase" >
                                     <rich:jQuery selector="#dtEmissaoCpts" query="mask('99/99/9999')"
 										timing="onload" />
                                 </h:inputText>
@@ -352,14 +354,14 @@
 					<h:panelGrid columns="16">     
 						<h:outputLabel value="NIS:" />
 							<rich:spacer width="8"/>
-					      	<h:inputText id="nis" size="15" 
+					      	<h:inputText id="nis" size="15" style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.nis}"/>
 					 
 					 	<rich:spacer width="10"/>
 					 
 					    <h:outputLabel value="PIS/PASEP:" />
 					      <rich:spacer width="8"/>
-					      	<h:inputText id="pispasep" size="15" 
+					      	<h:inputText id="pispasep" size="15" style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.pispasep}"/>
 					      		<h:outputText class="campoObrigatorio" 
 					      			value=" (Preenchimento obrigatório para maiores de 18 anos.)" />					      					      					      							 
@@ -369,17 +371,17 @@
 					 
 					<h:panelGrid columns="15">					 
 					      <h:outputLabel value="Titulo de ELeitor:" />
-					      	<h:inputText id="numTitulo" size="30" 
+					      	<h:inputText id="numTitulo" size="30" style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.numeroTitulo}"/>
 					      <rich:spacer width="10"/>
 					           
 					      <h:outputLabel value="Zona:" />
-					      	<h:inputText id="zonaTitulo" size="15" 
+					      	<h:inputText id="zonaTitulo" size="15" style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.zonaTitulo}"/>
 					      <rich:spacer width="10"/>
 					      
 					      <h:outputLabel value="Seção:" />
-					      	<h:inputText id="secaoTitulo" size="15" 
+					      	<h:inputText id="secaoTitulo" size="15" style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.secaoTitulo}"/>
 					      <rich:spacer width="10"/>
 					</h:panelGrid>

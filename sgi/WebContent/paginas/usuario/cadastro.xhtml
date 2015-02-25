@@ -24,7 +24,8 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="11" />
 							<h:inputText value="#{usuarioController.objeto.nome}"
-								required="true" requiredMessage="Informe o Nome." size="80" />
+								required="true" requiredMessage="Informe o Nome." size="80" 
+								style="text-transform:uppercase" />
 						</h:panelGrid>
 							
 						   
@@ -32,7 +33,9 @@
 						      <h:outputText value="Login"/>
 						      <div class="campoObrigatorio">*</div>
 						      <rich:spacer width="10" />
-						      <h:inputText required="true" requiredMessage="Informe o Login" value="#{usuarioController.objeto.login}" >
+						      <h:inputText required="true" requiredMessage="Informe o Login" 
+						      		value="#{usuarioController.objeto.login}" 
+						      		style="text-transform:uppercase">
 						         <f:validateLength minimum="5"/>
 						      </h:inputText>
 						      <h:outputText value="Minimo 5 caracteres"/>

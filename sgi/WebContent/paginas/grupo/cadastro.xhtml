@@ -25,7 +25,8 @@
 							<div class="campoObrigatorio">*</div>
 							 <rich:spacer width="42" />
 							<h:inputText size="80" value="#{grupoController.objeto.nome}" 
-							required="true" requiredMessage="Informe Nome"/>								
+								required="true" requiredMessage="Informe Nome" 
+								style="text-transform:uppercase"/>								
 						</h:panelGrid>
 						
 						<fieldset>
@@ -134,8 +135,9 @@
 					<h:panelGrid columns="2">
 						<h:outputText style="font-size:14px" value="Nome:" />
 															
-						<h:inputText size="50"
-							value="#{grupoController.subGrupo.nome}" />
+						<h:inputText size="50" style="text-transform:uppercase"
+							value="#{grupoController.subGrupo.nome}" required="true"
+							requiredMessage="Informe o nome do Subgrupo."/>
 										
 					</h:panelGrid>
 					

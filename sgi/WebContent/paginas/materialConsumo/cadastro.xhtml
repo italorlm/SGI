@@ -23,18 +23,20 @@
 						<h:panelGrid columns="9">
 							<h:outputText value="Código:" />
 							<div class="campoObrigatorio">*</div>
-							<h:inputText id="codigo" 
+							<h:inputText id="codigo" style="text-transform:uppercase"
 									value="#{materialConsumoController.objeto.codigo}"/>
 							
 							<rich:spacer width="11" />
 							<h:outputText value="Descrição:" />
 							<h:inputText id="decricao" size="50" 
-									value="#{materialConsumoController.objeto.descricao}"/>
-							
+									value="#{materialConsumoController.objeto.descricao}"
+									style="text-transform:uppercase"/>
+									
 							<rich:spacer width="11" />
 							<h:outputText value="Marca:" />
 							<h:inputText id="marca" size="30" 
-									value="#{materialConsumoController.objeto.marca}"/>
+									value="#{materialConsumoController.objeto.marca}"
+									style="text-transform:uppercase"/>
 														
 						</h:panelGrid>
 						
@@ -61,7 +63,8 @@
 						   
 						   <rich:spacer width="11" />
 						   <h:outputText id="estoque" value="Estoque:" />
-						   <h:inputText size="20" value="#{materialConsumoController.objeto.estoque}" />
+						   <h:inputText size="20" value="#{materialConsumoController.objeto.estoque}" 
+						   		style="text-transform:uppercase"/>
 						   
 						   <rich:spacer width="40" />
 						    <h:outputText value="Unidade:"/>

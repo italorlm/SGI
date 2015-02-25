@@ -23,7 +23,8 @@
 						<h:panelGrid columns="9">
 							<h:outputText value="Matricula:" />							
 							<rich:spacer width="7"/>
-							<h:inputText id="matricula" value="#{funcionarioController.objeto.matricula}" size="10" disabled="true"/>														
+							<h:inputText id="matricula" value="#{funcionarioController.objeto.matricula}" 
+								size="10" disabled="true" style="text-transform:uppercase"/>														
 						</h:panelGrid>
 					
 						<rich:spacer height="5"/>
@@ -33,7 +34,8 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="15"/>
 							<h:inputText id="nome" value="#{funcionarioController.objeto.nome}"
-								required="true" requiredMessage="Informe o Nome." size="80"/>
+								required="true" requiredMessage="Informe o Nome." size="80"
+								style="text-transform:uppercase" />
 							<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     			suggestionAction="#{funcionarioController.suggestionBox}" var="row" >                      
 			                    <h:column>  
@@ -96,7 +98,8 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="18"/>
 							<h:inputText id="email" value="#{funcionarioController.objeto.email}"
-								required="false" requiredMessage="Informe o Email." size="80"/>														
+								required="false" requiredMessage="Informe o Email." size="80"
+								style="text-transform:uppercase"/>														
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
@@ -122,9 +125,9 @@
 							<h:selectOneMenu id="situacao" required="false"
 								value="#{funcionarioController.objeto.situacao}" 
 								requiredMessage="Informe a Situação">
-							  	<f:selectItem itemLabel="Selecione" itemValue=""/>
-							  	<f:selectItem itemLabel="Ativo" itemValue="1"/>
-							  	<f:selectItem itemLabel="Inativo" itemValue="2"/>
+							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
+							  	<f:selectItem itemLabel="ATIVO" itemValue="1"/>
+							  	<f:selectItem itemLabel="INATIVO" itemValue="2"/>
 							</h:selectOneMenu>						
 						</h:panelGrid>											
 												

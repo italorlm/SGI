@@ -34,7 +34,8 @@
 					
 					<h:outputText value="Nome:"/>					
 					<rich:spacer width="20"/>
-					<h:inputText id="nome" value="#{grupoController.filtro.nome}" size="60" />
+					<h:inputText id="nome" value="#{grupoController.filtro.nome}" size="60" 
+						style="text-transform:uppercase" />
 						<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     		suggestionAction="#{grupoController.suggestionBox}" var="row" >  
                       

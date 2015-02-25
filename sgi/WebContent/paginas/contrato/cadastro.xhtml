@@ -30,9 +30,9 @@
 							<h:selectOneMenu id="tipo" 
 								value="#{contratoController.objeto.tipo}" required="true"
 								requiredMessage="Informe o Tipo.">
-								<f:selectItem itemLabel="Selecione" itemValue="" />
-								<f:selectItem itemLabel="Contrato" itemValue="1" />
-								<f:selectItem itemLabel="Convênio" itemValue="2" />
+								<f:selectItem itemLabel="SELECIONE" itemValue="" />
+								<f:selectItem itemLabel="CONTRATO" itemValue="1" />
+								<f:selectItem itemLabel="CONVÊNIO" itemValue="2" />
 								<a4j:support event="onchange" reRender="panel,contrato" />
 							</h:selectOneMenu>
 
@@ -44,7 +44,7 @@
 									rendered="#{contratoController.objeto.tipo==2}" />
 								<rich:spacer width="5" />
 								<h:inputText value="#{contratoController.objeto.numero}"
-									size="20"
+									size="20" style="text-transform:uppercase"
 									rendered="#{contratoController.objeto.tipo==1 or 
 									contratoController.objeto.tipo==2}" />
 							</a4j:outputPanel>
@@ -54,7 +54,7 @@
 
 						<h:panelGrid columns="10">
 							<h:outputText value="Exercicio:" />
-							<h:inputText id="exercicio"
+							<h:inputText id="exercicio" style="text-transform:uppercase"
 								value="#{contratoController.objeto.exercicio}" size="10" />
 						</h:panelGrid>
 
@@ -62,13 +62,13 @@
 
 						<h:panelGrid columns="10">
 							<h:outputText value="Executor:" />
-							<h:inputText id="executor"
+							<h:inputText id="executor" style="text-transform:uppercase"
 								value="#{contratoController.objeto.executor}" size="50" />
 
 							<rich:spacer width="10" />
 
 							<h:outputText value="Aditivo:" />
-							<h:inputText id="aditivo"
+							<h:inputText id="aditivo" style="text-transform:uppercase"
 								value="#{contratoController.objeto.aditivo}" size="20" />
 						</h:panelGrid>
 
@@ -87,7 +87,7 @@
 						<rich:spacer height="10" />
 						<h:panelGrid columns="10">
 							<h:outputText value="Valor(R$):" />
-							<h:inputText id="valor" size="20"
+							<h:inputText id="valor" size="20" style="text-transform:uppercase"
 								value="#{contratoController.objeto.valor}">
 								<rich:jQuery selector="#valor"
 									query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})"
@@ -97,7 +97,7 @@
 							<rich:spacer width="10" />
 
 							<h:outputText value="Parcelas:" />
-							<h:inputText id="parcelas"
+							<h:inputText id="parcelas" style="text-transform:uppercase"
 								value="#{contratoController.objeto.parcelas}" size="5"	>
 								<a4j:support event="onblur" action="#{contratoController.validaQtdParcela}"
 									reRender="parcelas"/>
@@ -417,9 +417,9 @@
 							<h:outputText value="Tipo:" />
 							<h:selectOneMenu id="tipoAditivo"  
 								value="#{contratoController.contratoAditivo.tipo}">
-							    <f:selectItem itemLabel="Selecione" itemValue=""/>
-							    <f:selectItem itemLabel="Recurso" itemValue="1"/>
-								<f:selectItem itemLabel="Tempo" itemValue="2"/>																						   							   
+							    <f:selectItem itemLabel="SELECIONE" itemValue=""/>
+							    <f:selectItem itemLabel="RECURSO" itemValue="1"/>
+								<f:selectItem itemLabel="TEMPO" itemValue="2"/>																						   							   
 							</h:selectOneMenu>
 							
 							<rich:spacer width="5"/>
@@ -601,7 +601,7 @@
 				<h:form>
 					<div align="center">
 						<h:panelGrid columns="5">
-							<h:outputText style="font-size:14px" value="Parcela:" />
+							<h:outputText style="font-size:14px" value="Nº Parcela:" />
 							<rich:inputNumberSpinner id="parcela" size="10"
 								value="#{contratoController.contratoParcela.parcela}" />
 						</h:panelGrid>
@@ -609,7 +609,7 @@
 						<h:panelGrid columns="10">
 							<h:outputText style="font-size:14px" value="Valor(R$):" />
 							<rich:spacer width="10" />
-							<h:inputText id="valor" size="20"
+							<h:inputText id="valor" size="20" style="text-transform:uppercase"
 								value="#{contratoController.contratoParcela.valorParcial}">
 								<rich:jQuery selector="#valor"
 									query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})"

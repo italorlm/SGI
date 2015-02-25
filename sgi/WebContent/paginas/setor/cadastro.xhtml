@@ -25,7 +25,7 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="31"/>
 							<h:inputText id="nome" required="true" value="#{setorController.objeto.nome}" size="130"
-								requiredMessage="Informe o Nome" />
+								requiredMessage="Informe o Nome" style="text-transform:uppercase"/>
 							<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     			suggestionAction="#{setorController.suggestionBox}" var="row" >                      
 			                    <h:column>  
@@ -42,7 +42,8 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="13"/>
 							<h:inputText id="endereco" value="#{setorController.objeto.endereco}" size="100"
-							required="false" requiredMessage="Informe o Endereço" />								
+								required="false" requiredMessage="Informe o Endereço" 
+								style="text-transform:uppercase"/>								
 						</h:panelGrid>
 						
 						<h:panelGrid columns="4">
@@ -50,7 +51,8 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="18"/>
 							<h:inputText size="25" id="telefone" value="#{setorController.objeto.telefone}" 
-								required="false" requiredMessage="Informe o Telefone">							    
+								required="false" requiredMessage="Informe o Telefone"
+								style="text-transform:uppercase">							    
 							</h:inputText>								
 						</h:panelGrid>
 						
@@ -59,7 +61,8 @@
 							<div class="campoObrigatorio">*</div>
 							
 							<h:inputText id="responsavel" value="#{setorController.objeto.responsavel}" size="50"
-								required="false" requiredMessage="Informe o Responsável"/>
+								required="false" requiredMessage="Informe o Responsável"
+								style="text-transform:uppercase"/>
 								
 						</h:panelGrid>
 						

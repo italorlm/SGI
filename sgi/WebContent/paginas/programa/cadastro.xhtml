@@ -27,7 +27,8 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="11" />
 							<h:inputText id="nome" value="#{programaController.objeto.nome}"
-								required="true" requiredMessage="Informe o Nome." size="80" />
+								required="true" requiredMessage="Informe o Nome." size="80" 
+								style="text-transform:uppercase"/>
 						</h:panelGrid>
 
 						<rich:spacer height="10"/>
@@ -145,7 +146,7 @@
 					<div align="center">
 						<h:panelGrid columns="2">
 							<h:outputText style="font-size:14px" value="MAP:" />
-							<h:inputText id="parcela" size="90"
+							<h:inputText id="parcela" size="90" style="text-transform:uppercase"
 								value="#{programaController.programaMap.nome}" />
 						</h:panelGrid>
 						

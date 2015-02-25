@@ -33,11 +33,10 @@
 					<h:panelGrid columns="3">					
 						<h:outputText value="Executor:"/>					
 							<rich:spacer width="20"/>
-							<h:inputText id="executor"
+							<h:inputText id="executor" style="text-transform:uppercase"
 								valor="#{contratoController.filtro.executor}" size="60" />
 								<rich:suggestionbox id="suggestionBoxExecutor" for="executor" nothingLabel="Nenhum registro encontrado"
-                    				suggestionAction="#{contratoController.suggestionBox}" var="row" >  
-                      
+                    				suggestionAction="#{contratoController.suggestionBox}" var="row" >                      
 				                    <h:column>  
 				                        <h:outputText value="#{row.executor}" />  
 				                    </h:column>  
