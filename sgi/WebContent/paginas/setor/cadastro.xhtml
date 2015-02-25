@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+    "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="corpo">
+		<h:form acceptcharset="UTF-8">
+              <ui:param name="bean" value="#{setorController}" />
+			 <a4j:outputPanel ajaxRendered="true" ><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
+			<div align="center">
+				<rich:tabPanel id="tabSet" width="80%" height="150" switchType="client">
+					<br />
+
+					<rich:tab label="CADASTRO DE UNIDADE">
+					
+						<h:panelGrid columns="4">
+							<h:outputText value="Nome:" />
+							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="31"/>
+							<h:inputText id="nome" required="true" value="#{setorController.objeto.nome}" size="130"
+								requiredMessage="Informe o Nome" />
+							<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
+                    			suggestionAction="#{setorController.suggestionBox}" var="row" >                      
+			                    <h:column>  
+			                        <h:outputText value="#{row.nome}" />			                         
+			                    </h:column>  
+			                    <a4j:support event="onselect" reRender="telefone,responsavel">
+			                    	<f:setPropertyActionListener value="#{row}" target="#{setorController.objeto}" />
+			                    </a4j:support>
+                			</rich:suggestionbox>	
+						</h:panelGrid>
+						
+						<h:panelGrid columns="4">
+							<h:outputText value="Endereço:" />
+							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="13"/>
+							<h:inputText id="endereco" value="#{setorController.objeto.endereco}" size="100"
+							required="false" requiredMessage="Informe o Endereço" />								
+						</h:panelGrid>
+						
+						<h:panelGrid columns="4">
+							<h:outputText value="Telefone:" />
+							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="18"/>
+							<h:inputText size="25" id="telefone" value="#{setorController.objeto.telefone}" 
+								required="false" requiredMessage="Informe o Telefone">							    
+							</h:inputText>								
+						</h:panelGrid>
+						
+						<h:panelGrid columns="4">
+							<h:outputText value="Responsável:" />
+							<div class="campoObrigatorio">*</div>
+							
+							<h:inputText id="responsavel" value="#{setorController.objeto.responsavel}" size="50"
+								required="false" requiredMessage="Informe o Responsável"/>
+								
+						</h:panelGrid>
+						
+						<h:panelGrid columns="4">
+							<h:outputText value="Unidade Externa?" />														
+							<h:selectBooleanCheckbox id="undExterna" value="#{setorController.objeto.unidadeExterna}" />
+								
+						</h:panelGrid>
+								
+												
+					</rich:tab>
+
+				</rich:tabPanel>
+
+				<br />
+
+                <ui:decorate template="../../templates/cadastro/botoes.xhtml">
+		    	     <ui:param name="salvar" value="salvar" />
+			         <ui:param name="listar" value="listar" />
+			        </ui:decorate>
+				
+				<table style="left: 30px">
+					<tr>
+						<td><font size="2">
+								<div align="center" class="campoObrigatorio">*Campo de
+									Preenchimento Obrigatório</div> </font>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
