@@ -507,18 +507,16 @@
 
 									<rich:column style="text-align:center">
 										<a4j:commandLink reRender="dataAditivo,tipoAditivo,panelButton" 
-											rendered="#{row.id!=null}" id="commandEditar" 
-											styleClass="buttonVisualizar" value="" >
+											id="commandEditar" styleClass="buttonVisualizar" value="" rendered="#{row.id!=null}">
 											<f:setPropertyActionListener value="#{row}"
 												target="#{contratoController.contratoAditivo}" />
 										</a4j:commandLink>
 									</rich:column>
 
 									<rich:column>
-										<a4j:commandLink immediate="true" rendered="#{row.id!=null}"
+										<a4j:commandLink immediate="true" 
 											oncomplete="Richfaces.showModalPanel('excluirAditivo')"
-											id="commandRemoverAditivo" styleClass="buttonRemover"
-											value="">
+											id="commandRemoverAditivo" styleClass="buttonRemover" value="" >
 											<f:setPropertyActionListener value="#{row}"
 												target="#{contratoController.contratoAditivo}" />
 										</a4j:commandLink>
