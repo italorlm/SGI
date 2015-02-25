@@ -243,11 +243,11 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 		if(objeto.getParcelas()!=null) {
 			if(contratoParcela.getId()!=null)
 				parcelas.remove(contratoParcela);
-			if(parcelas.size() < objeto.getParcelas()) {
+			if(parcelas.size() < objeto.getParcelas() && !parcelas.contains(contratoParcela)) {
 				contratoParcela.editado();
 				parcelas.add(contratoParcela);
 				mostrarModalParcela = false;
-			} else {
+			} else if(parcelas.size() > objeto.getParcelas()){
 				msgErro = "Quantidade máxima de parcelas já cadastrada. "
 						+ "Aumente a quantidade de parcelas caso for necessário.";
 			}
@@ -280,7 +280,8 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 			contratoFonteRecurso.setFonteRecurso(fonteRecursoTemp);
 			if(contratoFonteRecurso.getId()!=null)
 				fonteRecursos.remove(contratoFonteRecurso);
-			fonteRecursos.add(contratoFonteRecurso);
+			if(!fonteRecursos.contains(contratoFonteRecurso))
+				fonteRecursos.add(contratoFonteRecurso);
 			mostrarModalFonteRecurso = false;
 		} else {
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -305,7 +306,8 @@ public class ContratoController extends GenericController<Contrato, ContratoDao>
 			contratoAditivo.editado();
 			if(contratoAditivo.getId()!=null)
 				aditivos.remove(contratoAditivo);
-			aditivos.add(contratoAditivo);			
+			if(!aditivos.contains(contratoAditivo))
+				aditivos.add(contratoAditivo);			
 		} 		
 		contratoAditivo = new ContratoAditivo();
 	}

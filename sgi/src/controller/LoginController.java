@@ -69,7 +69,7 @@ public class LoginController {
 	public String logar(){
 				
 		logado=false;
-		usuario  = new Usuario();
+		usuario = new Usuario();
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
 		usuario = usuarioDao.login(usuario); 

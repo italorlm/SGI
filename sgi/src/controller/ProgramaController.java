@@ -119,8 +119,10 @@ public class ProgramaController extends GenericController<Programa, ProgramaDao>
 	public void adicionarMap() {
 		if(programaMap.getId()!=null)
 			programaMaps.remove(programaMap);
-		programaMap.editado();
-		programaMaps.add(programaMap);
+		if(!programaMaps.contains(programaMap)) {
+			programaMap.editado();
+			programaMaps.add(programaMap);
+		}		
 		mostrarModalMap = false;
 	}
 	
