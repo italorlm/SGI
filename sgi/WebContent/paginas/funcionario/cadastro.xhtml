@@ -56,7 +56,7 @@
 							<h:selectOneMenu id="cargo" converter="entityConverter" 
 									value="#{funcionarioController.objeto.cargo}"
 									required="false" requiredMessage="Informe o Cargo">
-							  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 							  	<f:selectItems value="#{cargoController.selectItems}"/>
 							</h:selectOneMenu>
 							
@@ -111,7 +111,7 @@
 							<h:selectOneMenu id="unidade" converter="entityConverter" 
 								value="#{funcionarioController.objeto.setor}"
 								required="false" requiredMessage="Informe a Unidade">
-						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+						  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 						  	<f:selectItems value="#{setorController.selectItems}"/>
 						</h:selectOneMenu>						
 						</h:panelGrid>

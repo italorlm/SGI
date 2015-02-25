@@ -48,7 +48,7 @@
 							<h:outputText value="Tipo:" />
 							<h:selectOneMenu id="tipo" converter="entityConverter"
 								 value="#{materialPermanenteController.objeto.tipoMaterialPermanente}">
-							  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 							  	<f:selectItems value="#{tipoMaterialPermanenteController.selectItems}"/>
 							</h:selectOneMenu>
 							
@@ -70,7 +70,7 @@
 						   <h:outputText value="Localização do Bem:"/>
 						   <h:selectOneMenu id="unidade" converter="entityConverter" 
 								value="#{materialPermanenteController.objeto.setor}">
-						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+						  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 						  	<f:selectItems value="#{setorController.selectItems}"/>
 							</h:selectOneMenu>
 						   

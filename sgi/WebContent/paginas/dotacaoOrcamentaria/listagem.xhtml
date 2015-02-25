@@ -48,7 +48,7 @@
 						<h:outputText value="Programa:" />							
 						<h:selectOneMenu id="programa" converter="entityConverter" 
 							value="#{dotacaoOrcamentariaController.filtro.programa}">
-						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+						  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 						  	<f:selectItems value="#{programaController.selectItems}"/>
 						</h:selectOneMenu>								
 					</h:panelGrid>
@@ -58,7 +58,7 @@
 						<rich:spacer width="5" />
 						<h:selectOneMenu id="projeto" converter="entityConverter" 
 							value="#{dotacaoOrcamentariaController.filtro.projeto}">
-						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
+						  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 						  	<f:selectItems value="#{projetoController.selectItems}"/>
 						</h:selectOneMenu>								
 					</h:panelGrid>						

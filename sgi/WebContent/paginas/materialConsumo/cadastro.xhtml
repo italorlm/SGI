@@ -47,7 +47,7 @@
 						   <rich:spacer width="5" />
 						   <h:selectOneMenu id="grupo" converter="entityConverter" 
 						   		value="#{materialConsumoController.objeto.grupo}">
-						     <f:selectItem itemLabel="Selecione" itemValue=""/>
+						     <f:selectItem itemLabel="SELECIONE" itemValue=""/>
 						     <f:selectItems value="#{grupoController.selectItems}"/>
 						     <a4j:support event="onchange" reRender="subGrupo" 
 						     	action="#{materialConsumoController.buscarSubGrupos()}"/>
@@ -57,7 +57,7 @@
 						    <h:outputText value="SubGrupo:"/>
 						   <h:selectOneMenu id="subGrupo" converter="entityConverter"
 						   		value="#{materialConsumoController.objeto.subGrupo}">
-						     <f:selectItem itemLabel="Selecione" itemValue=""/>
+						     <f:selectItem itemLabel="SELECIONE" itemValue=""/>
 						     <f:selectItems value="#{materialConsumoController.itemsSubGrupos}"/>
 						   </h:selectOneMenu>
 						   
@@ -70,7 +70,7 @@
 						    <h:outputText value="Unidade:"/>
 						   <h:selectOneMenu id="unidade" converter="entityConverter" 
 						   		value="#{materialConsumoController.objeto.setor}">
-						     <f:selectItem itemLabel="Selecione" itemValue=""/>
+						     <f:selectItem itemLabel="SELECIONE" itemValue=""/>
 						     <f:selectItems value="#{setorController.selectItems}"/>						     
 						   </h:selectOneMenu>
 						

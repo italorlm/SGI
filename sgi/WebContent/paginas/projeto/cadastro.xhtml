@@ -39,7 +39,7 @@
 							<h:selectOneMenu value="#{projetoController.objeto.programa}"
 								converter="entityConverter" required="true"
 								requiredMessage="Informe o Programa">
-								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItem itemLabel="SELECIONE" itemValue="" />
 								<f:selectItems value="#{programaController.selectItems}" />
 								<a4j:support ajaxSingle="true" event="onchange" 
 									action="#{projetoController.buscarMap}" reRender="tabelaMap"/>

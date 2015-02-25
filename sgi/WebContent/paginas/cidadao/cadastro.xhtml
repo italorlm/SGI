@@ -30,7 +30,7 @@
 								value="#{cidadaoController.objeto.nome}" />								
 						</h:panelGrid>
 						
-						<rich:spacer width="1" height="10"  />
+						<rich:spacer width="1" height="5"  />
 						
 						<h:panelGrid columns="10">							
 							<h:outputText value="Data Nascimento:" />
@@ -50,7 +50,7 @@
 							</h:selectOneMenu> 								 
 						</h:panelGrid>
 						
-		                <rich:spacer width="1" height="10"  />
+		                <rich:spacer width="1" height="5" />
 
 						<h:panelGrid columns="16">
 							<h:outputText value="CPF:" />	
@@ -83,13 +83,13 @@
                             </h:inputText>
 						</h:panelGrid>
 						
-						<rich:spacer width="1" height="10"  />
+						<rich:spacer width="1" height="5" />
 												
 						<h:panelGrid columns="11">
 							<h:outputText value="UF Nascimento:" />
 							<h:selectOneMenu id="ufNascimento" 
 								value="#{cidadaoController.objeto.ufNascimento}">
-							   <f:selectItem itemLabel="Selecione" itemValue=""/>
+							   <f:selectItem itemLabel="SELECIONE" itemValue=""/>
 							   <f:selectItems value="#{municipioUfController.ufs}"/>
 							   <a4j:support event="onchange" reRender="naturalidade" 
 						     	action="#{cidadaoController.buscarCidades()}"/>
@@ -99,7 +99,7 @@
 							<h:outputText value="Naturalidade:" />
 							<h:selectOneMenu id="naturalidade" 
 								value="#{cidadaoController.objeto.naturalidade}">
-							   <f:selectItem itemLabel="Selecione" itemValue=""/>
+							   <f:selectItem itemLabel="SELECIONE" itemValue=""/>
 							   <f:selectItems value="#{cidadaoController.itemsMunicipios}"/>
 							</h:selectOneMenu>
 														
@@ -117,7 +117,7 @@
 							</h:selectOneMenu>
 						</h:panelGrid>
 						
-						<rich:spacer width="1" height="10" />
+						<rich:spacer width="1" height="5" />
 						
 						<h:panelGrid columns="11">
 							<h:outputText value="Telefone Residencial:" />
@@ -141,7 +141,7 @@
 								value="#{cidadaoController.objeto.email}"/>
 						</h:panelGrid>
 						
-						<rich:spacer width="1" height="10"  />
+						<rich:spacer width="1" height="5" />
 						
 						<h:panelGrid columns="6">
 							<h:outputText value="Nome da Mãe:" />
@@ -155,7 +155,7 @@
 								value="#{cidadaoController.objeto.nomePai}"/>
 						</h:panelGrid>
 						
-                        <rich:spacer width="1" height="10"  />
+                        <rich:spacer width="1" height="5" />
                         
 					<a4j:outputPanel id="panelComplemento">
                        <fieldset>
@@ -174,11 +174,9 @@
 										reRender="endereco,bairro,uf,municipio,municipioDisabled,panelComplemento"/>
 								</h:inputText>								
 								<rich:spacer width="5"/>
-							</h:panelGrid>
-							
-							<rich:spacer width="1" height="10" />
-							
-							<h:panelGrid columns="18">	
+														
+								<rich:spacer width="5" />
+															
 								<h:outputText value="Endereço:" />
 								<rich:spacer width="5"/>
 								<h:inputText id="endereco" size="55" disabled="#{cidadaoController.objeto.cepValido==true}"
@@ -197,7 +195,7 @@
 								<rich:spacer width="5"/>
 							</h:panelGrid>
 							
-							<rich:spacer width="1" height="10"  />
+							<rich:spacer width="1" height="5" />
 						
 							<h:panelGrid columns="13">	
 								<h:outputText value="Bairro:" />
@@ -208,7 +206,7 @@
 								<h:outputText value="UF:" />
 								<h:selectOneMenu id="uf" value="#{cidadaoController.objeto.uf}"
 									disabled="#{cidadaoController.objeto.cepValido==true}">
-								    <f:selectItem itemLabel="Selecione" itemValue=""/>
+								    <f:selectItem itemLabel="SELECIONE" itemValue=""/>
 								    <f:selectItems value="#{municipioUfController.ufs}"/>
 								    <a4j:support event="onchange" reRender="municipio" 
 						     			action="#{cidadaoController.buscarCidadesResidencial()}"/>
@@ -218,7 +216,7 @@
 								<h:outputText value="Municipio:" />
 								<h:selectOneMenu id="municipio" rendered="#{cidadaoController.objeto.cepValido==false}"
 									value="#{cidadaoController.objeto.municipio}" disabled="false">
-								    <f:selectItem itemLabel="Selecione" itemValue=""/>
+								    <f:selectItem itemLabel="SELECIONE" itemValue=""/>
 								    <f:selectItems value="#{cidadaoController.itemsMunicipiosResidencial}"/>
 								</h:selectOneMenu>	
 								<h:inputText id="municipioDisabled" rendered="#{cidadaoController.objeto.cepValido==true}"
@@ -258,7 +256,7 @@
 							
 							</h:panelGrid>
 							
-					        <rich:spacer width="1" height="10"/>
+					        <rich:spacer width="1" height="5" />
 					        
 					        <h:panelGrid columns="5">					        
 						        <h:outputText value="Frequenta Entidade de Ensino?" />
@@ -279,7 +277,7 @@
 					    	</h:panelGrid>					
 					</fieldset>
 					
-					<rich:spacer height="10"/>
+					<rich:spacer height="10" />
 					   
 					<fieldset>
 							<legend>
@@ -349,7 +347,7 @@
 					      <rich:spacer width="10"/>
 					</h:panelGrid>
 					
-					<rich:spacer width="1" height="10"  />
+					<rich:spacer width="1" height="5" />
 					 
 					<h:panelGrid columns="16">     
 						<h:outputLabel value="NIS:" />
@@ -367,7 +365,7 @@
 					      			value=" (Preenchimento obrigatório para maiores de 18 anos.)" />					      					      					      							 
 					</h:panelGrid>
 					 
-					<rich:spacer width="1" height="10"  />
+					<rich:spacer width="1" height="5" />
 					 
 					<h:panelGrid columns="15">					 
 					      <h:outputLabel value="Titulo de ELeitor:" />
