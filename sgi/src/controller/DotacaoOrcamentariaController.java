@@ -20,6 +20,9 @@ public class DotacaoOrcamentariaController extends GenericController<DotacaoOrca
 
 	List<SelectItem> selectItems;
 	final static String DAO_CONCRETO = "dotacaoOrcamentariaDaoImp";
+	
+	//Codigo da Entidade STDS na Dotação Orçamentaria
+	final static String STDS_CODIGO = "47000000";
 
 	@Override
 	public void setaNavegacao() {

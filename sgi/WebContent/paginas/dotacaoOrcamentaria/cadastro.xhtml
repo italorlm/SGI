@@ -21,11 +21,22 @@
 					<rich:tab label="CADASTRO DE DOTAÇÃO ORÇAMENTÁRIA">
 					
 						<h:panelGrid columns="5">
+							<h:outputText value="Entidade:" />							
+								<rich:spacer width="1" />
+							<h:inputText id="entidade" value="SECRETARIA DO TRABALHO E DESENVOLVIMENTO SOCIAL - 47000000"
+								disabled="true" size="80"/>																
+						</h:panelGrid>
+						
+						<rich:spacer height="5" />
+					
+						<h:panelGrid columns="5">
 							<h:outputText value="Código:" />
 							<div class="campoObrigatorio">*</div>
 								<rich:spacer width="1" />
 							<h:inputText id="codigo" value="#{dotacaoOrcamentariaController.objeto.codigo}"
-								required="true" requiredMessage="Informe o Código." size="15"/>								
+								required="true" requiredMessage="Informe o Código." size="40"/>
+								<rich:jQuery selector="#codigo" query="mask('99999999.99.999.999.99999.99.999999.99.9')" 
+									timing="onload"/>								
 						</h:panelGrid>
 						
 						<rich:spacer height="5" />
