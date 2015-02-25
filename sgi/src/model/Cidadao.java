@@ -89,10 +89,6 @@ public class Cidadao extends BaseModel {
 	@Column(name="qtd_dependente")
 	String qtdDependentes;
 	
-	@ManyToOne
-	@JoinColumn(name="programa_governo")
-	ProgramaGovernamental programaGovernamental;
-	
 	@Column(name="ja_trabalhou")
 	Integer jaTrabalhou;
 	
@@ -332,14 +328,6 @@ public class Cidadao extends BaseModel {
 
 	public void setQtdDependentes(String qtdDependentes) {
 		this.qtdDependentes = qtdDependentes;
-	}
-
-	public ProgramaGovernamental getProgramaGovernamental() {
-		return programaGovernamental;
-	}
-
-	public void setProgramaGovernamental(ProgramaGovernamental programaGovernamental) {
-		this.programaGovernamental = programaGovernamental;
 	}
 
 	public Integer getJaTrabalhou() {
