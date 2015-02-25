@@ -5,10 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Municipio;
+import model.Setor;
 import model.Uf;
 
 public class DaoCrp {	
@@ -163,6 +165,35 @@ public class DaoCrp {
 				con.close();
 		}
 		return ufs;
+	}
+	
+	public List<Setor> listaSetores() throws SQLException {
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		List<Setor> setores = new ArrayList<Setor>();
+		try {
+			// Setor Atual = 1, Setor Anterior = 0
+			String sql = "select icodigo_set, nome, telefone, nome_resp from setor where setoratual = 1"
+					+ " order by nome ";
+			con = getConnection();
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {			
+				setores.add(new Setor(rs.getInt("icodigo_set"), Normalizer.normalize(rs.getString("nome"), Normalizer.Form.NFD)
+						.replaceAll("[^\\p{ASCII}]", ""), rs.getString("telefone"), rs.getString("nome_resp")));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (con != null)
+				con.close();
+		}
+		return setores;
 	}
 	
 }
