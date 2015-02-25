@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import model.Cargo;
@@ -50,6 +52,30 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 	public void filtrar() {
 		trazerTodos = false;
 		listagem = dao.findByFuncionario(filtro);
+	}
+	
+	@Override
+	public String salvar() {
+		if(objeto.getMatricula()!=null) {
+			if(dao.findByMatricula(objeto)==null && objeto.getId()==null) {
+				return super.salvar();				
+			} else if(objeto.getId()!=null) {
+				dao.salvarOuAtualizar(objeto);
+				return LISTAGEM;
+			} else {
+				String msgErro = "Funcionário(a) de matricula " + objeto.getMatricula() + " já cadastrado(a)!"; 
+				FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgErro, msgErro));	
+				return null;
+			}	
+		} else {
+			if(objeto.getId()!=null) {			
+				dao.salvarOuAtualizar(objeto);
+				return LISTAGEM;
+			} else {
+				return super.salvar();
+			}
+		}
 	}
 
 	public List<SelectItem> getSelectItems() {

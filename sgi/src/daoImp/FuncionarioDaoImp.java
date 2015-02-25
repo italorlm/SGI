@@ -35,5 +35,22 @@ implements FuncionarioDao{
 		lista = c.list();
 		return lista;
 	}
+	
+	@Override
+	@Transactional
+	public Funcionario findByMatricula(Funcionario filtro) {
+		Funcionario funcionario = new Funcionario();
+		Criteria c = criaCriteria();
+		
+		if(StringUtils.isValid(filtro.getMatricula()))
+			c.add(Restrictions.eq("matricula", filtro.getMatricula()));
+		
+		funcionario = (Funcionario) c.uniqueResult();
+		
+		if(funcionario!=null)
+			return funcionario;
+		else
+			return null;
+	}
 
 }
