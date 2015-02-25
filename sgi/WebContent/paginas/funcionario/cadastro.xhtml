@@ -106,10 +106,10 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="3"/>							
 							<h:selectOneMenu id="unidade" converter="entityConverter" 
-								value="#{funcionarioController.objeto.unidadeCptr}"
+								value="#{funcionarioController.objeto.setor}"
 								required="false" requiredMessage="Informe a Unidade">
 						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
-						  	<f:selectItems value="#{unidadeCptrController.selectItems}"/>
+						  	<f:selectItems value="#{setorController.selectItems}"/>
 						</h:selectOneMenu>						
 						</h:panelGrid>
 						

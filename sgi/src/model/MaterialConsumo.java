@@ -27,8 +27,8 @@ public class MaterialConsumo extends BaseModel{
 	Integer estoque;
 	
 	@ManyToOne
-	@JoinColumn(name="unidade_cptr_id")
-	UnidadeCptr unidadeCptr;
+	@JoinColumn(name="setor_id")
+	Setor setor;
 	
 	@ManyToOne
 	@JoinColumn(name="grupo_id")
@@ -69,13 +69,13 @@ public class MaterialConsumo extends BaseModel{
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-
-	public UnidadeCptr getUnidadeCptr() {
-		return unidadeCptr;
+	
+	public Setor getSetor() {
+		return setor;
 	}
 
-	public void setUnidadeCptr(UnidadeCptr unidadeCptr) {
-		this.unidadeCptr = unidadeCptr;
+	public void setSetor(Setor setor) {
+		this.setor = setor;
 	}
 
 	public Integer getEstoque() {

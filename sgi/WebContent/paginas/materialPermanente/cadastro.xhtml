@@ -67,18 +67,18 @@
 						
 							<rich:spacer height="5"/>					
 						<h:panelGrid columns="4">
-						   <h:outputText value="Localização do Bem"/>
+						   <h:outputText value="Localização do Bem:"/>
 						   <h:selectOneMenu id="unidade" converter="entityConverter" 
-								value="#{funcionarioController.objeto.unidadeCptr}">
+								value="#{materialPermanenteController.objeto.setor}">
 						  	<f:selectItem itemLabel="Selecione" itemValue=""/>
-						  	<f:selectItems value="#{unidadeCptrController.selectItems}"/>
+						  	<f:selectItems value="#{setorController.selectItems}"/>
 							</h:selectOneMenu>
 						   
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>					
 						<h:panelGrid columns="4">
-						   <h:outputText value="Observações"/>
+						   <h:outputText value="Observações:"/>
 						   
 						</h:panelGrid>
 						

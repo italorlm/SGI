@@ -66,9 +66,9 @@
 						   <rich:spacer width="40" />
 						    <h:outputText value="Unidade:"/>
 						   <h:selectOneMenu id="unidade" converter="entityConverter" 
-						   		value="#{materialConsumoController.objeto.unidadeCptr}">
+						   		value="#{materialConsumoController.objeto.setor}">
 						     <f:selectItem itemLabel="Selecione" itemValue=""/>
-						     <f:selectItems value="#{unidadeCptrController.selectItems}"/>						     
+						     <f:selectItems value="#{setorController.selectItems}"/>						     
 						   </h:selectOneMenu>
 						
 						</h:panelGrid>		

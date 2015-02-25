@@ -37,8 +37,8 @@ public class Funcionario extends BaseModel{
 	String email;
 	
 	@ManyToOne
-	@JoinColumn(name="unidade_cptr_id")
-	UnidadeCptr unidadeCptr;	
+	@JoinColumn(name="setor_id")
+	Setor setor;	
 	
 	@ManyToOne
 	@JoinColumn(name="cargo_id")
@@ -86,15 +86,15 @@ public class Funcionario extends BaseModel{
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	public UnidadeCptr getUnidadeCptr() {
-		return unidadeCptr;
+		
+	public Setor getSetor() {
+		return setor;
 	}
 
-	public void setUnidadeCptr(UnidadeCptr unidadeCptr) {
-		this.unidadeCptr = unidadeCptr;
+	public void setSetor(Setor setor) {
+		this.setor = setor;
 	}
-	
+
 	public Date getDataAdmissao() {
 		return dataAdmissao;
 	}

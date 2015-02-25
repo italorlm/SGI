@@ -31,8 +31,8 @@ public class MaterialPermanente extends BaseModel{
 	Integer estadoConservacao;
 	
 	@ManyToOne
-	@JoinColumn(name="unidade_cptr_id")
-	UnidadeCptr unidadeCptr;
+	@JoinColumn(name="setor_id")
+	Setor setor;
 	
 	@ManyToOne
 	@JoinColumn(name="tipo_mat_perm_id")
@@ -79,13 +79,12 @@ public class MaterialPermanente extends BaseModel{
 	public void setEstadoConservacao(Integer estadoConservacao) {
 		this.estadoConservacao = estadoConservacao;
 	}
-
-	public UnidadeCptr getUnidadeCptr() {
-		return unidadeCptr;
+	public Setor getSetor() {
+		return setor;
 	}
 
-	public void setUnidadeCptr(UnidadeCptr unidadeCptr) {
-		this.unidadeCptr = unidadeCptr;
+	public void setSetor(Setor setor) {
+		this.setor = setor;
 	}
 
 	public TipoMaterialPermanente getTipoMaterialPermanente() {
