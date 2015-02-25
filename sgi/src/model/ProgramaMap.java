@@ -31,6 +31,7 @@ public class ProgramaMap extends BaseModel {
 	@Transient
 	boolean check;
 	
+	//Atributo para auditoria
 	@Transient
 	boolean editado = false;
 
@@ -79,6 +80,9 @@ public class ProgramaMap extends BaseModel {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result
+				+ ((programa == null) ? 0 : programa.hashCode());
 		return result;
 	}
 
@@ -96,8 +100,16 @@ public class ProgramaMap extends BaseModel {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (programa == null) {
+			if (other.programa != null)
+				return false;
+		} else if (!programa.equals(other.programa))
+			return false;
 		return true;
-	}
-
-	
+	}	
 }

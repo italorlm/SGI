@@ -32,6 +32,7 @@ public class ContratoAditivo extends BaseModel {
 	@JoinColumn(name="contrato_id")
 	Contrato contrato;
 	
+	//Atributo para auditoria
 	@Transient
 	boolean editado = false;
 	
@@ -85,7 +86,11 @@ public class ContratoAditivo extends BaseModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result
+				+ ((contrato == null) ? 0 : contrato.hashCode());
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
 
@@ -98,11 +103,28 @@ public class ContratoAditivo extends BaseModel {
 		if (getClass() != obj.getClass())
 			return false;
 		ContratoAditivo other = (ContratoAditivo) obj;
+		if (contrato == null) {
+			if (other.contrato != null)
+				return false;
+		} else if (!contrato.equals(other.contrato))
+			return false;
+		if (data == null) {
+			if (other.data != null)
+				return false;
+		} else if (!data.equals(other.data))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
 		return true;
 	}
+
+	
 }
