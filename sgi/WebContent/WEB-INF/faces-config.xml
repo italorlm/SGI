@@ -41,16 +41,6 @@
    <to-view-id>/paginas/grupo/listagem.xhtml</to-view-id>
   </navigation-case> 
   
-  <!-- PROGRAMA GOVERNAMENTAL -->
-  <navigation-case>
-   <from-outcome>cadastrarProgramaGovernamental</from-outcome>
-   <to-view-id>/paginas/programaGovernamental/cadastro.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>listarProgramaGovernamental</from-outcome>
-   <to-view-id>/paginas/programaGovernamental/listagem.xhtml</to-view-id>
-  </navigation-case> 
-  
   <!-- MATERIAL CONSUMO -->
   <navigation-case>
    <from-outcome>cadastrarMaterialConsumo</from-outcome>
@@ -101,26 +91,16 @@
    <to-view-id>/paginas/dotacaoOrcamentaria/listagem.xhtml</to-view-id>
   </navigation-case>
   
-  <!-- UNIDADE EXTERNA -->
+  <!-- SETOR -->
   <navigation-case>
-   <from-outcome>cadastrarUnidadeExterna</from-outcome>
-   <to-view-id>/paginas/unidadeExterna/cadastro.xhtml</to-view-id>
+   <from-outcome>cadastrarSetor</from-outcome>
+   <to-view-id>/paginas/setor/cadastro.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>listarUnidadeExterna</from-outcome>
-   <to-view-id>/paginas/unidadeExterna/listagem.xhtml</to-view-id>
+   <from-outcome>listarSetor</from-outcome>
+   <to-view-id>/paginas/setor/listagem.xhtml</to-view-id>
   </navigation-case>
   
-   <!-- UNIDADE CPTR -->
-  <navigation-case>
-   <from-outcome>cadastrarUnidadeCptr</from-outcome>
-   <to-view-id>/paginas/unidadeCptr/cadastro.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>listarUnidadeCptr</from-outcome>
-   <to-view-id>/paginas/unidadeCptr/listagem.xhtml</to-view-id>
-  </navigation-case>
-    
    <!-- CONTRATO -->
   <navigation-case>
    <from-outcome>cadastrarContrato</from-outcome>
