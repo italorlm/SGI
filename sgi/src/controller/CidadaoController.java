@@ -145,10 +145,10 @@ public class CidadaoController extends GenericController<Cidadao, CidadaoDao> {
 		            	}
 		            	
 		                if (element.getQualifiedName().equals("bairro"))
-		                    objeto.setBairro(element.getText());
+		                    objeto.setBairro(element.getText().toUpperCase());
 
 		                if (element.getQualifiedName().equals("logradouro"))
-		                    objeto.setEndereco(element.getText());
+		                    objeto.setEndereco(element.getText().toUpperCase());
 		            } else if(element.getQualifiedName().equals("erro")){
 		            	itemsMunicipiosResidencial.clear();
 		            	objeto.setCepValido(false);
