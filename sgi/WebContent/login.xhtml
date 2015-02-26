@@ -18,11 +18,12 @@
 			<h:outputText styleClass="msgErro" value="Login ou Senha Inválidos!"
 				rendered="#{loginController.erroLogin}" />
 			<ol class="forms">
-				<li><h:outputLabel styleClass="label" value="Usuário" /> <h:inputText
-						styleClass="input" value="#{loginController.login}" 
+				<li><h:outputLabel styleClass="label" value="Usuário" /> 
+					<h:inputText styleClass="input" value="#{loginController.login}" 
+						onblur="this.value=this.value.toUpperCase()" 
 						style="text-transform:uppercase" /></li>
-				<li><h:outputLabel styleClass="label" value="Senha" /> <h:inputSecret
-						styleClass="input" value="#{loginController.senha}" /></li>
+				<li><h:outputLabel styleClass="label" value="Senha" /> 
+					<h:inputSecret styleClass="input" value="#{loginController.senha}" /></li>
 				<li class="buttons"><h:commandButton styleClass="botao"
 						id="btnEnviar" value="Entrar" action="#{loginController.logar}" /></li>
 			</ol>

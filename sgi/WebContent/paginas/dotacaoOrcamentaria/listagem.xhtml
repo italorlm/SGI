@@ -34,7 +34,7 @@
 						<h:outputText value="Código:"/>					
 						<rich:spacer width="20"/>
 						<h:inputText id="codigo" value="#{dotacaoOrcamentariaController.filtro.codigo}" 
-							size="60" style="text-transform:uppercase" />
+							size="60" onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" />
 						<rich:suggestionbox id="suggestionBox" for="codigo" 
 							nothingLabel="Nenhum registro encontrado"
                     		suggestionAction="#{dotacaoOrcamentariaController.suggestionBox}" var="row" >                      

@@ -26,8 +26,8 @@
 							 <rich:spacer width="42" />
 							<h:inputText size="80" value="#{cargoController.objeto.nome}" 
 								required="true" requiredMessage="Informe Nome"
-								style="text-transform:uppercase" />
-								
+								onblur="this.value=this.value.toUpperCase()"
+								style="text-transform:uppercase" />								
 						</h:panelGrid>	
 												
 					</rich:tab>

@@ -35,6 +35,7 @@
 					<h:outputText value="Nome:"/>					
 					<rich:spacer width="20"/>
 					<h:inputText id="nome" value="#{cargoController.filtro.nome}" size="60" 
+						onblur="this.value=this.value.toUpperCase()"
 						style="text-transform:uppercase"/>
 						<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     		suggestionAction="#{cargoController.suggestionBox}" var="row" >  

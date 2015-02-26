@@ -34,10 +34,9 @@
 						<h:outputText value="Código:"/>					
 						<rich:spacer width="20"/>
 						<h:inputText id="codigo" value="#{materialConsumoController.filtro.codigo}"	
-							style="text-transform:uppercase" size="60" />
+							onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" size="60" />
 							<rich:suggestionbox id="suggestionBoxCodigo" for="codigo" nothingLabel="Nenhum registro encontrado"
 	                    		suggestionAction="#{materialConsumoController.suggestionBox}" var="row" >  
-	                      
 			                    <h:column>  
 			                        <h:outputText value="#{row.codigo}" />  
 			                    </h:column>  
@@ -47,10 +46,10 @@
 					<h:panelGrid columns="3">					
 						<h:outputText value="Descrição:"/>					
 						<rich:spacer width="20"/>
-						<h:inputText id="descricao" value="#{materialConsumoController.filtro.descricao}"	size="60" />
+						<h:inputText id="descricao" value="#{materialConsumoController.filtro.descricao}" 
+							onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" size="60" />
 							<rich:suggestionbox id="suggestionBoxDescricao" for="descricao" 
-	                    		suggestionAction="#{materialConsumoController.suggestionBox}" var="row" >  
-	                      
+	                    		suggestionAction="#{materialConsumoController.suggestionBox}" var="row" >                     
 			                    <h:column>  
 			                        <h:outputText value="#{row.descricao}" />  
 			                    </h:column>  

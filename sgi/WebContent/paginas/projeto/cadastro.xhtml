@@ -29,7 +29,7 @@
 							<rich:spacer width="25" />
 							<h:inputText id="nome" value="#{projetoController.objeto.nome}"
 								required="true" requiredMessage="Informe o Nome." size="80" 
-								style="text-transform:uppercase"/>
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"/>
 						</h:panelGrid>
 
 						<h:panelGrid columns="4">
@@ -49,14 +49,17 @@
 						<h:panelGrid columns="4">
 							<h:outputText value="Descrição:" />
 							<rich:spacer width="11" />
-							<h:inputTextarea id="descricao" style="text-transform:uppercase"
-								value="#{projetoController.objeto.descricao}" rows="5" cols="60" />							
+							<h:inputTextarea id="descricao" onblur="this.value=this.value.toUpperCase()" 
+								style="text-transform:uppercase" value="#{projetoController.objeto.descricao}" 
+								rows="5" cols="60" />							
 						</h:panelGrid>
 
 						<h:panelGrid columns="4">
 							<h:outputText value="Investimento(R$):" />
 							<rich:spacer width="5" />
-							<h:inputText id="investimento" size="35" style="text-transform:uppercase"
+							<h:inputText id="investimento" size="35" 
+								onblur="this.value=this.value.toUpperCase()"
+								style="text-transform:uppercase"
 								value="#{projetoController.objeto.custo}">
 								<rich:jQuery selector="#investimento"
 									query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})"

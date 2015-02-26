@@ -24,7 +24,8 @@
 							<h:outputText value="Matricula:" />							
 							<rich:spacer width="7"/>
 							<h:inputText id="matricula" value="#{funcionarioController.objeto.matricula}" 
-								size="10" disabled="true" style="text-transform:uppercase"/>														
+								size="10" disabled="true" onblur="this.value=this.value.toUpperCase()" 
+								style="text-transform:uppercase"/>														
 						</h:panelGrid>
 					
 						<rich:spacer height="5"/>
@@ -35,7 +36,7 @@
 							<rich:spacer width="15"/>
 							<h:inputText id="nome" value="#{funcionarioController.objeto.nome}"
 								required="true" requiredMessage="Informe o Nome." size="80"
-								style="text-transform:uppercase" />
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" />
 							<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     			suggestionAction="#{funcionarioController.suggestionBox}" var="row" >                      
 			                    <h:column>  
@@ -77,7 +78,7 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="1"/>
 							<h:inputText size="15" id="telefone" value="#{funcionarioController.objeto.telefone}" 
-							required="false" requiredMessage="Informe o Telefone">
+								required="false" requiredMessage="Informe o Telefone">
 							    <rich:jQuery selector="#telefone" timing="onload" query="mask('(99)9999-9999')"/>
 							</h:inputText>	
 							
@@ -99,7 +100,7 @@
 							<rich:spacer width="18"/>
 							<h:inputText id="email" value="#{funcionarioController.objeto.email}"
 								required="false" requiredMessage="Informe o Email." size="80"
-								style="text-transform:uppercase"/>														
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"/>														
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>

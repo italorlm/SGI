@@ -32,9 +32,9 @@
 					
 					<h:outputText value="Nome:"/>					
 					<rich:spacer width="20"/>
-					<h:inputText style="text-transform:uppercase"
-								value="#{usuarioController.filtro.nome}"
-								size="60" />
+					<h:inputText id="nome" value="#{usuarioController.filtro.nome}"
+								size="60" onblur="this.value=this.value.toUpperCase()"
+								style="text-transform:uppercase" />
 					</h:panelGrid>
 														
 					

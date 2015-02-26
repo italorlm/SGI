@@ -44,7 +44,8 @@
 									rendered="#{contratoController.objeto.tipo==2}" />
 								<rich:spacer width="5" />
 								<h:inputText value="#{contratoController.objeto.numero}"
-									size="20" style="text-transform:uppercase"
+									size="20" onblur="this.value=this.value.toUpperCase()" 
+									style="text-transform:uppercase"
 									rendered="#{contratoController.objeto.tipo==1 or 
 									contratoController.objeto.tipo==2}" />
 							</a4j:outputPanel>
@@ -54,7 +55,8 @@
 
 						<h:panelGrid columns="10">
 							<h:outputText value="Exercicio:" />
-							<h:inputText id="exercicio" style="text-transform:uppercase"
+							<h:inputText id="exercicio" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{contratoController.objeto.exercicio}" size="10" />
 						</h:panelGrid>
 
@@ -62,13 +64,15 @@
 
 						<h:panelGrid columns="10">
 							<h:outputText value="Executor:" />
-							<h:inputText id="executor" style="text-transform:uppercase"
+							<h:inputText id="executor" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{contratoController.objeto.executor}" size="50" />
 
 							<rich:spacer width="10" />
 
 							<h:outputText value="Aditivo:" />
-							<h:inputText id="aditivo" style="text-transform:uppercase"
+							<h:inputText id="aditivo" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{contratoController.objeto.aditivo}" size="20" />
 						</h:panelGrid>
 
@@ -87,7 +91,8 @@
 						<rich:spacer height="10" />
 						<h:panelGrid columns="10">
 							<h:outputText value="Valor(R$):" />
-							<h:inputText id="valor" size="20" style="text-transform:uppercase"
+							<h:inputText id="valor" size="20" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{contratoController.objeto.valor}">
 								<rich:jQuery selector="#valor"
 									query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})"
@@ -97,7 +102,8 @@
 							<rich:spacer width="10" />
 
 							<h:outputText value="Parcelas:" />
-							<h:inputText id="parcelas" style="text-transform:uppercase"
+							<h:inputText id="parcelas" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{contratoController.objeto.parcelas}" size="5"	>
 								<a4j:support event="onblur" action="#{contratoController.validaQtdParcela}"
 									reRender="parcelas"/>
@@ -609,7 +615,8 @@
 						<h:panelGrid columns="10">
 							<h:outputText style="font-size:14px" value="Valor(R$):" />
 							<rich:spacer width="10" />
-							<h:inputText id="valor" size="20" style="text-transform:uppercase"
+							<h:inputText id="valor" size="20" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{contratoController.contratoParcela.valorParcial}">
 								<rich:jQuery selector="#valor"
 									query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})"

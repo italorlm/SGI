@@ -24,7 +24,8 @@
 							
 							<h:outputText value="Descrição:" />
 							<rich:spacer width="35"/>
-							<h:inputText id="descricao" size="50" style="text-transform:uppercase"
+							<h:inputText id="descricao" size="50" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{materialPermanenteController.objeto.descricao}"/>
 										
 						</h:panelGrid>
@@ -35,13 +36,15 @@
 							
 							<h:outputText value="Tombo atual:" />
 							<rich:spacer width="30"/>
-							<h:inputText id="tomboAtual" size="10" style="text-transform:uppercase"
+							<h:inputText id="tomboAtual" size="10" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{materialPermanenteController.objeto.tomboAtual}"/>
 							
 							<rich:spacer width="5"/>
 							
 							<h:outputText value="Tombo antigo:" />
-							<h:inputText id="tomboAnterior" size="10" style="text-transform:uppercase"
+							<h:inputText id="tomboAnterior" size="10" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{materialPermanenteController.objeto.tomboAnterior}"/>
 							
 							<rich:spacer width="5"/>
@@ -57,10 +60,10 @@
 							<h:selectOneMenu id="estadoConservacao" 
 								value="#{materialPermanenteController.objeto.estadoConservacao}">
 							  <f:selectItem itemLabel="SELECIONE" itemValue=""/>
-							  <f:selectItem itemLabel="EXCELENTE" itemValue="1"/>
-							  <f:selectItem itemLabel="BOM" itemValue="2"/>
-							  <f:selectItem itemLabel="RUIM" itemValue="3"/>
-							  <f:selectItem itemLabel="PÉSSIMO" itemValue="4"/>
+							  <f:selectItem itemLabel="BOM" itemValue="1"/>
+							  <f:selectItem itemLabel="OTIMO" itemValue="2"/>
+							  <f:selectItem itemLabel="PÉSSIMO" itemValue="3"/>
+							  <f:selectItem itemLabel="REGULAR" itemValue="4"/>
 							</h:selectOneMenu>
 										
 						</h:panelGrid>
@@ -84,7 +87,8 @@
 						
 						<rich:spacer height="5"/>					
 						<h:panelGrid columns="4">
-						  <h:inputTextarea rows="10" cols="70" style="text-transform:uppercase"
+						  <h:inputTextarea rows="10" cols="70" 
+						  	onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 						  	value="#{materialPermanenteController.objeto.observacao}"/>
 						   
 						</h:panelGrid>

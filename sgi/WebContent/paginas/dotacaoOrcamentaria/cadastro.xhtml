@@ -35,7 +35,7 @@
 								<rich:spacer width="1" />
 							<h:inputText id="codigo" value="#{dotacaoOrcamentariaController.objeto.codigo}"
 									required="true" requiredMessage="Informe o Código." size="40"
-									style="text-transform:uppercase" />
+									onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" />
 								<rich:jQuery selector="#codigo" query="mask('99999999.99.999.999.99999.99.999999.99.9')" 
 									timing="onload"/>								
 						</h:panelGrid>
@@ -48,7 +48,7 @@
 								<rich:spacer width="9" />
 							<h:inputText size="20" id="valor" value="#{dotacaoOrcamentariaController.objeto.valor}" 
 									required="true" requiredMessage="Informe Valor Trimestre"
-									style="text-transform:uppercase" >
+									onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" >
 						    	<rich:jQuery selector="#valor"
                                 	query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})" timing="onload" />
 						  	</h:inputText>							

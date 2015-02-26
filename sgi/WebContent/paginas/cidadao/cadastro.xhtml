@@ -26,7 +26,9 @@
 							<h:outputText value="Nome:" />
 								<div class="campoObrigatorio">*</div>
 								<rich:spacer width="8" />							
-							<h:inputText id="nome" size="90" style="text-transform:uppercase"
+							<h:inputText id="nome" size="90" 
+								onblur="this.value=this.value.toUpperCase()"
+								style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.nome}" />								
 						</h:panelGrid>
 						
@@ -57,7 +59,8 @@
 							<div class="campoObrigatorio">*</div>						
 							<rich:spacer width="10"/>
 							<h:inputText id="cpf" value="#{cidadaoController.objeto.cpf}"
-								maxlength="11" style="text-transform:uppercase">
+								maxlength="11" onblur="this.value=this.value.toUpperCase()" 
+								style="text-transform:uppercase">
 								<rich:jQuery selector="#cpf" query="mask('999.999.999-99')" 
 									timing="onload"/>								
 							</h:inputText>
@@ -65,11 +68,14 @@
 							<rich:spacer width="16" />
 							<h:outputText value="RG:" />
 							<h:inputText id="rg" size="20" value="#{cidadaoController.objeto.rg}"
-								maxlength="18" style="text-transform:uppercase"/>
+								maxlength="18" onblur="this.value=this.value.toUpperCase()" 
+								style="text-transform:uppercase"/>
 							
 							<rich:spacer width="16" />
 							<h:outputText value="Órgão Emissor:" />
-							<h:inputText id="orgaoEmissorRg" size="20" style="text-transform:uppercase"
+							<h:inputText id="orgaoEmissorRg" size="20"
+								onblur="this.value=this.value.toUpperCase()" 
+								style="text-transform:uppercase" 
 								value="#{cidadaoController.objeto.orgaoEmissorRg}"/>
 							
 							<rich:spacer width="16" />
@@ -77,6 +83,7 @@
 							<rich:spacer width="1" />							
 							<h:inputText id="dtEmissaoRg" value="#{cidadaoController.objeto.dataEmissaoRg}"
                                     	size="10" converterMessage="Data de Emissão do RG Inválida."
+                                    	onblur="this.value=this.value.toUpperCase()"
                                     	style="text-transform:uppercase" >
                                     <rich:jQuery selector="#dtEmissaoRg" query="mask('99/99/9999')"
 										timing="onload" />
@@ -121,7 +128,8 @@
 						
 						<h:panelGrid columns="11">
 							<h:outputText value="Telefone Residencial:" />
-							<h:inputText id="telRes" size="15" style="text-transform:uppercase"
+							<h:inputText id="telRes" size="15" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.telefoneResidencial}">
 								<rich:jQuery selector="#telRes" query="mask('(99)9999-9999')"
 									timing="onload" />
@@ -137,8 +145,8 @@
 							
 							<rich:spacer width="16" />
 							<h:outputText value="Email:" />
-							<h:inputText id="email" size="30" style="text-transform:uppercase"
-								value="#{cidadaoController.objeto.email}"/>
+							<h:inputText id="email" size="30" onblur="this.value=this.value.toUpperCase()" 
+								style="text-transform:uppercase" value="#{cidadaoController.objeto.email}"/>
 						</h:panelGrid>
 						
 						<rich:spacer width="1" height="5" />
@@ -146,12 +154,14 @@
 						<h:panelGrid columns="6">
 							<h:outputText value="Nome da Mãe:" />
 							<rich:spacer width="27" />
-							<h:inputText id="nomeMae" size="40" style="text-transform:uppercase"
+							<h:inputText id="nomeMae" size="40" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.nomeMae}"/>
 							<rich:spacer width="10" />
 							
 							<h:outputText value="Nome do Pai:" />
-							<h:inputText id="nomePai" size="40" style="text-transform:uppercase"
+							<h:inputText id="nomePai" size="40" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 								value="#{cidadaoController.objeto.nomePai}"/>
 						</h:panelGrid>
 						
@@ -180,17 +190,20 @@
 								<h:outputText value="Endereço:" />
 								<rich:spacer width="5"/>
 								<h:inputText id="endereco" size="55" disabled="#{cidadaoController.objeto.cepValido==true}"
-									value="#{cidadaoController.objeto.endereco}" style="text-transform:uppercase"/>
+									value="#{cidadaoController.objeto.endereco}" onblur="this.value=this.value.toUpperCase()" 
+									style="text-transform:uppercase"/>
 								<rich:spacer width="5"/>
 								
 								<h:outputText value="Numero:" />
 								<rich:spacer width="4"/>
-								<h:inputText id="numeroResidencia" size="5" style="text-transform:uppercase"
+								<h:inputText id="numeroResidencia" size="5" 
+									onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" 									
 									value="#{cidadaoController.objeto.numeroResidencia}"/>
 								<rich:spacer width="5"/>
 								
 								<h:outputText value="Complemento:" />
-								<h:inputText id="complemento" size="40" style="text-transform:uppercase"
+								<h:inputText id="complemento" size="40" 
+									onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 									value="#{cidadaoController.objeto.complemento}"/>
 								<rich:spacer width="5"/>
 							</h:panelGrid>
@@ -200,7 +213,8 @@
 							<h:panelGrid columns="13">	
 								<h:outputText value="Bairro:" />
 								<h:inputText id="bairro" size="38" disabled="#{cidadaoController.objeto.cepValido==true}"
-									value="#{cidadaoController.objeto.bairro}" style="text-transform:uppercase"/>
+									value="#{cidadaoController.objeto.bairro}" onblur="this.value=this.value.toUpperCase()" 
+									style="text-transform:uppercase"/>
 								<rich:spacer width="5"/>
 							
 								<h:outputText value="UF:" />
@@ -271,7 +285,8 @@
 						        <rich:spacer width="10"/>
 															
 						        <h:outputLabel value="Nome da Entidade de Ensino:" />
-						        <h:inputText id="nomeEscola" size="50" style="text-transform:uppercase"
+						        <h:inputText id="nomeEscola" size="50" 
+						        	onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" 
 						        	value="#{cidadaoController.objeto.nomeEscola}" 
 						        	disabled="#{cidadaoController.objeto.frequentaEscola!=1}" />					    
 					    	</h:panelGrid>					
@@ -286,8 +301,9 @@
 							
 							<h:panelGrid columns="8">							 
 								<h:outputLabel value="Quantidade de Dependentes:" />
-								      <h:inputText id="qtdDependentes" size="8" maxlength="3" 
-					        	value="#{cidadaoController.objeto.qtdDependentes}" style="text-transform:uppercase"/>
+								    <h:inputText id="qtdDependentes" size="8" maxlength="3" 
+					        			value="#{cidadaoController.objeto.qtdDependentes}" 
+					        			onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"/>
 						        <rich:spacer width="10"/>   					        
 							</h:panelGrid>
 							 
@@ -313,7 +329,8 @@
 					      <rich:spacer height="20"/>
 					       
 					      <h:outputLabel value="Ultima Empresa:" />
-						      <h:inputText id="ultimaEmpresa" size="50" style="text-transform:uppercase"
+						      <h:inputText id="ultimaEmpresa" size="50" 
+						      	onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 						      	value="#{cidadaoController.objeto.ultimaEmpresa}"
 						      	disabled="#{cidadaoController.objeto.jaTrabalhou!=1}" />
 					 </h:panelGrid>
@@ -328,19 +345,21 @@
 					<h:panelGrid columns="16">					 
 					      <h:outputLabel value="CPTS:" />
 					  		<rich:spacer width="10"/>
-					      <h:inputText id="numCpts" size="30" style="text-transform:uppercase"
+					      <h:inputText id="numCpts" size="30" 
+					      	onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 					      	value="#{cidadaoController.objeto.numeroCpts}"/>
 					      <rich:spacer width="10"/>
 					           
 					      <h:outputLabel value="Série:" />
-					      	<h:inputText id="serieCpts" size="15" style="text-transform:uppercase"
+					      	<h:inputText id="serieCpts" size="15" 
+					      		onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.serieCpts}"/>
 					      <rich:spacer width="10"/>
 					       
 					      <h:outputLabel value="Data Emissão:" />
 								<h:inputText id="dtEmissaoCpts" value="#{cidadaoController.objeto.dataEmissaoCpts}"
                                     	size="10" converterMessage="Data de Emissão da CPTS Inválida."
-                                    	style="text-transform:uppercase" >
+                                    	onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" >
                                     <rich:jQuery selector="#dtEmissaoCpts" query="mask('99/99/9999')"
 										timing="onload" />
                                 </h:inputText>
@@ -352,14 +371,18 @@
 					<h:panelGrid columns="16">     
 						<h:outputLabel value="NIS:" />
 							<rich:spacer width="8"/>
-					      	<h:inputText id="nis" size="15" style="text-transform:uppercase"
+					      	<h:inputText id="nis" size="15" 
+					      		onblur="this.value=this.value.toUpperCase()"
+					      		style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.nis}"/>
 					 
 					 	<rich:spacer width="10"/>
 					 
 					    <h:outputLabel value="PIS/PASEP:" />
 					      <rich:spacer width="8"/>
-					      	<h:inputText id="pispasep" size="15" style="text-transform:uppercase"
+					      	<h:inputText id="pispasep" size="15" 
+					      		onblur="this.value=this.value.toUpperCase()"
+					      		style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.pispasep}"/>
 					      		<h:outputText class="campoObrigatorio" 
 					      			value=" (Preenchimento obrigatório para maiores de 18 anos.)" />					      					      					      							 
@@ -369,17 +392,23 @@
 					 
 					<h:panelGrid columns="15">					 
 					      <h:outputLabel value="Titulo de ELeitor:" />
-					      	<h:inputText id="numTitulo" size="30" style="text-transform:uppercase"
+					      	<h:inputText id="numTitulo" size="30" 
+					      		onblur="this.value=this.value.toUpperCase()"
+					      		style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.numeroTitulo}"/>
 					      <rich:spacer width="10"/>
 					           
 					      <h:outputLabel value="Zona:" />
-					      	<h:inputText id="zonaTitulo" size="15" style="text-transform:uppercase"
+					      	<h:inputText id="zonaTitulo" size="15" 
+					      		onblur="this.value=this.value.toUpperCase()"
+					      		style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.zonaTitulo}"/>
 					      <rich:spacer width="10"/>
 					      
 					      <h:outputLabel value="Seção:" />
-					      	<h:inputText id="secaoTitulo" size="15" style="text-transform:uppercase"
+					      	<h:inputText id="secaoTitulo" size="15" 
+					      		onblur="this.value=this.value.toUpperCase()"
+					      		style="text-transform:uppercase"
 					      		value="#{cidadaoController.objeto.secaoTitulo}"/>
 					      <rich:spacer width="10"/>
 					</h:panelGrid>
