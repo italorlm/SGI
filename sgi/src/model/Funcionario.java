@@ -40,6 +40,9 @@ public class Funcionario extends BaseModel{
 	@JoinColumn(name="setor_id")
 	Setor setor;	
 	
+	@JoinColumn(name="entidade_id")
+	Entidade entidade;
+	
 	@ManyToOne
 	@JoinColumn(name="cargo_id")
 	Cargo cargo;
@@ -133,6 +136,14 @@ public class Funcionario extends BaseModel{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Entidade getEntidade() {
+		return entidade;
+	}
+
+	public void setEntidade(Entidade entidade) {
+		this.entidade = entidade;
 	}
 
 	@Override

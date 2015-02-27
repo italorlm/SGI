@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,6 +22,12 @@ public class Cargo extends BaseModel {
 	Long id;
 	
 	String nome;
+	
+	double salario;
+	
+	@ManyToOne
+	@JoinColumn(name="entidade_id")
+	Entidade entidade;
 
 	public Long getId() {
 		return id;
@@ -35,6 +43,22 @@ public class Cargo extends BaseModel {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+		
+	public double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+
+	public Entidade getEntidade() {
+		return entidade;
+	}
+
+	public void setEntidade(Entidade entidade) {
+		this.entidade = entidade;
 	}
 
 	@Override
