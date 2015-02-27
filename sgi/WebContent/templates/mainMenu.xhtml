@@ -42,9 +42,9 @@
 								</h:panelGroup>
 							</f:facet>
 
-                             <rich:menuItem rendered="true" ajaxSingle="false" value="Cidadão" action="#{cidadaoController.listar}"/>
+                             <rich:menuItem rendered="false" ajaxSingle="false" value="Cidadão" action="#{cidadaoController.listar}"/>                             
                              <rich:menuItem rendered="true" ajaxSingle="false" value="Unidades" action="#{setorController.listar}"/>                             
-                             <rich:menuItem rendered="true" ajaxSingle="false" value="Usuário" action="#{usuarioController.listar}"/>                           
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Usuários" action="#{usuarioController.listar}"/>                           
                          </rich:dropDownMenu>
 							
 						<rich:dropDownMenu
@@ -55,8 +55,8 @@
 									</h:panelGroup>
 								</f:facet>
 
-                             <rich:menuItem rendered="true" ajaxSingle="false" value="Cadastro de Funcionários" action="#{funcionarioController.listar}"/>
-                             <rich:menuItem rendered="true" ajaxSingle="false" value="Cargos" action="#{cargoController.listar}"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Funcionários" action="#{funcionarioController.listar}"/>
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Entidades" action="#{entidadeController.listar}"/>
                              <rich:menuItem rendered="true" ajaxSingle="false" value="Relatórios"/>                                       								
 							</rich:dropDownMenu>
 							
@@ -82,7 +82,7 @@
 								</f:facet>
 
                              <rich:menuItem rendered="true" ajaxSingle="false" value="Cadastro" action="#{projetoController.listar}"/>
-                             <rich:menuItem rendered="true" ajaxSingle="false" value="Gráficos"/>
+                             <rich:menuItem rendered="false" ajaxSingle="false" value="Gráficos"/>
                              <rich:menuItem rendered="true" ajaxSingle="false" value="Relatórios"/>
                                       								
 							</rich:dropDownMenu>
