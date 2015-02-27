@@ -131,6 +131,16 @@
    <to-view-id>/paginas/cargo/listagem.xhtml</to-view-id>
   </navigation-case>
   
+   <!-- ENTIDADE -->
+  <navigation-case>
+   <from-outcome>cadastrarEntidade</from-outcome>
+   <to-view-id>/paginas/entidade/cadastro.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listarEntidade</from-outcome>
+   <to-view-id>/paginas/entidade/listagem.xhtml</to-view-id>
+  </navigation-case>
+  
    <!-- PAINEL SECRETARIO COORDENADOR -->  
   <navigation-case>
    <from-outcome>painelSecretarioCoordenador</from-outcome>
