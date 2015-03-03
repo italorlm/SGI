@@ -4,29 +4,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
+import model.EntidadeCargo;
 import model.Cidadao;
 import model.Funcionario;
 
+import org.hibernate.Session;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import dao.DaoBdDirhu;
+import dao.EntidadeCargoDao;
 import dao.FuncionarioDao;
 
 @Component
 @Scope("globalSession")
 public class FuncionarioController extends GenericController<Funcionario, FuncionarioDao> {
 
-
-	List<SelectItem> selectItems;
+	List<SelectItem> selectItems, selectCargos;
 	final static String DAO_CONCRETO = "funcionarioDaoImp";
 	
+	List<EntidadeCargo> entidadeCargos;
+	
 	DaoBdDirhu daoBdDirhu = new DaoBdDirhu();
+	
+	@Resource
+	EntidadeCargoDao entidadeCargoDao;
 
 	public FuncionarioController(){
 		injetaDao();
@@ -47,6 +54,13 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void limpar() throws InstantiationException, IllegalAccessException {
+		selectCargos = new ArrayList<SelectItem>();
+		entidadeCargos = new ArrayList<EntidadeCargo>();
+		super.limpar();
 	}
 	
 	public void filtrar() {
@@ -77,6 +91,16 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 			}
 		}
 	}
+	
+	public List<SelectItem> buscarCargos() {		
+		entidadeCargos = entidadeCargoDao.findByEntidade(objeto.getEntidade());
+		if(selectCargos.size()==0){
+			for(EntidadeCargo ec : entidadeCargos){
+				selectCargos.add(new SelectItem(ec,ec.getNome()));
+			}
+		}
+		return selectCargos;
+	}
 
 	public List<SelectItem> getSelectItems() {
 		selectItems = new ArrayList<SelectItem>();
@@ -105,6 +129,24 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 			e.printStackTrace();
 		}
 	}
+
+	public List<SelectItem> getSelectCargos() {
+		return selectCargos;
+	}
+
+	public void setSelectCargos(List<SelectItem> selectCargos) {
+		this.selectCargos = selectCargos;
+	}
+
+	public List<EntidadeCargo> getEntidadeCargos() {
+		return entidadeCargos;
+	}
+
+	public void setEntidadeCargos(List<EntidadeCargo> entidadeCargos) {
+		this.entidadeCargos = entidadeCargos;
+	}
+	
+	
 		
 }
 

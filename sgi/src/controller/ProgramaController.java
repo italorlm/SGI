@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
+import model.EntidadeCargo;
 import model.Cidadao;
 import model.Contrato;
 import model.ContratoParcela;
@@ -19,7 +19,7 @@ import model.ProgramaMap;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import dao.CargoDao;
+import dao.EntidadeCargoDao;
 import dao.ContratoDao;
 import dao.ProgramaDao;
 import dao.ProgramaMapDao;

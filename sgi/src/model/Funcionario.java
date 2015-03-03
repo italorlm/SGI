@@ -45,17 +45,24 @@ public class Funcionario extends BaseModel{
 	
 	@ManyToOne
 	@JoinColumn(name="cargo_id")
-	Cargo cargo;
+	EntidadeCargo cargo;
 	
 	@Column(name="data_admissao")
 	Date dataAdmissao;
 	
+	Integer sexo;
+	
 	public Funcionario() {}
 	
-	public Funcionario(String nome, String matricula, String email) {
+	public Funcionario(String nome, String matricula, String email, 
+			Date dataAdmissao, Integer sexo, String celular, String telefone) {
 		this.nome = nome;
 		this.matricula = matricula;
 		this.email = email;
+		this.dataAdmissao = dataAdmissao;
+		this.sexo = sexo;
+		this.celular = celular;
+		this.telefone = telefone;
 	}
 
 	public Long getId() {
@@ -106,11 +113,11 @@ public class Funcionario extends BaseModel{
 		this.dataAdmissao = dataAdmissao;
 	}
 	
-	public Cargo getCargo() {
+	public EntidadeCargo getCargo() {
 		return cargo;
 	}
 
-	public void setCargo(Cargo cargo) {
+	public void setCargo(EntidadeCargo cargo) {
 		this.cargo = cargo;
 	}
 	
@@ -144,6 +151,14 @@ public class Funcionario extends BaseModel{
 
 	public void setEntidade(Entidade entidade) {
 		this.entidade = entidade;
+	}
+	
+	public Integer getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Integer sexo) {
+		this.sexo = sexo;
 	}
 
 	@Override

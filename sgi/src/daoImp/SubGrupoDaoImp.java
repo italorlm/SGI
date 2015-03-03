@@ -4,7 +4,7 @@ package daoImp;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Cargo;
+import model.EntidadeCargo;
 import model.Grupo;
 import model.SubGrupo;
 
@@ -14,7 +14,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import dao.CargoDao;
+import dao.EntidadeCargoDao;
 import dao.GrupoDao;
 import dao.SubGrupoDao;
 

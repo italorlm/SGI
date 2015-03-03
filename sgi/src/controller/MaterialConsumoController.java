@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
+import model.EntidadeCargo;
 import model.Cidadao;
 import model.Grupo;
 import model.MaterialConsumo;

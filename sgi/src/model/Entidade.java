@@ -1,11 +1,14 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.envers.Audited;
 
@@ -20,6 +23,9 @@ public class Entidade extends BaseModel {
 	Long id;
 	
 	String nome;
+	
+	@Transient
+	List<EntidadeCargo> entidadeCargos;
 
 	public Long getId() {
 		return id;
@@ -35,6 +41,14 @@ public class Entidade extends BaseModel {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public List<EntidadeCargo> getEntidadeCargos() {
+		return entidadeCargos;
+	}
+
+	public void setEntidadeCargos(List<EntidadeCargo> entidadeCargos) {
+		this.entidadeCargos = entidadeCargos;
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import model.Cargo;
+import model.EntidadeCargo;
 import model.Cidadao;
 import model.DotacaoOrcamentaria;
 

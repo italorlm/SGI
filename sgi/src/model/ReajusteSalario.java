@@ -24,7 +24,7 @@ public class ReajusteSalario extends BaseModel {
 	
 	@ManyToOne
 	@JoinColumn(name="cargo_id")
-	Cargo cargo;
+	EntidadeCargo cargo;
 	
 	@Column(name="percentual_reajuste")
 	Integer percentualReajuste;
@@ -43,11 +43,11 @@ public class ReajusteSalario extends BaseModel {
 		this.id = id;
 	}
 
-	public Cargo getCargo() {
+	public EntidadeCargo getCargo() {
 		return cargo;
 	}
 
-	public void setCargo(Cargo cargo) {
+	public void setCargo(EntidadeCargo cargo) {
 		this.cargo = cargo;
 	}
 
