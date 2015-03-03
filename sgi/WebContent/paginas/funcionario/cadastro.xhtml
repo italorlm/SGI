@@ -35,17 +35,48 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="15"/>
 							<h:inputText id="nome" value="#{funcionarioController.objeto.nome}"
-								required="true" requiredMessage="Informe o Nome." size="80"
+								required="false" requiredMessage="Informe o Nome." size="80"
 								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" />
 							<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     			suggestionAction="#{funcionarioController.suggestionBox}" var="row" >                      
 			                    <h:column>  
 			                        <h:outputText value="#{row.nome}" />			                         
 			                    </h:column>  
-			                    <a4j:support event="onselect" reRender="matricula,email">
+			                    <a4j:support event="onselect" reRender="matricula,email,sexo,dataAdmissao,celular,telefone">
 			                    	<f:setPropertyActionListener value="#{row}" target="#{funcionarioController.objeto}" />
 			                    </a4j:support>
                 			</rich:suggestionbox>							
+						</h:panelGrid>
+						
+						<rich:spacer height="5"/>
+						
+						<h:panelGrid columns="9">
+							<h:outputText value="Sexo:" />							
+							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="17"/>
+							<h:selectOneMenu id="sexo" 
+									value="#{funcionarioController.objeto.sexo}"
+									required="false" requiredMessage="Informe o Sexo">
+							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
+							  	<f:selectItem itemLabel="FEMININO" itemValue="1"/>
+							  	<f:selectItem itemLabel="MASCULINO" itemValue="2"/>
+							</h:selectOneMenu>							
+						</h:panelGrid>
+						
+						<rich:spacer height="5"/>
+						
+						<h:panelGrid columns="9">
+							<h:outputText value="Entidade:" />							
+							<div class="campoObrigatorio">*</div>
+							<rich:spacer width="1"/>
+							<h:selectOneMenu id="entidade" converter="entityConverter" 
+									value="#{funcionarioController.objeto.entidade}"
+									required="false" requiredMessage="Informe a Entidade">
+							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
+							  	<f:selectItems value="#{entidadeController.selectItems}"/>
+							  	<a4j:support event="onchange" reRender="cargo" 
+						     		action="#{funcionarioController.buscarCargos()}"/>
+							</h:selectOneMenu>							
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
@@ -58,7 +89,7 @@
 									value="#{funcionarioController.objeto.cargo}"
 									required="false" requiredMessage="Informe o Cargo">
 							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
-							  	<f:selectItems value="#{cargoController.selectItems}"/>
+							  	<f:selectItems value="#{funcionarioController.selectCargos}"/>
 							</h:selectOneMenu>
 							
 							<rich:spacer width="5"/>
@@ -78,18 +109,14 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="1"/>
 							<h:inputText size="15" id="telefone" value="#{funcionarioController.objeto.telefone}" 
-								required="false" requiredMessage="Informe o Telefone">
-							    <rich:jQuery selector="#telefone" timing="onload" query="mask('(99)9999-9999')"/>
-							</h:inputText>	
+								required="false" requiredMessage="Informe o Telefone" />
 							
 							<rich:spacer width="5"/>
 							
 							<h:outputText value="Celular:" />
 							<div class="campoObrigatorio">*</div>
 							<h:inputText size="15" id="celular" value="#{funcionarioController.objeto.celular}" 
-							required="false" requiredMessage="Informe o Celular">
-							    <rich:jQuery selector="#celular" timing="onload" query="mask('(99)9999-9999')"/>
-							</h:inputText>						
+								required="false" requiredMessage="Informe o Celular" />												
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
