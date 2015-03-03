@@ -44,7 +44,10 @@
 
                              <rich:menuItem rendered="false" ajaxSingle="false" value="Cidadão" action="#{cidadaoController.listar}"/>                             
                              <rich:menuItem rendered="true" ajaxSingle="false" value="Unidades" action="#{setorController.listar}"/>                             
-                             <rich:menuItem rendered="true" ajaxSingle="false" value="Usuários" action="#{usuarioController.listar}"/>                           
+                             <rich:menuGroup rendered="true" ajaxSingle="false" value="Usuários" >
+                             	<rich:menuItem rendered="true" ajaxSingle="false" value="Cadastro" action="#{usuarioController.listar}"/>
+                             	<rich:menuItem rendered="true" ajaxSingle="false" value="Relatórios" action="#{usuarioController.imprimir}"/>
+                             </rich:menuGroup>                           
                          </rich:dropDownMenu>
 							
 						<rich:dropDownMenu
@@ -150,7 +153,7 @@
 							<rich:spacer width="80" />
 
 							<font size="2"><h:outputText styleClass="teste"
-									value="Usuário: #{loginController.usuario.nome.toUpperCase()}" />
+									value="Usuário: #{loginController.usuario.login.toUpperCase()}" />
 							</font>
 						
 						</rich:toolBar>
