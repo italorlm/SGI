@@ -23,9 +23,12 @@
 							<h:outputText value="Nome:" />
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="11" />
-							<h:inputText value="#{usuarioController.objeto.nome}"
-								required="true" requiredMessage="Informe o Nome." size="80" 
-								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" />
+							<h:selectOneMenu value="#{usuarioController.objeto.funcionario}"
+								converter="entityConverter" required="true"
+								requiredMessage="Informe o Funcionario">
+								<f:selectItem itemLabel="SELECIONE" itemValue="" />
+								<f:selectItems value="#{funcionarioController.selectItems}" />
+							</h:selectOneMenu>
 						</h:panelGrid>
 							
 						   

@@ -30,11 +30,13 @@
 										
 					<h:panelGrid columns="3">
 					
-					<h:outputText value="Nome:"/>					
-					<rich:spacer width="20"/>
-					<h:inputText id="nome" value="#{usuarioController.filtro.nome}"
-								size="60" onblur="this.value=this.value.toUpperCase()"
-								style="text-transform:uppercase" />
+					<h:outputText value="Funcionário:"/>					
+					<rich:spacer width="3"/>
+					<h:selectOneMenu value="#{usuarioController.filtro.funcionario}"
+								converter="entityConverter" >
+								<f:selectItem itemLabel="SELECIONE" itemValue="" />
+								<f:selectItems value="#{funcionarioController.selectItems}" />								
+							</h:selectOneMenu>
 					</h:panelGrid>
 														
 					
@@ -65,7 +67,7 @@
 							<rich:columnGroup>
 
 								<rich:column style="text-align:center">
-									<h:outputText styleClass="headerText" value="Nome" />
+									<h:outputText styleClass="headerText" value="Funcionário" />
 								</rich:column>
 								
 								<rich:column/>
@@ -76,7 +78,7 @@
 						</f:facet>
 
 						<rich:column style="text-align:center">
-							<h:outputText value="#{row.nome}" />
+							<h:outputText value="#{row.funcionario.nome}" />
 						</rich:column>
 						
 					<ui:decorate template="../../templates/listagem/editar.xhtml">
@@ -103,7 +105,7 @@
 		</h:form>
 		
 		<rich:modalPanel id="confirmaExcluir" width="280" height="120"
-resizeable="false" moveable="true">
+			resizeable="false" moveable="true">
                     <f:facet name="header">
                         <h:outputText value="Atenção!" />
                     </f:facet>

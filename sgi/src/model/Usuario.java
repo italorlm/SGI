@@ -25,7 +25,9 @@ public class Usuario extends BaseModel implements Serializable  {
     
     String senha;
     
-    String nome;
+    @ManyToOne
+    @JoinColumn(name="id_funcionario")
+    Funcionario funcionario;
     
     @ManyToOne
     @JoinColumn(name="perfil_id")
@@ -37,8 +39,7 @@ public class Usuario extends BaseModel implements Serializable  {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-	
+	}	
 
 	public String getLogin() {
 		return login;
@@ -56,17 +57,13 @@ public class Usuario extends BaseModel implements Serializable  {
 		this.senha = senha;
 	}
 	
-	
-
-	public String getNome() {
-		return nome;
+	public Funcionario getFuncionario() {
+		return funcionario;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
-	
-	
 
 	public Perfil getPerfil() {
 		return perfil;
