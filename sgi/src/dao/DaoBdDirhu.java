@@ -30,14 +30,17 @@ public class DaoBdDirhu {
 		List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 		try {
 
-			String sql = "select nm_fun as nome, nr_mat as matricula, fun_email as email from tbfuncionario "; 
+			String sql = "select nm_fun as nome, nr_mat as matricula, fun_email as email,"
+					+ "fun_sexo as sexo, dt_adm as data_admissao, fun_tel_cel as tel_celular, fun_tel as telefone "
+					+ "from tbfuncionario "; 
 								
 			con = getConnection();
 			pst = con.prepareStatement(sql);			
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				funcionarios.add(new Funcionario(Normalizer.normalize(rs.getString("nome"), Normalizer.Form.NFD)
-						.replaceAll("[^\\p{ASCII}]", ""), rs.getString("matricula"), rs.getString("email")));
+						.replaceAll("[^\\p{ASCII}]", ""), rs.getString("matricula"), rs.getString("email"), 
+						rs.getDate("data_admissao"), rs.getInt("sexo"), rs.getString("tel_celular"), rs.getString("telefone")));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
