@@ -14,7 +14,7 @@ public class CustomRevisionListener implements RevisionListener {
 		CustomRevisionEntity revision = (CustomRevisionEntity) revisionEntity;
 		Usuario usuario = (Usuario) FacesUtils.getSession().getAttribute("usuario");
 		revision.setUsuario(usuario.getLogin());
-		revision.setNome(usuario.getNome());
+		revision.setNome(usuario.getFuncionario().getNome());
 		revision.setData(new Date());
 	}
 
