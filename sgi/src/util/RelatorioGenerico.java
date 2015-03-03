@@ -21,23 +21,23 @@ public class RelatorioGenerico {
 
 	public  static void imprimir(ServletContext ctx,Map parameters,String caminhoRelatorio,Object dataSource,String nomePDF){
 		try {
-			File f = new File(ctx.getRealPath("/imagens/stds.jpg"));
-			BufferedImage logo = ImageIO.read(f);
-			parameters.put("logo", logo);
+//			File f = new File(ctx.getRealPath("/imagens/stds.jpg"));
+//			BufferedImage logo = ImageIO.read(f);
+//			parameters.put("logo", logo);
+//			
+//			File fsgp = new File(ctx.getRealPath("/imagens/logosgp.jpg"));
+//			BufferedImage logosgp = ImageIO.read(fsgp);
+//			parameters.put("logosgp", logosgp);	
+//
+//			File festado = new File(ctx.getRealPath("/imagens/logo_estado.jpg"));
+//			BufferedImage logoEstado = ImageIO.read(festado);
+//			parameters.put("logoEstado", logoEstado);
+//			
+//			File fportal = new File(ctx.getRealPath("/imagens/logoPortal.jpg"));
+//			BufferedImage logoPortal = ImageIO.read(fportal);
+//			parameters.put("logoPortal", logoPortal);
 			
-			File fsgp = new File(ctx.getRealPath("/imagens/logosgp.jpg"));
-			BufferedImage logosgp = ImageIO.read(fsgp);
-			parameters.put("logosgp", logosgp);	
-
-			File festado = new File(ctx.getRealPath("/imagens/logo_estado.jpg"));
-			BufferedImage logoEstado = ImageIO.read(festado);
-			parameters.put("logoEstado", logoEstado);
-			
-			File fportal = new File(ctx.getRealPath("/imagens/logoPortal.jpg"));
-			BufferedImage logoPortal = ImageIO.read(fportal);
-			parameters.put("logoPortal", logoPortal);
-			
-			parameters.put("SUBREPORT_DIR",ctx.getRealPath("/relatorios/")+File.separator);
+//			parameters.put("SUBREPORT_DIR",ctx.getRealPath("/relatorios/")+File.separator);
 			
 			String path = ctx.getRealPath(caminhoRelatorio);
 			HttpServletResponse response = (HttpServletResponse) FacesContext

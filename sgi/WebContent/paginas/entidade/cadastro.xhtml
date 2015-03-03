@@ -23,12 +23,82 @@
 						<h:panelGrid columns="4">
 							<h:outputText value="Nome:" />
 							<div class="campoObrigatorio">*</div>
-							 <rich:spacer width="42" />
+							 <rich:spacer width="5" />
 							<h:inputText size="80" value="#{entidadeController.objeto.nome}" 
 								required="true" requiredMessage="Informe Nome"
 								onblur="this.value=this.value.toUpperCase()"
 								style="text-transform:uppercase" />								
 						</h:panelGrid>	
+						
+						<rich:spacer height="10"/>
+	
+						<fieldset>
+							<legend>
+								<font color="blue">Cargos</font>
+							</legend>
+							<div>
+								<a4j:commandLink reRender="panelCargo"
+									styleClass="buttonAddPadrao"
+									actionListener="#{entidadeController.mostrarModalCargo}"
+									oncomplete="Richfaces.showModalPanel('modalCargo');" />
+							</div>
+
+							<ui:decorate template="../../templates/listagem/header.xhtml">
+								<ui:param name="titulo" value="Cargos" />
+								<ui:param name="largura" value="74%" />
+							</ui:decorate>
+
+							<a4j:outputPanel ajaxRendered="true" id="painelCargo">
+								<rich:dataTable value="#{entidadeController.entidadeCargos}"
+									align="center" width="74%" id="tabela" rows="10"
+									onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
+									onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+									rowClasses="odd-row,even-row" rendered="true"
+									columnClasses="col" var="row">
+									<f:facet name="header">
+										<rich:columnGroup>
+
+											<rich:column style="text-align:center">
+												<h:outputText styleClass="headerText" value="Cargo" />
+											</rich:column>
+
+											<rich:column />
+											<rich:column />
+
+										</rich:columnGroup>
+									</f:facet>
+
+									<rich:column style="text-align:center">
+										<h:outputText value="#{row.nome}" />
+									</rich:column>
+
+									<rich:column style="text-align:center">
+										<a4j:commandLink reRender="panelCargo"
+											oncomplete="Richfaces.showModalPanel('modalCargo')"
+											id="commandEditar" styleClass="buttonVisualizar" value=""
+											actionListener="#{entidadeController.mostrarModalCargo}">
+											<f:setPropertyActionListener value="#{row}"
+												target="#{entidadeController.entidadeCargo}" />
+										</a4j:commandLink>
+									</rich:column>
+
+									<rich:column>
+										<a4j:commandLink immediate="true"
+											oncomplete="Richfaces.showModalPanel('excluirCargo')"
+											id="commandRemoverCargo" styleClass="buttonRemover" value="">
+											<f:setPropertyActionListener value="#{row}"
+												target="#{entidadeController.entidadeCargo}" />
+										</a4j:commandLink>
+									</rich:column>
+
+									<ui:decorate template="../../templates/listagem/footer.xhtml">
+										<ui:param name="tamanho"
+											value="#{entidadeController.entidadeCargos.size()}" />
+									</ui:decorate>
+
+								</rich:dataTable>
+							</a4j:outputPanel>
+						</fieldset>
 												
 					</rich:tab>
 
@@ -53,6 +123,92 @@
 			</div>
 
 		</h:form>
+		
+		<a4j:outputPanel id="panelCargo">
+			<rich:modalPanel rendered="#{entidadeController.mostrarModalCargo}"
+				id="modalCargo" width="700" height="130" resizeable="false"
+				moveable="true">
+				<f:facet name="header">
+					<h:outputText style="font-size:12px" value="Novo Cargo" />
+				</f:facet>
+
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:form>
+							<h:commandLink id="fecharDiv" styleClass="buttonRemover"
+								onclick="Richfaces.hideModalPanel('modalCargo')" />
+						</h:form>
+					</h:panelGroup>
+				</f:facet>
+
+				<h:form>
+					<div align="center">
+						<h:panelGrid columns="2">
+							<h:outputText style="font-size:14px" value="Nome:" />
+							<h:inputText id="cargo" size="90" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+								value="#{entidadeController.entidadeCargo.nome}" />
+						</h:panelGrid>						
+						
+						<rich:spacer height="5"/>
+						
+						<h:panelGrid columns="2">
+							<h:outputText style="font-size:14px" value="Salário (R$):" />
+							<h:inputText id="salario" size="30" 
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+								value="#{entidadeController.valorSalario}" />
+								<rich:jQuery selector="#salario"
+                                	query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})" 
+                                	timing="onload" />
+						</h:panelGrid>
+												
+						<h:commandButton reRender="tabela" styleClass="buttonAdicionar"
+							value="Cadastrar" action="#{entidadeController.adicionarCargo}" />
+					</div>
+
+				</h:form>
+
+			</rich:modalPanel>
+		</a4j:outputPanel>
+
+		<a4j:outputPanel id="panelExcluirCargo">
+			<rich:modalPanel id="excluirCargo" width="280" height="120"
+				resizeable="false" moveable="true">
+				<f:facet name="header">
+					<h:outputText value="Atenção!" />
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:graphicImage value="/images/fechar.png" styleClass="hidelink"
+							id="hidelinkCargo" />
+						<rich:componentControl for="confirmaExcluir" attachTo="hidelink"
+							operation="hide" event="onclick" />
+					</h:panelGroup>
+				</f:facet>
+				<center>
+					<h:form>
+
+						<h:panelGrid columns="3" cellspacing="1">
+							<table align="center">
+								<tr align="center">
+									<td><h:outputText align="left"
+											value="Confirma exclusão do item?" /></td>
+								</tr>
+
+								<tr>
+									<td><a4j:commandButton reRender="tabela"
+											styleClass="buttonAdicionar" value="Sim"
+											action="#{entidadeController.excluirCargo}"
+											onclick="Richfaces.hideModalPanel('excluirCargo')" /> <a4j:commandButton
+											styleClass="buttonAdicionar" value="Não"
+											onclick="Richfaces.hideModalPanel('excluirCargo')" /></td>
+								</tr>
+							</table>
+						</h:panelGrid>
+					</h:form>
+				</center>
+			</rich:modalPanel>
+		</a4j:outputPanel>
 
 	</ui:define>
 
