@@ -21,7 +21,7 @@ public class RelatorioGenerico {
 
 	public  static void imprimir(ServletContext ctx,Map parameters,String caminhoRelatorio,Object dataSource,String nomePDF){
 		try {
-			File f = new File(ctx.getRealPath("/imagens/topo.jpg"));
+			File f = new File(ctx.getRealPath("/imagens/topo.png"));
 			BufferedImage logo = ImageIO.read(f);			
 			parameters.put("logo", logo);
 //			

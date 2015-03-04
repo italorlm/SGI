@@ -42,6 +42,7 @@ public class LoginFilter implements Filter {
 		&& !url.endsWith(".css")
 		&& !url.endsWith(".js")
 		&& !url.endsWith(".jpg")
+		&& !url.endsWith(".png")
 		&& !url.endsWith(".gif");
 	}
 }
