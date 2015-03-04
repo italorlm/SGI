@@ -38,6 +38,7 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 	public FuncionarioController(){
 		injetaDao();
 		filtro = new Funcionario();
+		trazerTodos = true;
 	}
 
 	@Override
