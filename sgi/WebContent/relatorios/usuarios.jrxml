@@ -1,65 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="usuarios" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="logo" class="java.awt.Image"/>
 	<field name="funcionario.nome" class="java.lang.String"/>
 	<field name="login" class="java.lang.String"/>
 	<title>
-		<band height="85" splitType="Stretch">
+		<band height="62" splitType="Stretch">
 			<image>
-				<reportElement x="3" y="3" width="550" height="81"/>
+				<reportElement x="3" y="3" width="550" height="59"/>
 				<imageExpression class="java.awt.Image"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>
-	<columnHeader>
-		<band height="24">
-			<rectangle>
-				<reportElement x="3" y="4" width="288" height="20" backcolor="#CCCCCC"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="291" y="4" width="261" height="20" backcolor="#CCCCCC"/>
-			</rectangle>
+	<pageHeader>
+		<band height="34">
 			<staticText>
-				<reportElement x="120" y="8" width="34" height="16"/>
-				<textElement>
-					<font size="8" isBold="true"/>
+				<reportElement x="19" y="0" width="109" height="34"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18"/>
 				</textElement>
-				<text><![CDATA[NOME]]></text>
+				<text><![CDATA[Usuários]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="405" y="8" width="57" height="16"/>
-				<textElement>
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[USUÁRIO]]></text>
-			</staticText>
+			<line>
+				<reportElement x="3" y="31" width="549" height="1"/>
+			</line>
 		</band>
-	</columnHeader>
+	</pageHeader>
 	<detail>
-		<band height="15" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<rectangle>
-				<reportElement x="3" y="0" width="288" height="15"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="291" y="0" width="261" height="15"/>
+				<reportElement x="3" y="0" width="549" height="23" backcolor="#CCCCCC"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Double"/>
+				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="4" y="0" width="288" height="15"/>
+				<reportElement x="32" y="23" width="115" height="15"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{funcionario.nome}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="292" y="0" width="260" height="15"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{login}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="4" y="0" width="548" height="23"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{funcionario.nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="23" width="32" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Login:]]></text>
+			</staticText>
 		</band>
 	</detail>
+	<pageFooter>
+		<band height="26">
+			<line>
+				<reportElement x="3" y="2" width="549" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="525" y="4" width="23" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="4" width="245" height="9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Secretaria do Trabalho e Desenvolvimento Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="13" width="124" height="9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Governo do Estado do Ceará]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="488" y="4" width="24" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="512" y="4" width="19" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
 </jasperReport>
