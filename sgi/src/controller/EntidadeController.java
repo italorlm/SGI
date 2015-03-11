@@ -72,6 +72,7 @@ public class EntidadeController extends GenericController<Entidade, EntidadeDao>
 		selectItems = new ArrayList<SelectItem>();
 		if(selectItems.size()==0){
 			for(Entidade e : getListagem()){
+				e.setEntidadeCargos(entidadeCargoDao.findByEntidade(e));
 				selectItems.add(new SelectItem(e,e.getNome()));
 			}
 		}
@@ -111,6 +112,12 @@ public class EntidadeController extends GenericController<Entidade, EntidadeDao>
 		}
 		
 		return retorno;		
+	}
+	
+	@Override
+	public String editar() {
+		entidadeCargos = entidadeCargoDao.findByEntidade(objeto);
+		return super.editar();
 	}
 	
 	public void adicionarCargo() {
