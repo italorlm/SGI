@@ -93,16 +93,6 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 		}
 	}
 	
-	public List<SelectItem> buscarCargos() {		
-		entidadeCargos = entidadeCargoDao.findByEntidade(objeto.getEntidade());
-		if(selectCargos.size()==0){
-			for(EntidadeCargo ec : entidadeCargos){
-				selectCargos.add(new SelectItem(ec,ec.getNome()));
-			}
-		}
-		return selectCargos;
-	}
-
 	public List<SelectItem> getSelectItems() {
 		selectItems = new ArrayList<SelectItem>();
 		if(selectItems.size()==0){
@@ -115,6 +105,17 @@ public class FuncionarioController extends GenericController<Funcionario, Funcio
 
 	public void setSelectItems(List<SelectItem> selectItems) {
 		this.selectItems = selectItems;
+	}
+	
+	//Transformar Lista de Cargos em SelectItems de Cargos
+	public List<SelectItem> selectCargos() {
+		selectCargos = new ArrayList<SelectItem>();
+		if(selectCargos.size()==0 && objeto.getEntidade()!=null){
+			for(EntidadeCargo ec : objeto.getEntidade().getEntidadeCargos()){
+				selectCargos.add(new SelectItem(ec,ec.getNome()));
+			}
+		}
+		return selectCargos;
 	}
 
 	@Override
