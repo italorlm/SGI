@@ -25,7 +25,8 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="31"/>
 							<h:inputText id="nome" required="true" value="#{setorController.objeto.nome}" size="130"
-								requiredMessage="Informe o Nome" onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"/>
+								requiredMessage="Informe o Nome" onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+								disabled="#{!permissaoController.temPermissao('salvarUnidade')}"/>
 							<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     			suggestionAction="#{setorController.suggestionBox}" var="row" >                      
 			                    <h:column>  
@@ -37,14 +38,19 @@
                 			</rich:suggestionbox>	
 						</h:panelGrid>
 						
+						<rich:spacer height="1" />
+						
 						<h:panelGrid columns="4">
 							<h:outputText value="Endereço:" />
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="13"/>
 							<h:inputText id="endereco" value="#{setorController.objeto.endereco}" size="100"
 								required="false" requiredMessage="Informe o Endereço" 
-								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"/>								
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+								disabled="#{!permissaoController.temPermissao('salvarUnidade')}" />								
 						</h:panelGrid>
+						
+						<rich:spacer height="3" />
 						
 						<h:panelGrid columns="4">
 							<h:outputText value="Telefone:" />
@@ -52,9 +58,11 @@
 							<rich:spacer width="18"/>
 							<h:inputText size="25" id="telefone" value="#{setorController.objeto.telefone}" 
 								required="false" requiredMessage="Informe o Telefone"
-								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase">							    
-							</h:inputText>								
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+								disabled="#{!permissaoController.temPermissao('salvarUnidade')}" />
 						</h:panelGrid>
+						
+						<rich:spacer height="3" />
 						
 						<h:panelGrid columns="4">
 							<h:outputText value="Responsável:" />
@@ -62,12 +70,16 @@
 							
 							<h:inputText id="responsavel" value="#{setorController.objeto.responsavel}" size="50"
 								required="false" requiredMessage="Informe o Responsável"
-								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"/>								
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+								disabled="#{!permissaoController.temPermissao('salvarUnidade')}" />								
 						</h:panelGrid>
+						
+						<rich:spacer height="3" />
 						
 						<h:panelGrid columns="4">
 							<h:outputText value="Unidade Externa?" />														
-							<h:selectBooleanCheckbox id="undExterna" value="#{setorController.objeto.unidadeExterna}" />								
+							<h:selectBooleanCheckbox id="undExterna" value="#{setorController.objeto.unidadeExterna}" 
+								disabled="#{!permissaoController.temPermissao('salvarUnidade')}" />								
 						</h:panelGrid>							
 												
 					</rich:tab>
@@ -76,10 +88,14 @@
 
 				<br />
 
-                <ui:decorate template="../../templates/cadastro/botoes.xhtml">
-		    	     <ui:param name="salvar" value="salvar" />
-			         <ui:param name="listar" value="listar" />
-			        </ui:decorate>
+                <h:panelGrid columns="2">
+					<a4j:commandButton styleClass="buttonAdicionar"
+						value="Salvar" action="#{setorController.salvar}" 
+						rendered="#{permissaoController.temPermissao('salvarUnidade')}" />
+												
+					<a4j:commandButton immediate="true" styleClass="buttonAdicionar"  
+						value="Cancelar" action="#{setorController.listar}" />
+				</h:panelGrid>
 				
 				<table style="left: 30px">
 					<tr>

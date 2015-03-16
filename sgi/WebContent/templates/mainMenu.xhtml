@@ -44,7 +44,7 @@
 
                              <rich:menuItem rendered="false" ajaxSingle="false" value="Cidadão" action="#{cidadaoController.listar}"/>                             
                              <rich:menuItem rendered="true" ajaxSingle="false" value="Unidades" action="#{setorController.listar}"/>                             
-                             <rich:menuGroup rendered="true" ajaxSingle="false" value="Usuários" >
+                             <rich:menuGroup rendered="#{permissaoController.temPermissao('menuUsuario')}" ajaxSingle="false" value="Usuários" >
                              	<rich:menuItem rendered="true" ajaxSingle="false" value="Cadastro" action="#{usuarioController.listar}"/>
                              	<rich:menuItem rendered="true" ajaxSingle="false" value="Relatórios" action="#{usuarioController.imprimir}"/>
                              </rich:menuGroup>                           
@@ -91,7 +91,7 @@
 							</rich:dropDownMenu>
 							
 							<rich:dropDownMenu 
-								rendered="true">
+								rendered="false">
 								<f:facet name="label">
 									<h:panelGroup>
 									<h:outputText value="Materiais"  />
@@ -105,7 +105,7 @@
 							</rich:dropDownMenu>
 							
 							<rich:dropDownMenu
-								rendered="true">
+								rendered="#{permissaoController.temPermissao('menuFinanceiro')}">
 								<f:facet name="label">
 									<h:panelGroup>
 									<h:outputText value="Financeiro"  />
@@ -119,15 +119,14 @@
 							</rich:dropDownMenu>
 							
 							<rich:dropDownMenu
-								rendered="true">
+								rendered="#{permissaoController.temPermissao('menuPainel')}">
 								<f:facet name="label">
 									<h:panelGroup>
 									<h:outputText value="Paineis"  />
 									</h:panelGroup>
 								</f:facet>
 
-                             <rich:menuItem rendered="true" ajaxSingle="false" value="Painel do Secretario" action="#{painelController.listar}"/>
-                             <rich:menuItem rendered="true" ajaxSingle="false" value="Painel do Coordenador" action="#{painelController.listar}"/>                                                                 								
+                             <rich:menuItem rendered="true" ajaxSingle="false" value="Painel de Informação" action="#{painelController.listar}"/>                                                                                              								
 							</rich:dropDownMenu>
 							
 							<rich:dropDownMenu

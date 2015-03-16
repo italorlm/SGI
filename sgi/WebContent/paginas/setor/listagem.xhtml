@@ -45,12 +45,15 @@
                 		</rich:suggestionbox>
 					</h:panelGrid>
 														
-					
-					<ui:decorate template="../../templates/listagem/acoes.xhtml">
-		    	     <ui:param name="filtrar" value="filtrar" />
-			         <ui:param name="novo" value="novo" />
-			        </ui:decorate>
-										
+					<h:panelGrid columns="3">
+						<a4j:commandButton styleClass="buttonAdicionar"
+							value="Buscar" action="#{setorController.filtrar}" />						
+						<rich:spacer width="3"/>	
+						<a4j:commandButton styleClass="buttonAdicionar"  
+							value="Novo" action="#{setorController.novo}"
+							rendered="#{permissaoController.temPermissao('salvarUnidade')}" />
+					</h:panelGrid>
+											
 					</rich:tab>
 				</rich:tabPanel>
 		
@@ -90,7 +93,14 @@
 									<h:outputText styleClass="headerText" value="Responsável" />
 								</rich:column>
 								
-								<rich:column/>
+								<rich:column style="text-align:center">
+									<h:outputText styleClass="headerText" value="Editar" />
+								</rich:column>
+								
+								<rich:column style="text-align:center" 
+									rendered="#{permissaoController.temPermissao('excluirUnidade')}">
+									<h:outputText styleClass="headerText" value="Excluir" />
+								</rich:column>
 															
 							</rich:columnGroup>
 						</f:facet>
@@ -116,6 +126,14 @@
 					       <ui:param name="valor" value="#{row}" />
 					       <ui:param name="alvo" value="#{setorController.objeto}" />
 						</ui:decorate>
+						
+						<rich:column rendered="#{permissaoController.temPermissao('excluirUnidade')}">
+							<a4j:commandLink oncomplete="Richfaces.showModalPanel('confirmaExcluir')"  id="commandRemover" styleClass="buttonRemover"
+								value="">	
+								<f:setPropertyActionListener value="#{row}"
+									target="#{setorController.objeto}" />
+							</a4j:commandLink>
+						</rich:column>
 																					
 					
 			 	<ui:decorate template="../../templates/listagem/footer.xhtml">
@@ -127,6 +145,42 @@
 			</div>
 		</h:form>
 	
+		<rich:modalPanel id="confirmaExcluir" width="280" height="120"
+			resizeable="false" moveable="true">
+			<f:facet name="header">
+				<h:outputText value="Atenção!" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:panelGroup>
+					<h:graphicImage value="/images/fechar.png" styleClass="hidelink"
+						id="hidelink" />
+					<rich:componentControl for="confirmaExcluir" attachTo="hidelink"
+						operation="hide" event="onclick" />
+				</h:panelGroup>
+			</f:facet>
+			<center>
+				<h:form>
+
+					<h:panelGrid columns="3" cellspacing="1">
+						<table align="center">
+							<tr align="center">
+								<td><h:outputText align="center"
+										value="Confirma exclusão do item?" /></td>
+							</tr>
+
+							<tr>
+								<td><a4j:commandButton styleClass="buttonAdicionar"
+										value="Sim" action="#{setorController.excluir}"
+										onclick="Richfaces.hideModalPanel('confirmaExcluir')"
+										reRender="tabela" /> <a4j:commandButton
+										styleClass="buttonAdicionar" value="Não"
+										onclick="Richfaces.hideModalPanel('confirmaExcluir')" /></td>
+							</tr>
+						</table>
+					</h:panelGrid>
+				</h:form>
+			</center>
+		</rich:modalPanel>
 		
 	</ui:define>
 </ui:composition>

@@ -29,7 +29,8 @@
 							<rich:spacer width="25" />
 							<h:inputText id="nome" value="#{projetoController.objeto.nome}"
 								required="true" requiredMessage="Informe o Nome." size="80" 
-								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"/>
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+								disabled="#{!permissaoController.temPermissao('salvarProjeto')}"/>
 						</h:panelGrid>
 
 						<h:panelGrid columns="4">
@@ -38,7 +39,8 @@
 							<rich:spacer width="6" />
 							<h:selectOneMenu value="#{projetoController.objeto.programa}"
 								converter="entityConverter" required="true"
-								requiredMessage="Informe o Programa">
+								requiredMessage="Informe o Programa"
+								disabled="#{!permissaoController.temPermissao('salvarProjeto')}">
 								<f:selectItem itemLabel="SELECIONE" itemValue="" />
 								<f:selectItems value="#{programaController.selectItems}" />
 								<a4j:support ajaxSingle="true" event="onchange" 
@@ -50,7 +52,8 @@
 							<h:outputText value="Descrição:" />
 							<rich:spacer width="11" />
 							<h:inputTextarea id="descricao" onblur="this.value=this.value.toUpperCase()" 
-								style="text-transform:uppercase" value="#{projetoController.objeto.descricao}" 
+								style="text-transform:uppercase" value="#{projetoController.objeto.descricao}"
+								disabled="#{!permissaoController.temPermissao('salvarProjeto')}" 
 								rows="5" cols="60" />							
 						</h:panelGrid>
 
@@ -60,7 +63,8 @@
 							<h:inputText id="investimento" size="35" 
 								onblur="this.value=this.value.toUpperCase()"
 								style="text-transform:uppercase"
-								value="#{projetoController.objeto.custo}">
+								value="#{projetoController.objeto.custo}"
+								disabled="#{!permissaoController.temPermissao('salvarProjeto')}">
 								<rich:jQuery selector="#investimento"
 									query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})"
 									timing="onload" />
@@ -85,7 +89,8 @@
 									</rich:column>
 	
 									<rich:column style="text-align:center">
-										<h:selectBooleanCheckbox value="#{row.check}" />
+										<h:selectBooleanCheckbox value="#{row.check}" 
+											disabled="#{!permissaoController.temPermissao('salvarProjeto')}"/>
 									</rich:column>
 							</rich:dataTable>
 							</h:panelGrid>
@@ -100,7 +105,7 @@
 							</legend>
 							<h:panelGrid columns="30">
 								<h:outputLabel value="Selecione o Arquivo:" />
-								<rich:fileUpload
+								<rich:fileUpload rendered="#{permissaoController.temPermissao('salvarProjeto')}"
 									fileUploadListener="#{projetoController.listener}" id="upload"
 									immediateUpload="#{fileUploadBean.autoUpload}"
 									maxFilesQuantity="#{projetoController.uploadsAvailable}"
@@ -128,12 +133,17 @@
 											<rich:columnGroup>
 
 												<rich:column style="text-align:center">
-													<h:outputText styleClass="headerText"
-														value="Nome do Arquivo" />
+													<h:outputText styleClass="headerText" value="Arquivo" />
 												</rich:column>
 
-												<rich:column />
-												<rich:column />
+												<rich:column style="text-align:center">
+													<h:outputText styleClass="headerText" value="Visualizar" />
+												</rich:column>
+												
+												<rich:column style="text-align:center"
+													rendered="#{permissaoController.temPermissao('salvarProjeto')}">
+													<h:outputText styleClass="headerText" value="Excluir" />
+												</rich:column>
 
 											</rich:columnGroup>
 										</f:facet>
@@ -150,7 +160,7 @@
 											</h:commandLink>
 										</rich:column>
 
-										<rich:column>
+										<rich:column rendered="#{permissaoController.temPermissao('salvarProjeto')}">
 											<a4j:commandLink immediate="true"
 												oncomplete="Richfaces.showModalPanel('excluirArquivo')"
 												id="commandRemoverArquivo" styleClass="buttonRemover"
@@ -208,10 +218,14 @@
 
 				<br />
 
-				<ui:decorate template="../../templates/cadastro/botoes.xhtml">
-					<ui:param name="salvar" value="salvar" />
-					<ui:param name="listar" value="listar" />
-				</ui:decorate>
+				<h:panelGrid columns="2">
+					<a4j:commandButton styleClass="buttonAdicionar"
+						value="Salvar" action="#{projetoController.salvar}" 
+						rendered="#{permissaoController.temPermissao('salvarProjeto')}" />
+												
+					<a4j:commandButton immediate="true" styleClass="buttonAdicionar"  
+						value="Cancelar" action="#{projetoController.listar}" />
+				</h:panelGrid>
 
 				<table style="left: 30px">
 					<tr>

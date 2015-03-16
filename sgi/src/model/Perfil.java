@@ -8,13 +8,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name="tb_perfil")
 public class Perfil extends BaseModel implements Serializable {
+	
+	/* Tipos de Perfis
+	  	1 - USUARIO
+	  	2 - ADMINISTRADOR FINANCEIRO
+	  	3 - ADMINISTRADOR
+	  	4 - COORDENADOR
+	  	5 - SECRETARIO	  
+	*/
 	
 	@SequenceGenerator(name="per",allocationSize=1, sequenceName="tb_perfil_id_seq")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="per")

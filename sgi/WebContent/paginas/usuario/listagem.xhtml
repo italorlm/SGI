@@ -21,44 +21,46 @@
 	<ui:define name="corpo">
 
 		<h:form>
-		 <ui:param name="bean" value="#{usuarioController}" />
-		 <div align="center">
-		 <a4j:outputPanel ajaxRendered="true"><h:messages errorStyle="color: red" infoStyle="color: green" /></a4j:outputPanel>      
-		 <br/>
-		 <rich:tabPanel width="74%" height="150">
+			<ui:param name="bean" value="#{usuarioController}" />
+			<div align="center">
+				<a4j:outputPanel ajaxRendered="true">
+					<h:messages errorStyle="color: red" infoStyle="color: green" />
+				</a4j:outputPanel>
+				<br />
+				<rich:tabPanel width="74%" height="150">
 					<rich:tab align="center" label="CONSULTA DE USUARIO">
-										
-					<h:panelGrid columns="3">
-					
-					<h:outputText value="Funcionário:"/>					
-					<rich:spacer width="3"/>
-					<h:selectOneMenu value="#{usuarioController.filtro.funcionario}"
-								converter="entityConverter" >
+
+						<h:panelGrid columns="3">
+
+							<h:outputText value="Funcionário:" />
+							<rich:spacer width="3" />
+							<h:selectOneMenu value="#{usuarioController.filtro.funcionario}"
+								converter="entityConverter">
 								<f:selectItem itemLabel="SELECIONE" itemValue="" />
-								<f:selectItems value="#{funcionarioController.selectItems}" />								
+								<f:selectItems value="#{funcionarioController.selectItems}" />
 							</h:selectOneMenu>
-					</h:panelGrid>
-														
-					
-					<ui:decorate template="../../templates/listagem/acoes.xhtml">
-		    	     <ui:param name="filtrar" value="filtrar" />
-			         <ui:param name="novo" value="novo" />
-			        </ui:decorate>
-										
+						</h:panelGrid>
+
+
+						<ui:decorate template="../../templates/listagem/acoes.xhtml">
+							<ui:param name="filtrar" value="filtrar" />
+							<ui:param name="novo" value="novo" />
+						</ui:decorate>
+
 					</rich:tab>
 				</rich:tabPanel>
-		</div> 
-		<br/>
-			 
+			</div>
+			<br />
+
 			<div align="center">
-			
-			<ui:decorate template="../../templates/listagem/header.xhtml">
-			 	<ui:param name="titulo" value="Usuários" />
-				<ui:param name="largura" value="74%"/>
-			</ui:decorate>
+
+				<ui:decorate template="../../templates/listagem/header.xhtml">
+					<ui:param name="titulo" value="Usuários" />
+					<ui:param name="largura" value="74%" />
+				</ui:decorate>
 
 				<a4j:outputPanel ajaxRendered="true" id="painel">
-					<rich:dataTable  align="center" width="74%" id="tabela" rows="5"
+					<rich:dataTable align="center" width="74%" id="tabela" rows="5"
 						onRowMouseOver="this.style.backgroundColor='#CCCCCC'"
 						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
 						rowClasses="odd-row,even-row" rendered="true" columnClasses="col"
@@ -69,83 +71,81 @@
 								<rich:column style="text-align:center">
 									<h:outputText styleClass="headerText" value="Funcionário" />
 								</rich:column>
-								
-								<rich:column/>
-								
-								<rich:column/>
-							
+
+								<rich:column />
+
+								<rich:column />
+
 							</rich:columnGroup>
 						</f:facet>
 
 						<rich:column style="text-align:center">
 							<h:outputText value="#{row.funcionario.nome}" />
 						</rich:column>
-						
-					<ui:decorate template="../../templates/listagem/editar.xhtml">
-				       <ui:param name="editar" value="editar"/>
-				       <ui:param name="valor" value="#{row}" />
-				       <ui:param name="alvo" value="#{usuarioController.objeto}" />
-					</ui:decorate>
-					
-					<rich:column >
-						<a4j:commandLink oncomplete="Richfaces.showModalPanel('confirmaExcluir')"  id="commandRemover" styleClass="buttonRemover"
-							value="">	
-							<f:setPropertyActionListener value="#{row}"
-								target="#{usuarioController.objeto}" />
-						</a4j:commandLink>
-					</rich:column>	
-					
-			 	<ui:decorate template="../../templates/listagem/footer.xhtml">
-				   <ui:param name="tamanho" value="#{usuarioController.listagem.size()}" />
-			    </ui:decorate>
-					
+
+						<ui:decorate template="../../templates/listagem/editar.xhtml">
+							<ui:param name="editar" value="editar" />
+							<ui:param name="valor" value="#{row}" />
+							<ui:param name="alvo" value="#{usuarioController.objeto}" />
+						</ui:decorate>
+
+						<rich:column>
+							<a4j:commandLink
+								oncomplete="Richfaces.showModalPanel('confirmaExcluir')"
+								id="commandRemover" styleClass="buttonRemover" value="">
+								<f:setPropertyActionListener value="#{row}"
+									target="#{usuarioController.objeto}" />
+							</a4j:commandLink>
+						</rich:column>
+
+						<ui:decorate template="../../templates/listagem/footer.xhtml">
+							<ui:param name="tamanho"
+								value="#{usuarioController.listagem.size()}" />
+						</ui:decorate>
+
 					</rich:dataTable>
 				</a4j:outputPanel>
 			</div>
 		</h:form>
-		
+
 		<rich:modalPanel id="confirmaExcluir" width="280" height="120"
 			resizeable="false" moveable="true">
-                    <f:facet name="header">
-                        <h:outputText value="Atenção!" />
-                    </f:facet>
-                    <f:facet name="controls">
-                        <h:panelGroup>
-                            <h:graphicImage value="/images/fechar.png"
-styleClass="hidelink" id="hidelink"/>
-                            <rich:componentControl for="confirmaExcluir"
-attachTo="hidelink" operation="hide" event="onclick"/>
-                        </h:panelGroup>
-                    </f:facet>
-                    <center>
-                        <h:form>
-                        
-                        <h:panelGrid columns="3" cellspacing="1">
-                        <table align="center">
-                        <tr align="center">
-                        <td>
-                        <h:outputText align="center" value="Confirma exclusão do item?"/>
-                        </td>
-                        </tr>
-                        
-                        <tr>
-                        <td>
-                        <a4j:commandButton styleClass="buttonAdicionar" value="Sim"
-                        action="#{usuarioController.excluir}"
-                        onclick="Richfaces.hideModalPanel('confirmaExcluir')"
-                        reRender="tabela"/>
-                        
-                       <a4j:commandButton styleClass="buttonAdicionar" value="Não"
-                       onclick="Richfaces.hideModalPanel('confirmaExcluir')"/>
-                     </td>
-                     </tr>
-</table>
-                            </h:panelGrid>
-                        </h:form>
-                    </center>
-                </rich:modalPanel>
-		
-		
-		
+			<f:facet name="header">
+				<h:outputText value="Atenção!" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:panelGroup>
+					<h:graphicImage value="/images/fechar.png" styleClass="hidelink"
+						id="hidelink" />
+					<rich:componentControl for="confirmaExcluir" attachTo="hidelink"
+						operation="hide" event="onclick" />
+				</h:panelGroup>
+			</f:facet>
+			<center>
+				<h:form>
+
+					<h:panelGrid columns="3" cellspacing="1">
+						<table align="center">
+							<tr align="center">
+								<td><h:outputText align="center"
+										value="Confirma exclusão do item?" /></td>
+							</tr>
+
+							<tr>
+								<td><a4j:commandButton styleClass="buttonAdicionar"
+										value="Sim" action="#{usuarioController.excluir}"
+										onclick="Richfaces.hideModalPanel('confirmaExcluir')"
+										reRender="tabela" /> <a4j:commandButton
+										styleClass="buttonAdicionar" value="Não"
+										onclick="Richfaces.hideModalPanel('confirmaExcluir')" /></td>
+							</tr>
+						</table>
+					</h:panelGrid>
+				</h:form>
+			</center>
+		</rich:modalPanel>
+
+
+
 	</ui:define>
 </ui:composition>

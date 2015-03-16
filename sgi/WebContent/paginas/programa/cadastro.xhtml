@@ -28,7 +28,8 @@
 							<rich:spacer width="11" />
 							<h:inputText id="nome" value="#{programaController.objeto.nome}"
 								required="true" requiredMessage="Informe o Nome." size="80" 
-								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"/>
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+								disabled="#{!permissaoController.temPermissao('salvarPrograma')}"/>
 						</h:panelGrid>
 
 						<rich:spacer height="10"/>
@@ -41,7 +42,8 @@
 								<a4j:commandLink reRender="panelMap"
 									styleClass="buttonAddPadrao"
 									actionListener="#{programaController.mostrarModalMap}"
-									oncomplete="Richfaces.showModalPanel('modalMap');" />
+									oncomplete="Richfaces.showModalPanel('modalMap');" 
+									rendered="#{permissaoController.temPermissao('salvarPrograma')}" />
 							</div>
 
 							<ui:decorate template="../../templates/listagem/header.xhtml">
@@ -63,8 +65,14 @@
 												<h:outputText styleClass="headerText" value="MAP" />
 											</rich:column>
 
-											<rich:column />
-											<rich:column />
+											<rich:column style="text-align:center">
+												<h:outputText styleClass="headerText" value="Editar" />
+											</rich:column>
+											
+											<rich:column style="text-align:center"
+												rendered="#{permissaoController.temPermissao('salvarPrograma')}">
+												<h:outputText styleClass="headerText" value="Excluir" />
+											</rich:column>
 
 										</rich:columnGroup>
 									</f:facet>
@@ -83,7 +91,7 @@
 										</a4j:commandLink>
 									</rich:column>
 
-									<rich:column>
+									<rich:column rendered="#{permissaoController.temPermissao('salvarPrograma')}">
 										<a4j:commandLink immediate="true"
 											oncomplete="Richfaces.showModalPanel('excluirMap')"
 											id="commandRemoverMap" styleClass="buttonRemover" value="">
@@ -107,10 +115,14 @@
 
 				<br />
 
-				<ui:decorate template="../../templates/cadastro/botoes.xhtml">
-					<ui:param name="salvar" value="salvar" />
-					<ui:param name="listar" value="listar" />
-				</ui:decorate>
+				<h:panelGrid columns="2">
+					<a4j:commandButton styleClass="buttonAdicionar"
+						value="Salvar" action="#{programaController.salvar}" 
+						rendered="#{permissaoController.temPermissao('salvarPrograma')}" />
+												
+					<a4j:commandButton immediate="true" styleClass="buttonAdicionar"  
+						value="Cancelar" action="#{programaController.listar}" />
+				</h:panelGrid>
 
 				<table style="left: 30px">
 					<tr>
@@ -148,13 +160,15 @@
 							<h:outputText style="font-size:14px" value="MAP:" />
 							<h:inputText id="parcela" size="90" 
 								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
-								value="#{programaController.programaMap.nome}" />
+								value="#{programaController.programaMap.nome}" 
+								disabled="#{!permissaoController.temPermissao('salvarPrograma')}"/>
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
 												
 						<h:commandButton reRender="tabela" styleClass="buttonAdicionar"
-							value="Cadastrar" action="#{programaController.adicionarMap}" />
+							value="Cadastrar" action="#{programaController.adicionarMap}" 
+							rendered="#{permissaoController.temPermissao('salvarPrograma')}"/>
 					</div>
 
 				</h:form>
