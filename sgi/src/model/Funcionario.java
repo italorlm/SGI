@@ -52,6 +52,8 @@ public class Funcionario extends BaseModel{
 	
 	Integer sexo;
 	
+	String salario;
+	
 	public Funcionario() {}
 	
 	public Funcionario(String nome, String matricula, String email, 
@@ -159,6 +161,14 @@ public class Funcionario extends BaseModel{
 
 	public void setSexo(Integer sexo) {
 		this.sexo = sexo;
+	}
+	
+	public String getSalario() {
+		return salario;
+	}
+
+	public void setSalario(String salario) {
+		this.salario = salario;
 	}
 
 	@Override

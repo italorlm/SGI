@@ -36,7 +36,8 @@
 							<rich:spacer width="15"/>
 							<h:inputText id="nome" value="#{funcionarioController.objeto.nome}"
 								required="false" requiredMessage="Informe o Nome." size="80"
-								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" />
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase" 
+								disabled="#{!permissaoController.temPermissao('salvarFuncionario')}"/>
 							<rich:suggestionbox id="suggestionBox" for="nome" nothingLabel="Nenhum registro encontrado"
                     			suggestionAction="#{funcionarioController.suggestionBox}" var="row" >                      
 			                    <h:column>  
@@ -56,7 +57,8 @@
 							<rich:spacer width="17"/>
 							<h:selectOneMenu id="sexo" 
 									value="#{funcionarioController.objeto.sexo}"
-									required="false" requiredMessage="Informe o Sexo">
+									required="false" requiredMessage="Informe o Sexo"
+									disabled="#{!permissaoController.temPermissao('salvarFuncionario')}">
 							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 							  	<f:selectItem itemLabel="FEMININO" itemValue="1"/>
 							  	<f:selectItem itemLabel="MASCULINO" itemValue="2"/>
@@ -71,7 +73,8 @@
 							<rich:spacer width="1"/>
 							<h:selectOneMenu id="entidade" converter="entityConverter" 
 									value="#{funcionarioController.objeto.entidade}"
-									required="false" requiredMessage="Informe a Entidade">
+									required="false" requiredMessage="Informe a Entidade"
+									disabled="#{!permissaoController.temPermissao('salvarFuncionario')}">
 							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 							  	<f:selectItems value="#{entidadeController.selectItems}"/>
 							  	<a4j:support event="onchange" reRender="cargo" 
@@ -87,7 +90,8 @@
 							<rich:spacer width="13"/>
 							<h:selectOneMenu id="cargo" converter="entityConverter" 
 									value="#{funcionarioController.objeto.cargo}"
-									required="false" requiredMessage="Informe o Cargo">
+									required="false" requiredMessage="Informe o Cargo"
+									disabled="#{!permissaoController.temPermissao('salvarFuncionario')}">
 							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 							  	<f:selectItems value="#{funcionarioController.selectCargos}"/>
 							</h:selectOneMenu>
@@ -99,7 +103,23 @@
 								<rich:calendar id="dataAdmissao" 
 									value="#{funcionarioController.objeto.dataAdmissao}"
 									datePattern="dd/MM/yyyy" size="5" required="false"
-									requiredMessage="Informe a Data Admissão"/>						
+									requiredMessage="Informe a Data Admissão"
+									disabled="#{!permissaoController.temPermissao('salvarFuncionario')}"/>						
+						</h:panelGrid>
+						
+						<rich:spacer height="5"/>
+						
+						<h:panelGrid columns="5">						
+							<h:outputText value="Salário:"/>
+							<div class="campoObrigatorio">*</div>
+								<rich:spacer width="9" />
+							<h:inputText size="20" id="salario" value="#{funcionarioController.objeto.salario}" 
+									required="true" requiredMessage="Informe o Salário"
+									onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+									rendered="#{permissaoController.temPermissao('salvarFuncionario')}" >
+						    	<rich:jQuery selector="#salario"
+                                	query="maskMoney({decimal: ',', thousands: '.',symbol: 'R$',precision:2,showSymbol:false})" timing="onload" />
+						  	</h:inputText>							
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
@@ -109,14 +129,16 @@
 							<div class="campoObrigatorio">*</div>
 							<rich:spacer width="1"/>
 							<h:inputText size="15" id="telefone" value="#{funcionarioController.objeto.telefone}" 
-								required="false" requiredMessage="Informe o Telefone" />
+								required="false" requiredMessage="Informe o Telefone" 
+								disabled="#{!permissaoController.temPermissao('salvarFuncionario')}"/>
 							
 							<rich:spacer width="5"/>
 							
 							<h:outputText value="Celular:" />
 							<div class="campoObrigatorio">*</div>
 							<h:inputText size="15" id="celular" value="#{funcionarioController.objeto.celular}" 
-								required="false" requiredMessage="Informe o Celular" />												
+								required="false" requiredMessage="Informe o Celular" 
+								disabled="#{!permissaoController.temPermissao('salvarFuncionario')}"/>												
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
@@ -127,7 +149,8 @@
 							<rich:spacer width="18"/>
 							<h:inputText id="email" value="#{funcionarioController.objeto.email}"
 								required="false" requiredMessage="Informe o Email." size="80"
-								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"/>														
+								onblur="this.value=this.value.toUpperCase()" style="text-transform:uppercase"
+								disabled="#{!permissaoController.temPermissao('salvarFuncionario')}"/>														
 						</h:panelGrid>
 						
 						<rich:spacer height="5"/>
@@ -138,7 +161,8 @@
 							<rich:spacer width="3"/>							
 							<h:selectOneMenu id="unidade" converter="entityConverter" 
 								value="#{funcionarioController.objeto.setor}"
-								required="false" requiredMessage="Informe a Unidade">
+								required="false" requiredMessage="Informe a Unidade"
+								disabled="#{!permissaoController.temPermissao('salvarFuncionario')}">
 						  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 						  	<f:selectItems value="#{setorController.selectItems}"/>
 						</h:selectOneMenu>						
@@ -152,7 +176,8 @@
 							<rich:spacer width="0"/>	
 							<h:selectOneMenu id="situacao" required="false"
 								value="#{funcionarioController.objeto.situacao}" 
-								requiredMessage="Informe a Situação">
+								requiredMessage="Informe a Situação"
+								disabled="#{!permissaoController.temPermissao('salvarFuncionario')}">
 							  	<f:selectItem itemLabel="SELECIONE" itemValue=""/>
 							  	<f:selectItem itemLabel="ATIVO" itemValue="1"/>
 							  	<f:selectItem itemLabel="INATIVO" itemValue="2"/>
@@ -165,10 +190,14 @@
 
 				<br />
 
-                <ui:decorate template="../../templates/cadastro/botoes.xhtml">
-		    	     <ui:param name="salvar" value="salvar" />
-			         <ui:param name="listar" value="listar" />
-			        </ui:decorate>
+                <h:panelGrid columns="2">
+					<a4j:commandButton styleClass="buttonAdicionar"
+						value="Salvar" action="#{funcionarioController.salvar}" 
+						rendered="#{permissaoController.temPermissao('salvarFuncionario')}" />
+												
+					<a4j:commandButton immediate="true" styleClass="buttonAdicionar"  
+						value="Cancelar" action="#{funcionarioController.listar}" />
+				</h:panelGrid>
 				
 				<table style="left: 30px">
 					<tr>
